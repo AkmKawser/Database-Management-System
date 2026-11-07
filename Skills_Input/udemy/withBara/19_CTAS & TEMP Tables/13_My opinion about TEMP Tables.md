@@ -1,0 +1,1 @@
+All right, guys, now a quick talk about the temporary tables. To be honest, I never used this in my projects. If I need an intermediate results in one query, I can go and use the seats. And if my intermediate results is very important, then I put it in either view or CTAs. But it is a nice technique to learn. Maybe you can utilize it in one of your projects.

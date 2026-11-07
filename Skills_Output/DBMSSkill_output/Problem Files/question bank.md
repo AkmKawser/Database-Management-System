@@ -15,3 +15,4 @@ A centralized archive of database design scenarios, complex query challenges, in
 ## 📝 Problem Entries Archive
 
 *(New problems ingested via `DBMSSkill` will be appended below following the [Problem Formatting Specification](problem%20formatting.md).)*
+

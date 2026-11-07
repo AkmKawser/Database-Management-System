@@ -1,0 +1,1 @@
+And now here we're going to cover the second type of projects where we're going to use our basic SQL skills in order to do something called data profiling, where we're going to try to understand all the aspects of our data sets using simple aggregations like the sum average count. And as well we will be using techniques like subqueries.

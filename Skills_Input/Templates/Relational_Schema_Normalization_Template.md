@@ -81,3 +81,4 @@ Generate verified, production-ready DDL definitions:
 - Explicit `PRIMARY KEY` and `FOREIGN KEY (..) REFERENCES .. ON DELETE CASCADE/SET NULL` constraints.
 - Correct nullability (`NOT NULL`), default values, check constraints (`CHECK (...)`).
 - Dedicated foreign key indexing to prevent full table scans and deadlocks during cascading updates.
+

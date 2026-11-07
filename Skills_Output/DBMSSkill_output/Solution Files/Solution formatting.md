@@ -41,3 +41,4 @@ Solution Files/
 ## 5. Failure Modes & Edge Case Auditing
 - NULL handling, concurrency locks, transaction race conditions, zero-row edge cases.
 ```
+

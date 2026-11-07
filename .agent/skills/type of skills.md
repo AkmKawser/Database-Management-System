@@ -57,3 +57,4 @@ The skill enforces:
 | **Extraction Method** | CLI page-range extractor via Table-of-Contents routing | Phased ingestion pipelines and staging doc readers |
 | **Human-in-the-Loop** | Proactive architectural trade-off alignment before coding | Interactive Primary/Subcategory classification confirmation |
 | **Output Destination** | `Skills_Output/<SkillName>_output/query/` (Theory manuals & roadmaps) | `Skills_Output/DBMSSkill_output/Solution Files/<Category>/<Subcategory>/` |
+

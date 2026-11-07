@@ -41,3 +41,4 @@ All database challenges, schema design tasks, and query optimization problems in
 | 10 | Alice | 95000 |
 
 ---
+

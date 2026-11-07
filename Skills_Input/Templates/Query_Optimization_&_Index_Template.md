@@ -75,3 +75,4 @@ Compare baseline vs. optimized plan metrics side-by-side:
 | **Shared Hit/Read Blocks**| e.g. 45,000 blocks | e.g. 12 blocks | **99.9% I/O reduction** |
 | **Scan Strategy** | `Seq Scan on large_table` | `Index Only Scan using idx_cover` | Zero heap access |
 | **Memory / Disk Spill** | `External merge Disk: 18MB`| `Quicksort Memory: 120kB` | Eliminated disk spill |
+

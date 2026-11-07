@@ -1,0 +1,1 @@
+My friend. You made it. Congrats. You should be really proud of yourself. And now with that, I can say that I have shared everything that I know about SQL and you can now solve any complex task using SQL like I do in my real projects. So nothing left to say. Thank you so much for watching and I will see you in the next course. Bye.

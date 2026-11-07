@@ -23,3 +23,4 @@ A centralized tracking board for upcoming database engine modules, reference boo
 ### 3. Specialized Advanced Templates
 - [ ] Transaction Isolation & Concurrency Control Template (ACID, 2PL, MVCC, Phantom reads)
 - [ ] Distributed Storage, Sharding & Partitioning Blueprint (Consistent hashing, CAP, Consensus)
+
