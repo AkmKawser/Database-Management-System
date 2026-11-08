@@ -184,3 +184,28 @@ This document chronologically records all user requests, architectural designs, 
      - [`.agent/skills/SkillsOnFixedResources/withBara/SkillArchitecture/withBara_Architecture_README.md`](.agent/skills/SkillsOnFixedResources/withBara/SkillArchitecture/withBara_Architecture_README.md)
 3. **Synchronized with Remote**:
    - Committed and pushed all architectural documentation to GitHub.
+
+
+---
+
+## Session 10: Execution of `withBara` Query 003 (DCL, TCL & ACID Properties)
+
+### User Request
+> "using @[.agent/skills/SkillsOnFixedResources/withBara] write in detail about DLC TCL Acid properties"
+
+### Actions Taken & Implementation Summary
+1. **Surgical Search & Cross-Reference**:
+   - Used `query_withbara.py` to examine database lifecycle concepts from Section 01, Lecture 08 (*Types of SQL Commands*).
+   - Cross-referenced companion slides: `Resources/02_docs/10_Performance_Optimization.pdf` (OLTP vs OLAP transactional patterns).
+2. **Pedagogical Synthesis**:
+   - **DCL**: Examined `GRANT`, `REVOKE`, and `DENY` commands, catalog lookups, and session authorization checks.
+   - **TCL**: Walked through the banking transfer dilemma, `BEGIN TRANSACTION`, `COMMIT`, `ROLLBACK`, and `SAVEPOINT`, with sequence diagrams illustrating Buffer Pool (RAM) and Write-Ahead Log (Disk) mechanics.
+   - **ACID Invariants**:
+     - *Atomicity*: Undo logs and before-images.
+     - *Consistency*: Schema constraint invariants.
+     - *Isolation*: Two-Phase Locking (2PL), MVCC snapshots, and concurrency phenomena (Dirty Read, Non-repeatable Read, Phantom Read).
+     - *Durability*: ARIES recovery and WAL `fsync` flush protocol.
+3. **Artifact Generation & Archival**:
+   - Published [`Skills_Output/withBara_output/query/003_dcl_tcl_acid_properties_internals.md`](Skills_Output/withBara_output/query/003_dcl_tcl_acid_properties_internals.md).
+   - Updated `Skills_Output/withBara_output/withBara_Output_README.md`.
+   - Logged session in `chat.md` and pushed all changes to GitHub.

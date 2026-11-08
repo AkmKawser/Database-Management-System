@@ -17,6 +17,7 @@ This directory stores in-depth, lecture-grounded manuals explaining how SQL work
 | :---: | :--- | :--- | :--- | :---: |
 | `001` | [SQL Logical Execution Order & Internal Engine Processing](query/001_sql_logical_execution_order_internals.md) | `02_SELECT Query` | `02_Query_Data_SELECT.pdf` / `01_Query_Data_SELECT.sql` | ✅ Published |
 | `002` | [Types of SQL Commands & Engine Operational Families](query/002_types_of_sql_commands.md) | `01_Introduction to SQL` | `01_SQL_Introduction.pdf` / `SQL_Cheat_Sheet.sql` | ✅ Published |
+| `003` | [DCL, TCL & ACID Transaction Engine Architecture](query/003_dcl_tcl_acid_properties_internals.md) | `01_Introduction` & Engine Architecture | `10_Performance_Optimization.pdf` / OLTP Internals | ✅ Published |
 
 ---
 

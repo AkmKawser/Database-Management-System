@@ -60,3 +60,4 @@ python .agent/skills/SkillsOnFixedResources/withBara/scripts/query_withbara.py "
 Every manual generated must follow the 6-phase blueprint in [`SKILL.md`](../SKILL.md) and be saved to:
 `Skills_Output/withBara_output/query/<NNN>_<topic_name>.md`
 And indexed in `Skills_Output/withBara_output/withBara_Output_README.md`.
+
