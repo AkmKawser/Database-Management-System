@@ -1,18 +1,10 @@
-# `withNasser_output` Query Hub & Manual Archive
+# `withNasser_output` Resource Hub
 
-This directory stores in-depth manuals and curriculum outlines for **`withNasser`**.
-
----
-
-## ⚡ Navigation: Curriculum Outline & Query Manuals
-
-- 🗺️ **[Complete Curriculum / Topic Outline](outline/withNasser_Complete_Course_Outline.md)**: Exhaustive hierarchical index of all sections, subtopics, and resources.
-- 📁 **[Generated Deep-Dive Query Manuals](query/)**: Topic manuals covering theoretical foundations and engine internals.
+This directory stores the course outline and curriculum navigation for Hussein Nasser's **Fundamentals of Database Engineering** course.
 
 ---
 
-## 📑 Generated Query Manuals Index
+## ⚡ Navigation
 
-| Query ID | Topic / Manual Title | Source Section | Companion Reference | Status |
-| :---: | :--- | :--- | :--- | :---: |
-| `001` | [ACID Transactions & Concurrency Anomalies Deep Dive](query/001_acid_transactions_concurrency_deep_dive.md) | `02_ACID` | `01_ACID.pdf` / `08_mysql-commands.txt` | ✅ Published |
+- 🗺️ **[Complete 18-Section Course & Mechanisms Outline](outline/withNasser_Complete_Course_Outline.md)**: Exhaustive hierarchical index of all sections, lectures, database internal topics, slide decks, and companion scripts.
+- 📁 **[Universal Query Manuals Archive](../query/Query_Hub_README.md)**: Master query hub containing topic manuals generated from `withNasser`, `withBara`, and multi-skill combinations.

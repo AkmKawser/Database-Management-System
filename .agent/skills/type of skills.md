@@ -18,14 +18,16 @@ A **Database Reference Skill** encapsulates an entire textbook, academic monogra
 4. **Collaborative Trade-off Protocols**: When designing a database schema, storage tier, or query plan with multiple valid trade-offs (e.g., B+ Tree vs. LSM-Tree; 3NF vs. Denormalized Star Schema; Optimistic vs. Pessimistic Concurrency), the agent **must** present trade-offs to the developer and confirm the path before implementation.
 
 ### 2. Standardized Output Structure for `SkillsOnFixedResources`
-Every fixed resource skill adheres to the following output folder architecture:
+Every fixed resource skill maintains an exhaustive outline for discovering covered topics, while all topic queries and deep-dive manuals are routed to the central `Skills_Output/query/` directory:
 ```
-Skills_Output/<skill_name>_output/
-├── outline/                 # Exhaustive curriculum/book breakdown with all subtopics
-│   └── <skill>_Complete_Course_Outline.md
-├── query/                   # Generated topic manuals & execution deep-dives
+Skills_Output/
+├── query/                                 <-- Unified destination for all single & multi-skill manuals
+│   ├── Query_Hub_README.md
 │   └── <NNN>_<topic_name>.md
-└── <skill>_Output_README.md # Master output index and navigation badges
+├── <skill_name>_output/
+│   ├── outline/                           <-- Exhaustive curriculum/book breakdown with all subtopics
+│   │   └── <skill>_Complete_Course_Outline.md
+│   └── <skill>_Output_README.md           <-- Resource navigation hub
 ```
 
 ### 2. Concrete Examples for DBMS

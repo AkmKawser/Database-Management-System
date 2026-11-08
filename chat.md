@@ -283,3 +283,30 @@ This document chronologically records all user requests, architectural designs, 
 5. **Synchronized Repository & Readmes**:
    - Added `withNasser` navigation badges to root `README.md`.
    - Committed and pushed changes to GitHub.
+
+
+---
+
+## Session 14: Centralization of Universal Query Hub (`Skills_Output/query/`)
+
+### User Request
+> "for some query there i might use more than one udemy course to generate the output. for this the folder structure need to be changed. In the skills output file there must be only 1 folder name query where i may use different type of skills either combined or single or even fixed soure skill or dynamic mixed. so please reveal the new folder structure in the readme file with proper detailed documentaion of query folder."
+
+### Actions Taken & Implementation Summary
+1. **Architectural Restructuring**:
+   - Consolidated query outputs into a single, centralized directory: [`Skills_Output/query/`](Skills_Output/query/).
+   - Moved all previous query manuals into `Skills_Output/query/`:
+     - `001_sql_logical_execution_order_internals.md`
+     - `002_types_of_sql_commands.md`
+     - `003_dcl_tcl_acid_properties_internals.md`
+     - `004_acid_transactions_concurrency_deep_dive.md`
+   - Created master index: [`Skills_Output/query/Query_Hub_README.md`](Skills_Output/query/Query_Hub_README.md).
+   - Cleaned up individual skill `query/` folders while preserving their dedicated `outline/` directories.
+2. **Updated Architecture Standards**:
+   - Updated `.agent/skills/type of skills.md` to formally document the unified `Skills_Output/query/` destination.
+   - Updated `.agent/skills/SkillGenerator/scripts/generate_skill.py`.
+3. **Updated Root `README.md`**:
+   - Restructured the Quick Navigation Hub with badges pointing to the unified Query Hub and its manuals.
+   - Added a dedicated section: `## 🗄️ Unified Query Output Architecture (Skills_Output/query/)` complete with a Mermaid flowchart showing single-skill, multi-skill, and hybrid (theory + dynamic problem) routing.
+4. **Git Sync**:
+   - Committed and pushed all updates to GitHub.

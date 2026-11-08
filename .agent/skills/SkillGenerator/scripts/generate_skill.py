@@ -23,7 +23,7 @@ def create_type1_fixed_resource_skill(skill_name, resource_type, source_path_rel
     (skill_dir / "references").mkdir(parents=True, exist_ok=True)
     (skill_dir / "scripts").mkdir(parents=True, exist_ok=True)
     (output_dir / "outline").mkdir(parents=True, exist_ok=True)
-    (output_dir / "query").mkdir(parents=True, exist_ok=True)
+    (BASE_DIR / "Skills_Output" / "query").mkdir(parents=True, exist_ok=True)
 
     print(f"📁 Created directory structure for Type 1 Skill: {skill_name}")
 
