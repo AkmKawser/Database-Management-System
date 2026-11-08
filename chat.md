@@ -352,3 +352,25 @@ This document chronologically records all user requests, architectural designs, 
      - ⚙️ **System Tools**: `SkillGenerator`, Roadmap, Architecture Log, and Skill Typology.
 2. **Synchronized with Remote**:
    - Committed and pushed updates to GitHub.
+
+
+---
+
+## Session 17: Removal of 004 & Consolidation of 003 with Full Rendering Audit
+
+### User Request
+> "remove 004 i did not ask for it. I told you to modify 003 and edit within itself and add @[c:\Users\USER\Documents\.MYGITHUB\Database Management System\.agent\skills\SkillsOnFixedResources\withNasser] lecture related to this topic. also check if any files have rendering issue. always check this."
+
+### Actions Taken & Implementation Summary
+1. **Removed `004` Query**:
+   - Deleted `Skills_Output/query/004_acid_transactions_concurrency_deep_dive.md`.
+   - Updated `Skills_Output/query/Query_Hub_README.md` and root `README.md` to remove all references to 004.
+2. **Consolidated into `003`**:
+   - Confirmed `Skills_Output/query/003_dcl_tcl_acid_properties_internals.md` contains the complete, unified blend of `withBara` (SQL lifecycle, DDL/DML/DQL, DCL, TCL, bank transfer model) and `withNasser` (OS buffer cache bypass, `fsync()`, WAL vs random data I/O, Undo stacks vs Postgres tuple versioning, 4 Read Phenomena, and ARIES crash recovery).
+3. **Markdown & KaTeX Rendering Audit**:
+   - Audited markdown syntax across all files for:
+     - Escaped KaTeX literal dollar signs (`\$500`) to prevent prose from collapsing into LaTeX math blocks.
+     - Valid fenced code blocks and balanced HTML tags.
+     - Mermaid diagram syntax validation.
+4. **Git Synchronization**:
+   - Committed and pushed changes to GitHub.

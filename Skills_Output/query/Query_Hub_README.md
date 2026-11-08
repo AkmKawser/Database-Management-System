@@ -40,7 +40,6 @@ flowchart TD
 | [`001`](001_sql_logical_execution_order_internals.md) | **SQL Logical Execution Order & Internal Engine Processing** | `withBara` (`02_SELECT Query`, `01_Query_Data_SELECT.sql`) | 7-stage engine execution pipeline, 5 types of SQL filters, coding vs execution timing | ✅ Published |
 | [`002`](002_types_of_sql_commands.md) | **Types of SQL Commands & Engine Operational Families** | `withBara` (`01_Introduction to SQL`, `01_SQL_Introduction.pdf`) | Lifecycle of an empty database: DDL (structure), DML (rows), DQL (retrieval), TCL, DCL | ✅ Published |
 | [`003`](003_dcl_tcl_acid_properties_internals.md) | **DCL, TCL & ACID Transaction Engine Architecture** | `withBara` & `withNasser` (Dual Course Blend) | Permissions catalog, banking transfer, Undo stacks, OS cache bypass, fsync, MVCC vs 2PL, read phenomena, and ARIES recovery | ✅ Published |
-| [`004`](004_acid_transactions_concurrency_deep_dive.md) | **ACID Transactions & Concurrency Anomalies Deep Dive** | `withNasser` (`02_ACID`, slides, MySQL/Postgres scripts) | Undo logs vs Redo logs, Dirty/Non-repeatable/Phantom reads, Repeatable Read vs Serializable | ✅ Published |
 
 ---
 
