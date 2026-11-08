@@ -374,3 +374,25 @@ This document chronologically records all user requests, architectural designs, 
      - Mermaid diagram syntax validation.
 4. **Git Synchronization**:
    - Committed and pushed changes to GitHub.
+
+
+---
+
+## Session 18: In-Depth Transaction Architecture Expansion in Query 003
+
+### User Request
+> "using this skills does not make you cannot add your own regioning. you can put your own reasoning to simply and add more insite into their lectures. so make sure your do this. in 003 describe in depth about transation"
+
+### Actions Taken & Implementation Summary
+1. **Integrated Advanced Database Engineering Insights into Query 003**:
+   - Expanded Section 3 with a dedicated deep-dive into transactions:
+     - **Formal Transaction State Machine**: Modeled state transitions (`ACTIVE` $\to$ `PARTIALLY COMMITTED` $\to$ `COMMITTED` vs `FAILED` $\to$ `ABORTED`) with Mermaid state diagram.
+     - **Read-Only vs. Read-Write Transaction Optimization**: Explored the physical cost of assigning 32-bit Transaction IDs (XIDs), virtual transactions, and how `READ ONLY` flags save memory and vacuum cycles.
+     - **Transaction ID Wraparound**: Explained the 4.2-billion-transaction ceiling in PostgreSQL and how background `VACUUM FREEZE` prevents past tuples from vanishing.
+     - **The Danger of Long-Running Transactions (Idle in Transaction)**: Detailed lock starvation, undo stack bloat, WAL disk exhaustion, and why network calls must never live inside database transactions.
+     - **Deadlock Cycle Detection**: Modeled the engine's internal **Wait-For Graph** algorithms and victim abort strategies.
+2. **Conducted Rendering & KaTeX Validation**:
+   - Confirmed Mermaid state machine and sequence diagrams render cleanly without syntax errors.
+   - Verified math escaping and table alignment.
+3. **Git Synchronization**:
+   - Committed and pushed all updates to GitHub.
