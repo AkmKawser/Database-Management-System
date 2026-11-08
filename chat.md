@@ -89,3 +89,31 @@ This document chronologically records all user requests, architectural designs, 
 1. Verified existing logs and upgraded [`chat.md`](chat.md) to follow the comprehensive multi-session format of `Science_Of_Coding`.
 2. Documented all conversation sessions from Session 1 to Session 5 in detail.
 3. Committed and synchronized changes with GitHub.
+
+
+---
+
+## Session 6: Creation of `withBara` SQL & Engine Internals Skill
+
+### User Request
+> "Not make a skill named withBara. Its a trascript from a udemy course. All the elements to make this skill is given to Skills_Input\\udemy\\withBara folder. what i want from this skill is when I type about a topic about this skill i will generate output the same way the course was covered. this course coverted how sql works internatlly. The output of this skill should be kept as withBara_output\\query. when you write the ooutput make sure you also visit the resources folder inside Skills_Input\\udemy\\withBara\\Resources folder. You will find good reference there."
+
+### Actions Taken & Implementation Summary
+1. **Analyzed Source Material**:
+   - Inspected `Skills_Input/udemy/withBara/`: 28 course sections covering SQL from basic `SELECT` to advanced internals (Joins, Window Functions, CTEs, Temporary Tables, Stored Procedures, Indexes, Partitions, Performance Optimization, and Analytics Projects).
+   - Inspected `Skills_Input/udemy/withBara/Resources/`:
+     - `02_docs/`: Comprehensive slide decks and architectural diagrams (`02_Query_Data_SELECT.pdf`, `06_JOINS_and_SET.pdf`, `10_Performance_Optimization.pdf`, `10_SQL_30_Performance_Tips.pdf`, etc.).
+     - `03_scripts/`: 31 executable SQL scripts demonstrating exact query patterns.
+2. **Engineered `withBara` Agent Skill**:
+   - Location: `.agent/skills/SkillsOnFixedResources/withBara/`
+   - `.agent/skills/SkillsOnFixedResources/withBara/SKILL.md`: Skill specification containing triggers, pedagogical style, query pipeline, resource cross-referencing rules, and output format.
+   - Machine-Readable Outlines: `references/toc.json` and `references/table_of_contents.md` generated across all 28 modules and resources.
+   - Search & Extraction CLI: `.agent/skills/SkillsOnFixedResources/withBara/scripts/query_withbara.py` to search transcripts and companion scripts via keywords.
+3. **Established Output Pipeline**:
+   - Created `Skills_Output/withBara_output/query/`.
+   - Created `Skills_Output/withBara_output/withBara_Output_README.md` as the query archive index.
+4. **Generated Inaugural Manual**:
+   - Authored `Skills_Output/withBara_output/query/001_sql_logical_execution_order_internals.md` covering internal engine processing, 5 filtering types, coding vs. execution order, Mermaid flowcharts, and performance anti-patterns.
+5. **Updated Navigation & Roadmap**:
+   - Updated `README.md` with new `withBara` navigation badges.
+   - Updated `Upcoming Updates/Upcoming Updates.md`.

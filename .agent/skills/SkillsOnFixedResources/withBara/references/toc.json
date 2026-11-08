@@ -1,0 +1,1895 @@
+{
+  "course_title": "The Complete SQL Bootcamp / Master Course (withBara)",
+  "sections": [
+    {
+      "section_number": 1,
+      "section_name": "01_Introduction to SQL",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Introduction.md",
+          "relative_path": "Skills_Input/udemy/withBara/01_Introduction to SQL/01_Introduction.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_Course Resources.md",
+          "relative_path": "Skills_Input/udemy/withBara/01_Introduction to SQL/02_Course Resources.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_Course Roadmap & Structure.md",
+          "relative_path": "Skills_Input/udemy/withBara/01_Introduction to SQL/03_Course Roadmap & Structure.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_What is SQL and Databases.md",
+          "relative_path": "Skills_Input/udemy/withBara/01_Introduction to SQL/04_What is SQL and Databases.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_What is DBMS and SQL Server.md",
+          "relative_path": "Skills_Input/udemy/withBara/01_Introduction to SQL/05_What is DBMS and SQL Server.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_Types of Databases.md",
+          "relative_path": "Skills_Input/udemy/withBara/01_Introduction to SQL/06_Types of Databases.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_Database Structure.md",
+          "relative_path": "Skills_Input/udemy/withBara/01_Introduction to SQL/07_Database Structure.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_Types of SQL Commands.md",
+          "relative_path": "Skills_Input/udemy/withBara/01_Introduction to SQL/08_Types of SQL Commands.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_Why Learn SQL.md",
+          "relative_path": "Skills_Input/udemy/withBara/01_Introduction to SQL/09_Why Learn SQL.md"
+        },
+        {
+          "lecture_number": 10,
+          "file_name": "10_Environment Setup SQL Server, SSMS and Databases.md",
+          "relative_path": "Skills_Input/udemy/withBara/01_Introduction to SQL/10_Environment Setup SQL Server, SSMS and Databases.md"
+        }
+      ]
+    },
+    {
+      "section_number": 2,
+      "section_name": "02_SELECT Query",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Components of SQL.md",
+          "relative_path": "Skills_Input/udemy/withBara/02_SELECT Query/01_Components of SQL.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_What is SQL Query.md",
+          "relative_path": "Skills_Input/udemy/withBara/02_SELECT Query/02_What is SQL Query.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_SELECT & FROM.md",
+          "relative_path": "Skills_Input/udemy/withBara/02_SELECT Query/03_SELECT & FROM.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_WHERE.md",
+          "relative_path": "Skills_Input/udemy/withBara/02_SELECT Query/04_WHERE.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_ORDER BY.md",
+          "relative_path": "Skills_Input/udemy/withBara/02_SELECT Query/05_ORDER BY.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_GROUP BY.md",
+          "relative_path": "Skills_Input/udemy/withBara/02_SELECT Query/06_GROUP BY.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_HAVING.md",
+          "relative_path": "Skills_Input/udemy/withBara/02_SELECT Query/07_HAVING.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_DISTINCT.md",
+          "relative_path": "Skills_Input/udemy/withBara/02_SELECT Query/08_DISTINCT.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_TOP.md",
+          "relative_path": "Skills_Input/udemy/withBara/02_SELECT Query/09_TOP.md"
+        },
+        {
+          "lecture_number": 10,
+          "file_name": "10_Coding & Execution Order.md",
+          "relative_path": "Skills_Input/udemy/withBara/02_SELECT Query/10_Coding & Execution Order.md"
+        },
+        {
+          "lecture_number": 11,
+          "file_name": "11_Cool SQL Stuff.md",
+          "relative_path": "Skills_Input/udemy/withBara/02_SELECT Query/11_Cool SQL Stuff.md"
+        }
+      ]
+    },
+    {
+      "section_number": 3,
+      "section_name": "03_Data Definition (DDL)",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_CREATE.md",
+          "relative_path": "Skills_Input/udemy/withBara/03_Data Definition (DDL)/01_CREATE.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_ALTER.md",
+          "relative_path": "Skills_Input/udemy/withBara/03_Data Definition (DDL)/02_ALTER.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_DROP.md",
+          "relative_path": "Skills_Input/udemy/withBara/03_Data Definition (DDL)/03_DROP.md"
+        }
+      ]
+    },
+    {
+      "section_number": 4,
+      "section_name": "04_Data Manipulation (DML)",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_INSERT.md",
+          "relative_path": "Skills_Input/udemy/withBara/04_Data Manipulation (DML)/01_INSERT.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_UPDATE.md",
+          "relative_path": "Skills_Input/udemy/withBara/04_Data Manipulation (DML)/02_UPDATE.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_DELETE.md",
+          "relative_path": "Skills_Input/udemy/withBara/04_Data Manipulation (DML)/03_DELETE.md"
+        }
+      ]
+    },
+    {
+      "section_number": 5,
+      "section_name": "05_Filtering Data",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Intro - What is Data Filtering.md",
+          "relative_path": "Skills_Input/udemy/withBara/05_Filtering Data/01_Intro - What is Data Filtering.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_Comparison operators.md",
+          "relative_path": "Skills_Input/udemy/withBara/05_Filtering Data/02_Comparison operators.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_AND Operator.md",
+          "relative_path": "Skills_Input/udemy/withBara/05_Filtering Data/03_AND Operator.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_OR Operator.md",
+          "relative_path": "Skills_Input/udemy/withBara/05_Filtering Data/04_OR Operator.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_NOT Operator.md",
+          "relative_path": "Skills_Input/udemy/withBara/05_Filtering Data/05_NOT Operator.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_BETWEEN Operator.md",
+          "relative_path": "Skills_Input/udemy/withBara/05_Filtering Data/06_BETWEEN Operator.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_IN Operator.md",
+          "relative_path": "Skills_Input/udemy/withBara/05_Filtering Data/07_IN Operator.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_LIKE Operators.md",
+          "relative_path": "Skills_Input/udemy/withBara/05_Filtering Data/08_LIKE Operators.md"
+        }
+      ]
+    },
+    {
+      "section_number": 6,
+      "section_name": "06_SQL Joins",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Intro What is Combining Data.md",
+          "relative_path": "Skills_Input/udemy/withBara/06_SQL Joins/01_Intro What is Combining Data.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_Introduction to JOINs.md",
+          "relative_path": "Skills_Input/udemy/withBara/06_SQL Joins/02_Introduction to JOINs.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_NO JOIN.md",
+          "relative_path": "Skills_Input/udemy/withBara/06_SQL Joins/03_NO JOIN.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_INNER JOIN.md",
+          "relative_path": "Skills_Input/udemy/withBara/06_SQL Joins/04_INNER JOIN.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_LEFT JOIN.md",
+          "relative_path": "Skills_Input/udemy/withBara/06_SQL Joins/05_LEFT JOIN.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_RIGHT JOIN.md",
+          "relative_path": "Skills_Input/udemy/withBara/06_SQL Joins/06_RIGHT JOIN.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_FULL JOIN.md",
+          "relative_path": "Skills_Input/udemy/withBara/06_SQL Joins/07_FULL JOIN.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_LEFT ANTI JOIN.md",
+          "relative_path": "Skills_Input/udemy/withBara/06_SQL Joins/08_LEFT ANTI JOIN.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_RIGHT ANTI JOIN.md",
+          "relative_path": "Skills_Input/udemy/withBara/06_SQL Joins/09_RIGHT ANTI JOIN.md"
+        },
+        {
+          "lecture_number": 10,
+          "file_name": "10_FULL ANTI JOIN.md",
+          "relative_path": "Skills_Input/udemy/withBara/06_SQL Joins/10_FULL ANTI JOIN.md"
+        },
+        {
+          "lecture_number": 11,
+          "file_name": "11_CROSS JOIN.md",
+          "relative_path": "Skills_Input/udemy/withBara/06_SQL Joins/11_CROSS JOIN.md"
+        },
+        {
+          "lecture_number": 12,
+          "file_name": "12_How to Choose The Correct Join.md",
+          "relative_path": "Skills_Input/udemy/withBara/06_SQL Joins/12_How to Choose The Correct Join.md"
+        },
+        {
+          "lecture_number": 13,
+          "file_name": "13_Multiple Table Joins.md",
+          "relative_path": "Skills_Input/udemy/withBara/06_SQL Joins/13_Multiple Table Joins.md"
+        }
+      ]
+    },
+    {
+      "section_number": 7,
+      "section_name": "07_SQL SET Operators",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Introduction to SET Operators.md",
+          "relative_path": "Skills_Input/udemy/withBara/07_SQL SET Operators/01_Introduction to SET Operators.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_SET Rules & Syntax.md",
+          "relative_path": "Skills_Input/udemy/withBara/07_SQL SET Operators/02_SET Rules & Syntax.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_UNION.md",
+          "relative_path": "Skills_Input/udemy/withBara/07_SQL SET Operators/03_UNION.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_UNION ALL.md",
+          "relative_path": "Skills_Input/udemy/withBara/07_SQL SET Operators/04_UNION ALL.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_EXCEPT.md",
+          "relative_path": "Skills_Input/udemy/withBara/07_SQL SET Operators/05_EXCEPT.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_INTERSECT.md",
+          "relative_path": "Skills_Input/udemy/withBara/07_SQL SET Operators/06_INTERSECT.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_Use Case Combine Information.md",
+          "relative_path": "Skills_Input/udemy/withBara/07_SQL SET Operators/07_Use Case Combine Information.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_Use Case Delta Detection.md",
+          "relative_path": "Skills_Input/udemy/withBara/07_SQL SET Operators/08_Use Case Delta Detection.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_SET Operators Summary.md",
+          "relative_path": "Skills_Input/udemy/withBara/07_SQL SET Operators/09_SET Operators Summary.md"
+        }
+      ]
+    },
+    {
+      "section_number": 8,
+      "section_name": "08_String Functions",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Intro - What is Data Transformation.md",
+          "relative_path": "Skills_Input/udemy/withBara/08_String Functions/01_Intro - What is Data Transformation.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_SQL Functions.md",
+          "relative_path": "Skills_Input/udemy/withBara/08_String Functions/02_SQL Functions.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_CONCAT.md",
+          "relative_path": "Skills_Input/udemy/withBara/08_String Functions/03_CONCAT.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_UPPER & LOWER.md",
+          "relative_path": "Skills_Input/udemy/withBara/08_String Functions/04_UPPER & LOWER.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_TRIM.md",
+          "relative_path": "Skills_Input/udemy/withBara/08_String Functions/05_TRIM.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_REPLACE.md",
+          "relative_path": "Skills_Input/udemy/withBara/08_String Functions/06_REPLACE.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_LEN.md",
+          "relative_path": "Skills_Input/udemy/withBara/08_String Functions/07_LEN.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_LEFT & RIGHT.md",
+          "relative_path": "Skills_Input/udemy/withBara/08_String Functions/08_LEFT & RIGHT.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_SUBSTRING.md",
+          "relative_path": "Skills_Input/udemy/withBara/08_String Functions/09_SUBSTRING.md"
+        },
+        {
+          "lecture_number": 10,
+          "file_name": "10_Number Functions.md",
+          "relative_path": "Skills_Input/udemy/withBara/08_String Functions/10_Number Functions.md"
+        }
+      ]
+    },
+    {
+      "section_number": 9,
+      "section_name": "09_Date & Time Functions",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_What is Date & Time.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/01_What is Date & Time.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_Overview Date & Time Functions.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/02_Overview Date & Time Functions.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_Date & Time Scripts.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/03_Date & Time Scripts.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_DAY, MONTH, YEAR.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/04_DAY, MONTH, YEAR.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_DATEPART.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/05_DATEPART.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_DATENAME.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/06_DATENAME.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_DATETRUNC.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/07_DATETRUNC.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_EOMONTH.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/08_EOMONTH.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_Use Cases Date Extraction.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/09_Use Cases Date Extraction.md"
+        },
+        {
+          "lecture_number": 10,
+          "file_name": "10_Compare Extract Functions.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/10_Compare Extract Functions.md"
+        },
+        {
+          "lecture_number": 11,
+          "file_name": "11_Intro to Formatting & Casting.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/11_Intro to Formatting & Casting.md"
+        },
+        {
+          "lecture_number": 12,
+          "file_name": "12_FORMAT.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/12_FORMAT.md"
+        },
+        {
+          "lecture_number": 13,
+          "file_name": "13_CONVERT.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/13_CONVERT.md"
+        },
+        {
+          "lecture_number": 14,
+          "file_name": "14_CAST.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/14_CAST.md"
+        },
+        {
+          "lecture_number": 15,
+          "file_name": "15_DATEADD.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/15_DATEADD.md"
+        },
+        {
+          "lecture_number": 16,
+          "file_name": "16_DATEDIFF.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/16_DATEDIFF.md"
+        },
+        {
+          "lecture_number": 17,
+          "file_name": "17_ISDATE.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/17_ISDATE.md"
+        },
+        {
+          "lecture_number": 18,
+          "file_name": "18_Date & Time Summary.md",
+          "relative_path": "Skills_Input/udemy/withBara/09_Date & Time Functions/18_Date & Time Summary.md"
+        }
+      ]
+    },
+    {
+      "section_number": 10,
+      "section_name": "10_NULL Functions",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Introduction to NULLs.md",
+          "relative_path": "Skills_Input/udemy/withBara/10_NULL Functions/01_Introduction to NULLs.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_COALESC vs ISNULL.md",
+          "relative_path": "Skills_Input/udemy/withBara/10_NULL Functions/02_COALESC vs ISNULL.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_Handling NULL Data Aggregation.md",
+          "relative_path": "Skills_Input/udemy/withBara/10_NULL Functions/03_Handling NULL Data Aggregation.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_Handling NULL Mathematic Operations.md",
+          "relative_path": "Skills_Input/udemy/withBara/10_NULL Functions/04_Handling NULL Mathematic Operations.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_Handling NULL Joining Data.md",
+          "relative_path": "Skills_Input/udemy/withBara/10_NULL Functions/05_Handling NULL Joining Data.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_Handling NULL Sorting Data.md",
+          "relative_path": "Skills_Input/udemy/withBara/10_NULL Functions/06_Handling NULL Sorting Data.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_NULLIF.md",
+          "relative_path": "Skills_Input/udemy/withBara/10_NULL Functions/07_NULLIF.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_IS NULL & IS NOT NULL.md",
+          "relative_path": "Skills_Input/udemy/withBara/10_NULL Functions/08_IS NULL & IS NOT NULL.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_NULL vs Empty vs Blank.md",
+          "relative_path": "Skills_Input/udemy/withBara/10_NULL Functions/09_NULL vs Empty vs Blank.md"
+        },
+        {
+          "lecture_number": 10,
+          "file_name": "10_Handling NULL Data Policies.md",
+          "relative_path": "Skills_Input/udemy/withBara/10_NULL Functions/10_Handling NULL Data Policies.md"
+        },
+        {
+          "lecture_number": 11,
+          "file_name": "11_NULL Summary.md",
+          "relative_path": "Skills_Input/udemy/withBara/10_NULL Functions/11_NULL Summary.md"
+        }
+      ]
+    },
+    {
+      "section_number": 11,
+      "section_name": "11_CASE WHEN Statement",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Introduction to CASE Statements.md",
+          "relative_path": "Skills_Input/udemy/withBara/11_CASE WHEN Statement/01_Introduction to CASE Statements.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_Use Case Categorizing Data.md",
+          "relative_path": "Skills_Input/udemy/withBara/11_CASE WHEN Statement/02_Use Case Categorizing Data.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_CASE Rules.md",
+          "relative_path": "Skills_Input/udemy/withBara/11_CASE WHEN Statement/03_CASE Rules.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_Use Case Mapping Values.md",
+          "relative_path": "Skills_Input/udemy/withBara/11_CASE WHEN Statement/04_Use Case Mapping Values.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_Use Case Handling Nulls.md",
+          "relative_path": "Skills_Input/udemy/withBara/11_CASE WHEN Statement/05_Use Case Handling Nulls.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_CASE Statement Summary.md",
+          "relative_path": "Skills_Input/udemy/withBara/11_CASE WHEN Statement/06_CASE Statement Summary.md"
+        }
+      ]
+    },
+    {
+      "section_number": 12,
+      "section_name": "12_Window Functions Basics",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Intro - What is Data Aggregation.md",
+          "relative_path": "Skills_Input/udemy/withBara/12_Window Functions Basics/01_Intro - What is Data Aggregation.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_Window Functions vs Group By.md",
+          "relative_path": "Skills_Input/udemy/withBara/12_Window Functions Basics/02_Window Functions vs Group By.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_Syntax of Window Functions.md",
+          "relative_path": "Skills_Input/udemy/withBara/12_Window Functions Basics/03_Syntax of Window Functions.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_Window Partition By.md",
+          "relative_path": "Skills_Input/udemy/withBara/12_Window Functions Basics/04_Window Partition By.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_Window Order By.md",
+          "relative_path": "Skills_Input/udemy/withBara/12_Window Functions Basics/05_Window Order By.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_Window Frame.md",
+          "relative_path": "Skills_Input/udemy/withBara/12_Window Functions Basics/06_Window Frame.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_Window Function Rules.md",
+          "relative_path": "Skills_Input/udemy/withBara/12_Window Functions Basics/07_Window Function Rules.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_Window Basic Summary.md",
+          "relative_path": "Skills_Input/udemy/withBara/12_Window Functions Basics/08_Window Basic Summary.md"
+        }
+      ]
+    },
+    {
+      "section_number": 13,
+      "section_name": "13_Window Aggregate Functions",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Introduction to Window Aggregate Functions.md",
+          "relative_path": "Skills_Input/udemy/withBara/13_Window Aggregate Functions/01_Introduction to Window Aggregate Functions.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_Window COUNT.md",
+          "relative_path": "Skills_Input/udemy/withBara/13_Window Aggregate Functions/02_Window COUNT.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_Window SUM.md",
+          "relative_path": "Skills_Input/udemy/withBara/13_Window Aggregate Functions/03_Window SUM.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_Window AVG.md",
+          "relative_path": "Skills_Input/udemy/withBara/13_Window Aggregate Functions/04_Window AVG.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_Window MIN & MAX.md",
+          "relative_path": "Skills_Input/udemy/withBara/13_Window Aggregate Functions/05_Window MIN & MAX.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_Use Case Rolling & Running Total.md",
+          "relative_path": "Skills_Input/udemy/withBara/13_Window Aggregate Functions/06_Use Case Rolling & Running Total.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_Use Case Moving Average.md",
+          "relative_path": "Skills_Input/udemy/withBara/13_Window Aggregate Functions/07_Use Case Moving Average.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_Window Aggregate Functions Summary.md",
+          "relative_path": "Skills_Input/udemy/withBara/13_Window Aggregate Functions/08_Window Aggregate Functions Summary.md"
+        }
+      ]
+    },
+    {
+      "section_number": 14,
+      "section_name": "14_Window Ranking Functions",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Introduction to Ranking Functions.md",
+          "relative_path": "Skills_Input/udemy/withBara/14_Window Ranking Functions/01_Introduction to Ranking Functions.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_Window ROW_NUMBER.md",
+          "relative_path": "Skills_Input/udemy/withBara/14_Window Ranking Functions/02_Window ROW_NUMBER.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_Window RANK.md",
+          "relative_path": "Skills_Input/udemy/withBara/14_Window Ranking Functions/03_Window RANK.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_Window DENSE_RANK.md",
+          "relative_path": "Skills_Input/udemy/withBara/14_Window Ranking Functions/04_Window DENSE_RANK.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_ROW_NUMBER vs RANK vs DENSE_RANK.md",
+          "relative_path": "Skills_Input/udemy/withBara/14_Window Ranking Functions/05_ROW_NUMBER vs RANK vs DENSE_RANK.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_Use Cases TopBottom N Analysis.md",
+          "relative_path": "Skills_Input/udemy/withBara/14_Window Ranking Functions/06_Use Cases TopBottom N Analysis.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_Use Cases Assign Unique IDs.md",
+          "relative_path": "Skills_Input/udemy/withBara/14_Window Ranking Functions/07_Use Cases Assign Unique IDs.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_Use Cases Identify Duplicates.md",
+          "relative_path": "Skills_Input/udemy/withBara/14_Window Ranking Functions/08_Use Cases Identify Duplicates.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_Window CUME_DIST.md",
+          "relative_path": "Skills_Input/udemy/withBara/14_Window Ranking Functions/09_Window CUME_DIST.md"
+        },
+        {
+          "lecture_number": 10,
+          "file_name": "10_Window PERCENT_RANK.md",
+          "relative_path": "Skills_Input/udemy/withBara/14_Window Ranking Functions/10_Window PERCENT_RANK.md"
+        },
+        {
+          "lecture_number": 11,
+          "file_name": "11_Window NTILE.md",
+          "relative_path": "Skills_Input/udemy/withBara/14_Window Ranking Functions/11_Window NTILE.md"
+        },
+        {
+          "lecture_number": 12,
+          "file_name": "12_Window Ranking Function Summary.md",
+          "relative_path": "Skills_Input/udemy/withBara/14_Window Ranking Functions/12_Window Ranking Function Summary.md"
+        }
+      ]
+    },
+    {
+      "section_number": 15,
+      "section_name": "15_Window Value Functions",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Introduction to Window Value Functions.md",
+          "relative_path": "Skills_Input/udemy/withBara/15_Window Value Functions/01_Introduction to Window Value Functions.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_Window LEAD & LAG.md",
+          "relative_path": "Skills_Input/udemy/withBara/15_Window Value Functions/02_Window LEAD & LAG.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_Use Case Month-Over-Month (MoM).md",
+          "relative_path": "Skills_Input/udemy/withBara/15_Window Value Functions/03_Use Case Month-Over-Month (MoM).md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_Use Case Customer Retention.md",
+          "relative_path": "Skills_Input/udemy/withBara/15_Window Value Functions/04_Use Case Customer Retention.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_Use Case Time Gap Analysis.md",
+          "relative_path": "Skills_Input/udemy/withBara/15_Window Value Functions/05_Use Case Time Gap Analysis.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_Window FIRST & LAST.md",
+          "relative_path": "Skills_Input/udemy/withBara/15_Window Value Functions/06_Window FIRST & LAST.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_Window Value Functions Summary.md",
+          "relative_path": "Skills_Input/udemy/withBara/15_Window Value Functions/07_Window Value Functions Summary.md"
+        }
+      ]
+    },
+    {
+      "section_number": 16,
+      "section_name": "16_Subqueries",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Challenges in Complex Projects.md",
+          "relative_path": "Skills_Input/udemy/withBara/16_Subqueries/01_Challenges in Complex Projects.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_Introduction to Subquery.md",
+          "relative_path": "Skills_Input/udemy/withBara/16_Subqueries/02_Introduction to Subquery.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_Why Subquery.md",
+          "relative_path": "Skills_Input/udemy/withBara/16_Subqueries/03_Why Subquery.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_Subquery Categories.md",
+          "relative_path": "Skills_Input/udemy/withBara/16_Subqueries/04_Subquery Categories.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_Subquery Result Types.md",
+          "relative_path": "Skills_Input/udemy/withBara/16_Subqueries/05_Subquery Result Types.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_Subquery in FROM.md",
+          "relative_path": "Skills_Input/udemy/withBara/16_Subqueries/06_Subquery in FROM.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_How DB Executes Subquery.md",
+          "relative_path": "Skills_Input/udemy/withBara/16_Subqueries/07_How DB Executes Subquery.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_Subquery in SELECT.md",
+          "relative_path": "Skills_Input/udemy/withBara/16_Subqueries/08_Subquery in SELECT.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_Subquery in JOIN.md",
+          "relative_path": "Skills_Input/udemy/withBara/16_Subqueries/09_Subquery in JOIN.md"
+        },
+        {
+          "lecture_number": 10,
+          "file_name": "10_Subquery in WHERE.md",
+          "relative_path": "Skills_Input/udemy/withBara/16_Subqueries/10_Subquery in WHERE.md"
+        },
+        {
+          "lecture_number": 11,
+          "file_name": "11_Subquery using IN Operator.md",
+          "relative_path": "Skills_Input/udemy/withBara/16_Subqueries/11_Subquery using IN Operator.md"
+        },
+        {
+          "lecture_number": 12,
+          "file_name": "12_Subquery using ALL & ANY Operators.md",
+          "relative_path": "Skills_Input/udemy/withBara/16_Subqueries/12_Subquery using ALL & ANY Operators.md"
+        },
+        {
+          "lecture_number": 13,
+          "file_name": "13_Correlated Subquery.md",
+          "relative_path": "Skills_Input/udemy/withBara/16_Subqueries/13_Correlated Subquery.md"
+        },
+        {
+          "lecture_number": 14,
+          "file_name": "14_Subquery using Exists.md",
+          "relative_path": "Skills_Input/udemy/withBara/16_Subqueries/14_Subquery using Exists.md"
+        },
+        {
+          "lecture_number": 15,
+          "file_name": "15_Subquery Summary.md",
+          "relative_path": "Skills_Input/udemy/withBara/16_Subqueries/15_Subquery Summary.md"
+        }
+      ]
+    },
+    {
+      "section_number": 17,
+      "section_name": "17_Common Table Expression (CTE)",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Introduction to CTE.md",
+          "relative_path": "Skills_Input/udemy/withBara/17_Common Table Expression (CTE)/01_Introduction to CTE.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_Why CTE.md",
+          "relative_path": "Skills_Input/udemy/withBara/17_Common Table Expression (CTE)/02_Why CTE.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_How DB Executes CTE.md",
+          "relative_path": "Skills_Input/udemy/withBara/17_Common Table Expression (CTE)/03_How DB Executes CTE.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_CTE Types.md",
+          "relative_path": "Skills_Input/udemy/withBara/17_Common Table Expression (CTE)/04_CTE Types.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_Standalone CTE.md",
+          "relative_path": "Skills_Input/udemy/withBara/17_Common Table Expression (CTE)/05_Standalone CTE.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_Multiple Standalone CTE.md",
+          "relative_path": "Skills_Input/udemy/withBara/17_Common Table Expression (CTE)/06_Multiple Standalone CTE.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_Nested CTE.md",
+          "relative_path": "Skills_Input/udemy/withBara/17_Common Table Expression (CTE)/07_Nested CTE.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_CTE Best Practices.md",
+          "relative_path": "Skills_Input/udemy/withBara/17_Common Table Expression (CTE)/08_CTE Best Practices.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_Recursive CTE.md",
+          "relative_path": "Skills_Input/udemy/withBara/17_Common Table Expression (CTE)/09_Recursive CTE.md"
+        },
+        {
+          "lecture_number": 10,
+          "file_name": "10_CTE Summary.md",
+          "relative_path": "Skills_Input/udemy/withBara/17_Common Table Expression (CTE)/10_CTE Summary.md"
+        }
+      ]
+    },
+    {
+      "section_number": 18,
+      "section_name": "18_Views",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Database Structure & Views.md",
+          "relative_path": "Skills_Input/udemy/withBara/18_Views/01_Database Structure & Views.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_3 Levels Architecture.md",
+          "relative_path": "Skills_Input/udemy/withBara/18_Views/02_3 Levels Architecture.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_What is View.md",
+          "relative_path": "Skills_Input/udemy/withBara/18_Views/03_What is View.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_Views vs Tables.md",
+          "relative_path": "Skills_Input/udemy/withBara/18_Views/04_Views vs Tables.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_Use Case Central Logic.md",
+          "relative_path": "Skills_Input/udemy/withBara/18_Views/05_Use Case Central Logic.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_Views vs CTEs.md",
+          "relative_path": "Skills_Input/udemy/withBara/18_Views/06_Views vs CTEs.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_CREATE, ALTER, DROP Views.md",
+          "relative_path": "Skills_Input/udemy/withBara/18_Views/07_CREATE, ALTER, DROP Views.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_How DB Executes View.md",
+          "relative_path": "Skills_Input/udemy/withBara/18_Views/08_How DB Executes View.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_Use Case Hide Complexity.md",
+          "relative_path": "Skills_Input/udemy/withBara/18_Views/09_Use Case Hide Complexity.md"
+        },
+        {
+          "lecture_number": 10,
+          "file_name": "10_Use Case Data Security.md",
+          "relative_path": "Skills_Input/udemy/withBara/18_Views/10_Use Case Data Security.md"
+        },
+        {
+          "lecture_number": 11,
+          "file_name": "11_Use Case Flexibility.md",
+          "relative_path": "Skills_Input/udemy/withBara/18_Views/11_Use Case Flexibility.md"
+        },
+        {
+          "lecture_number": 12,
+          "file_name": "12_Use Case Multi-Language.md",
+          "relative_path": "Skills_Input/udemy/withBara/18_Views/12_Use Case Multi-Language.md"
+        },
+        {
+          "lecture_number": 13,
+          "file_name": "13_Use Case Data Warehouse.md",
+          "relative_path": "Skills_Input/udemy/withBara/18_Views/13_Use Case Data Warehouse.md"
+        },
+        {
+          "lecture_number": 14,
+          "file_name": "14_View Summary.md",
+          "relative_path": "Skills_Input/udemy/withBara/18_Views/14_View Summary.md"
+        }
+      ]
+    },
+    {
+      "section_number": 19,
+      "section_name": "19_CTAS & TEMP Tables",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Introduction to Tables.md",
+          "relative_path": "Skills_Input/udemy/withBara/19_CTAS & TEMP Tables/01_Introduction to Tables.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_CTAS vs CREATEINSERT.md",
+          "relative_path": "Skills_Input/udemy/withBara/19_CTAS & TEMP Tables/02_CTAS vs CREATEINSERT.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_CTAS vs Views.md",
+          "relative_path": "Skills_Input/udemy/withBara/19_CTAS & TEMP Tables/03_CTAS vs Views.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_CTAS Syntax.md",
+          "relative_path": "Skills_Input/udemy/withBara/19_CTAS & TEMP Tables/04_CTAS Syntax.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_Use Case Optimize Performance.md",
+          "relative_path": "Skills_Input/udemy/withBara/19_CTAS & TEMP Tables/05_Use Case Optimize Performance.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_How DB Executes CTAS.md",
+          "relative_path": "Skills_Input/udemy/withBara/19_CTAS & TEMP Tables/06_How DB Executes CTAS.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_Use Case Snapshots.md",
+          "relative_path": "Skills_Input/udemy/withBara/19_CTAS & TEMP Tables/07_Use Case Snapshots.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_Use Case Data Warehouse.md",
+          "relative_path": "Skills_Input/udemy/withBara/19_CTAS & TEMP Tables/08_Use Case Data Warehouse.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_Introduction to TEMP Tables.md",
+          "relative_path": "Skills_Input/udemy/withBara/19_CTAS & TEMP Tables/09_Introduction to TEMP Tables.md"
+        },
+        {
+          "lecture_number": 10,
+          "file_name": "10_TEMP Syntax & Example.md",
+          "relative_path": "Skills_Input/udemy/withBara/19_CTAS & TEMP Tables/10_TEMP Syntax & Example.md"
+        },
+        {
+          "lecture_number": 11,
+          "file_name": "11_How DB Executes TEMP Tables.md",
+          "relative_path": "Skills_Input/udemy/withBara/19_CTAS & TEMP Tables/11_How DB Executes TEMP Tables.md"
+        },
+        {
+          "lecture_number": 12,
+          "file_name": "12_TEMP Table Use Cases.md",
+          "relative_path": "Skills_Input/udemy/withBara/19_CTAS & TEMP Tables/12_TEMP Table Use Cases.md"
+        },
+        {
+          "lecture_number": 13,
+          "file_name": "13_My opinion about TEMP Tables.md",
+          "relative_path": "Skills_Input/udemy/withBara/19_CTAS & TEMP Tables/13_My opinion about TEMP Tables.md"
+        },
+        {
+          "lecture_number": 14,
+          "file_name": "14_Table Summary.md",
+          "relative_path": "Skills_Input/udemy/withBara/19_CTAS & TEMP Tables/14_Table Summary.md"
+        },
+        {
+          "lecture_number": 15,
+          "file_name": "15_Compare All Methods.md",
+          "relative_path": "Skills_Input/udemy/withBara/19_CTAS & TEMP Tables/15_Compare All Methods.md"
+        }
+      ]
+    },
+    {
+      "section_number": 20,
+      "section_name": "20_Stored Procedures",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Introduction to Stored Procedures.md",
+          "relative_path": "Skills_Input/udemy/withBara/20_Stored Procedures/01_Introduction to Stored Procedures.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_Basics of Stored Procedures.md",
+          "relative_path": "Skills_Input/udemy/withBara/20_Stored Procedures/02_Basics of Stored Procedures.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_Parameters.md",
+          "relative_path": "Skills_Input/udemy/withBara/20_Stored Procedures/03_Parameters.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_Multi-Queries in Stored Procedure.md",
+          "relative_path": "Skills_Input/udemy/withBara/20_Stored Procedures/04_Multi-Queries in Stored Procedure.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_Variables.md",
+          "relative_path": "Skills_Input/udemy/withBara/20_Stored Procedures/05_Variables.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_Control Flow IF ELSE.md",
+          "relative_path": "Skills_Input/udemy/withBara/20_Stored Procedures/06_Control Flow IF ELSE.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_Error Handling TRY & CATCH.md",
+          "relative_path": "Skills_Input/udemy/withBara/20_Stored Procedures/07_Error Handling TRY & CATCH.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_Styling Stored Procedures.md",
+          "relative_path": "Skills_Input/udemy/withBara/20_Stored Procedures/08_Styling Stored Procedures.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_What are Triggers.md",
+          "relative_path": "Skills_Input/udemy/withBara/20_Stored Procedures/09_What are Triggers.md"
+        },
+        {
+          "lecture_number": 10,
+          "file_name": "10_Triggers Use Case.md",
+          "relative_path": "Skills_Input/udemy/withBara/20_Stored Procedures/10_Triggers Use Case.md"
+        }
+      ]
+    },
+    {
+      "section_number": 21,
+      "section_name": "21_Indexes",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Introduction Indexes.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/01_Introduction Indexes.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_Types of Indexes.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/02_Types of Indexes.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_Heap Structure.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/03_Heap Structure.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_Clustered Index.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/04_Clustered Index.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_NonClustered Index.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/05_NonClustered Index.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_Clustered vs NonClustered Index.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/06_Clustered vs NonClustered Index.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_How to Create INDEX.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/07_How to Create INDEX.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_Composite Index.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/08_Composite Index.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_What is Columnstore Index.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/09_What is Columnstore Index.md"
+        },
+        {
+          "lecture_number": 10,
+          "file_name": "10_Process of Building Columnstore Index.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/10_Process of Building Columnstore Index.md"
+        },
+        {
+          "lecture_number": 11,
+          "file_name": "11_Columnstore vs Rowstore Index.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/11_Columnstore vs Rowstore Index.md"
+        },
+        {
+          "lecture_number": 12,
+          "file_name": "12_How to Create Coluimnstore Index.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/12_How to Create Coluimnstore Index.md"
+        },
+        {
+          "lecture_number": 13,
+          "file_name": "13_Unique Index.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/13_Unique Index.md"
+        },
+        {
+          "lecture_number": 14,
+          "file_name": "14_Filter Index.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/14_Filter Index.md"
+        },
+        {
+          "lecture_number": 15,
+          "file_name": "15_Choose Right Index.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/15_Choose Right Index.md"
+        },
+        {
+          "lecture_number": 16,
+          "file_name": "16_Monitor Usage.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/16_Monitor Usage.md"
+        },
+        {
+          "lecture_number": 17,
+          "file_name": "17_Monitor Missing Indexes.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/17_Monitor Missing Indexes.md"
+        },
+        {
+          "lecture_number": 18,
+          "file_name": "18_Monitor Duplicate Indexes.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/18_Monitor Duplicate Indexes.md"
+        },
+        {
+          "lecture_number": 19,
+          "file_name": "19_Update Statistics.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/19_Update Statistics.md"
+        },
+        {
+          "lecture_number": 20,
+          "file_name": "20_Fragmentations.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/20_Fragmentations.md"
+        },
+        {
+          "lecture_number": 21,
+          "file_name": "21_Execution Plan.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/21_Execution Plan.md"
+        },
+        {
+          "lecture_number": 22,
+          "file_name": "22_SQL hints.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/22_SQL hints.md"
+        },
+        {
+          "lecture_number": 23,
+          "file_name": "23_Indexing Strategy.md",
+          "relative_path": "Skills_Input/udemy/withBara/21_Indexes/23_Indexing Strategy.md"
+        }
+      ]
+    },
+    {
+      "section_number": 22,
+      "section_name": "22_Partitions",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Introduction to Partitions.md",
+          "relative_path": "Skills_Input/udemy/withBara/22_Partitions/01_Introduction to Partitions.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_The Process of Partitions.md",
+          "relative_path": "Skills_Input/udemy/withBara/22_Partitions/02_The Process of Partitions.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_Create Partitioned Tables.md",
+          "relative_path": "Skills_Input/udemy/withBara/22_Partitions/03_Create Partitioned Tables.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_The Performance of Partitions.md",
+          "relative_path": "Skills_Input/udemy/withBara/22_Partitions/04_The Performance of Partitions.md"
+        }
+      ]
+    },
+    {
+      "section_number": 23,
+      "section_name": "23_Performance Best Practices",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Introduction to Performance Tips.md",
+          "relative_path": "Skills_Input/udemy/withBara/23_Performance Best Practices/01_Introduction to Performance Tips.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_Performance Tips for Fetching Data.md",
+          "relative_path": "Skills_Input/udemy/withBara/23_Performance Best Practices/02_Performance Tips for Fetching Data.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_Performance Tips for Filtering.md",
+          "relative_path": "Skills_Input/udemy/withBara/23_Performance Best Practices/03_Performance Tips for Filtering.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_Performance Tips for Joining.md",
+          "relative_path": "Skills_Input/udemy/withBara/23_Performance Best Practices/04_Performance Tips for Joining.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_Performance Tips for Aggregation.md",
+          "relative_path": "Skills_Input/udemy/withBara/23_Performance Best Practices/05_Performance Tips for Aggregation.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_Performance Tips for Subquiers.md",
+          "relative_path": "Skills_Input/udemy/withBara/23_Performance Best Practices/06_Performance Tips for Subquiers.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_Performance Tips for Table DDL.md",
+          "relative_path": "Skills_Input/udemy/withBara/23_Performance Best Practices/07_Performance Tips for Table DDL.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_Performance Tips for Indexing.md",
+          "relative_path": "Skills_Input/udemy/withBara/23_Performance Best Practices/08_Performance Tips for Indexing.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_Performance Tips Summary.md",
+          "relative_path": "Skills_Input/udemy/withBara/23_Performance Best Practices/09_Performance Tips Summary.md"
+        }
+      ]
+    },
+    {
+      "section_number": 24,
+      "section_name": "24_Copilot & ChatGPT for SQL",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Introduction to AI & SQL.md",
+          "relative_path": "Skills_Input/udemy/withBara/24_Copilot & ChatGPT for SQL/01_Introduction to AI & SQL.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_What is ChatGPT & Copilot.md",
+          "relative_path": "Skills_Input/udemy/withBara/24_Copilot & ChatGPT for SQL/02_What is ChatGPT & Copilot.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_ChatGPT vs Copliot.md",
+          "relative_path": "Skills_Input/udemy/withBara/24_Copilot & ChatGPT for SQL/03_ChatGPT vs Copliot.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_How to Use Copilot.md",
+          "relative_path": "Skills_Input/udemy/withBara/24_Copilot & ChatGPT for SQL/04_How to Use Copilot.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_ChatGPT Prompt Structure.md",
+          "relative_path": "Skills_Input/udemy/withBara/24_Copilot & ChatGPT for SQL/05_ChatGPT Prompt Structure.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_ChatGPT Prompts for SQL Developers.md",
+          "relative_path": "Skills_Input/udemy/withBara/24_Copilot & ChatGPT for SQL/06_ChatGPT Prompts for SQL Developers.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_ChatGPT Prompts for SQL Learning.md",
+          "relative_path": "Skills_Input/udemy/withBara/24_Copilot & ChatGPT for SQL/07_ChatGPT Prompts for SQL Learning.md"
+        }
+      ]
+    },
+    {
+      "section_number": 25,
+      "section_name": "25_SQL Data Warehouse Project",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Project Resources.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/01_Project Resources.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_SQL Project Types.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/02_SQL Project Types.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_Intro to Data Warehouse (DWH).md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/03_Intro to Data Warehouse (DWH).md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_What is ETL.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/04_What is ETL.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_ETL Methods.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/05_ETL Methods.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_Get Project Resources.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/06_Get Project Resources.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_Notion for Project Management.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/07_Notion for Project Management.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_Understand Project Requirements.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/08_Understand Project Requirements.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_Data Architecture Approaches.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/09_Data Architecture Approaches.md"
+        },
+        {
+          "lecture_number": 10,
+          "file_name": "10_Design the Data Warehouse Layers.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/10_Design the Data Warehouse Layers.md"
+        },
+        {
+          "lecture_number": 11,
+          "file_name": "11_Draw DWH Architecture.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/11_Draw DWH Architecture.md"
+        },
+        {
+          "lecture_number": 12,
+          "file_name": "12_Refine the Project Plan.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/12_Refine the Project Plan.md"
+        },
+        {
+          "lecture_number": 13,
+          "file_name": "13_Define The Naming Conventions.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/13_Define The Naming Conventions.md"
+        },
+        {
+          "lecture_number": 14,
+          "file_name": "14_Prepare Your GIT Repo.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/14_Prepare Your GIT Repo.md"
+        },
+        {
+          "lecture_number": 15,
+          "file_name": "15_Create The Database.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/15_Create The Database.md"
+        },
+        {
+          "lecture_number": 16,
+          "file_name": "16_Bronze Layer Analyze Source Systems.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/16_Bronze Layer Analyze Source Systems.md"
+        },
+        {
+          "lecture_number": 17,
+          "file_name": "17_Bronze Layer DDL Create Tables.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/17_Bronze Layer DDL Create Tables.md"
+        },
+        {
+          "lecture_number": 18,
+          "file_name": "18_Bronze Layer Load Scripts.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/18_Bronze Layer Load Scripts.md"
+        },
+        {
+          "lecture_number": 19,
+          "file_name": "19_Bronze Layer Build Stored Procedure.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/19_Bronze Layer Build Stored Procedure.md"
+        },
+        {
+          "lecture_number": 20,
+          "file_name": "20_Bronze Layer Document The Work.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/20_Bronze Layer Document The Work.md"
+        },
+        {
+          "lecture_number": 21,
+          "file_name": "21_Silver Layer Exploring Data.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/21_Silver Layer Exploring Data.md"
+        },
+        {
+          "lecture_number": 22,
+          "file_name": "22_Silver Layer DDL Create Tables.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/22_Silver Layer DDL Create Tables.md"
+        },
+        {
+          "lecture_number": 23,
+          "file_name": "23_Silver Layer Load Script 1.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/23_Silver Layer Load Script 1.md"
+        },
+        {
+          "lecture_number": 24,
+          "file_name": "24_Silver Layer Load Script 2.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/24_Silver Layer Load Script 2.md"
+        },
+        {
+          "lecture_number": 25,
+          "file_name": "25_Silver Layer Load Script 3.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/25_Silver Layer Load Script 3.md"
+        },
+        {
+          "lecture_number": 26,
+          "file_name": "26_Silver Layer Load Script 4.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/26_Silver Layer Load Script 4.md"
+        },
+        {
+          "lecture_number": 27,
+          "file_name": "27_Silver Layer Build Stored Procedure.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/27_Silver Layer Build Stored Procedure.md"
+        },
+        {
+          "lecture_number": 28,
+          "file_name": "28_Silver Layer Document The Work.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/28_Silver Layer Document The Work.md"
+        },
+        {
+          "lecture_number": 29,
+          "file_name": "29_Gold Layer Data Modelling.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/29_Gold Layer Data Modelling.md"
+        },
+        {
+          "lecture_number": 30,
+          "file_name": "30_Gold Layer Analysis.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/30_Gold Layer Analysis.md"
+        },
+        {
+          "lecture_number": 31,
+          "file_name": "31_Gold Layer Build Dimension Customers.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/31_Gold Layer Build Dimension Customers.md"
+        },
+        {
+          "lecture_number": 32,
+          "file_name": "32_Gold Layer Build Dimension Products.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/32_Gold Layer Build Dimension Products.md"
+        },
+        {
+          "lecture_number": 33,
+          "file_name": "33_Gold Layer Build Fact Sales.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/33_Gold Layer Build Fact Sales.md"
+        },
+        {
+          "lecture_number": 34,
+          "file_name": "34_Gold Layer Draw The Data Model.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/34_Gold Layer Draw The Data Model.md"
+        },
+        {
+          "lecture_number": 35,
+          "file_name": "35_Gold Layer Create Data Catalog.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/35_Gold Layer Create Data Catalog.md"
+        },
+        {
+          "lecture_number": 36,
+          "file_name": "36_Gold Layer Document The Work.md",
+          "relative_path": "Skills_Input/udemy/withBara/25_SQL Data Warehouse Project/36_Gold Layer Document The Work.md"
+        }
+      ]
+    },
+    {
+      "section_number": 26,
+      "section_name": "26_Exploratory Data Analysis Project",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Project Resources.md",
+          "relative_path": "Skills_Input/udemy/withBara/26_Exploratory Data Analysis Project/01_Project Resources.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_Introduction to EDA.md",
+          "relative_path": "Skills_Input/udemy/withBara/26_Exploratory Data Analysis Project/02_Introduction to EDA.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_Data Analytics Project Roadmap.md",
+          "relative_path": "Skills_Input/udemy/withBara/26_Exploratory Data Analysis Project/03_Data Analytics Project Roadmap.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_What is EDA and Why Is It Important.md",
+          "relative_path": "Skills_Input/udemy/withBara/26_Exploratory Data Analysis Project/04_What is EDA and Why Is It Important.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_Get Project Resources.md",
+          "relative_path": "Skills_Input/udemy/withBara/26_Exploratory Data Analysis Project/05_Get Project Resources.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_Dimensions vs Measures.md",
+          "relative_path": "Skills_Input/udemy/withBara/26_Exploratory Data Analysis Project/06_Dimensions vs Measures.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_Database Exploration.md",
+          "relative_path": "Skills_Input/udemy/withBara/26_Exploratory Data Analysis Project/07_Database Exploration.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_Dimensions Exploration.md",
+          "relative_path": "Skills_Input/udemy/withBara/26_Exploratory Data Analysis Project/08_Dimensions Exploration.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_Date Exploration.md",
+          "relative_path": "Skills_Input/udemy/withBara/26_Exploratory Data Analysis Project/09_Date Exploration.md"
+        },
+        {
+          "lecture_number": 10,
+          "file_name": "10_Measure Exploration.md",
+          "relative_path": "Skills_Input/udemy/withBara/26_Exploratory Data Analysis Project/10_Measure Exploration.md"
+        },
+        {
+          "lecture_number": 11,
+          "file_name": "11_Magnitude Analysis.md",
+          "relative_path": "Skills_Input/udemy/withBara/26_Exploratory Data Analysis Project/11_Magnitude Analysis.md"
+        },
+        {
+          "lecture_number": 12,
+          "file_name": "12_Ranking Analysis.md",
+          "relative_path": "Skills_Input/udemy/withBara/26_Exploratory Data Analysis Project/12_Ranking Analysis.md"
+        }
+      ]
+    },
+    {
+      "section_number": 27,
+      "section_name": "27_SQL Advanced Data Analytics Project",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Introduction to the Project.md",
+          "relative_path": "Skills_Input/udemy/withBara/27_SQL Advanced Data Analytics Project/01_Introduction to the Project.md"
+        },
+        {
+          "lecture_number": 2,
+          "file_name": "02_Change Over Time Analysis.md",
+          "relative_path": "Skills_Input/udemy/withBara/27_SQL Advanced Data Analytics Project/02_Change Over Time Analysis.md"
+        },
+        {
+          "lecture_number": 3,
+          "file_name": "03_Cumulative Analysis.md",
+          "relative_path": "Skills_Input/udemy/withBara/27_SQL Advanced Data Analytics Project/03_Cumulative Analysis.md"
+        },
+        {
+          "lecture_number": 4,
+          "file_name": "04_Performance Analysis.md",
+          "relative_path": "Skills_Input/udemy/withBara/27_SQL Advanced Data Analytics Project/04_Performance Analysis.md"
+        },
+        {
+          "lecture_number": 5,
+          "file_name": "05_Part to Whole Analysis.md",
+          "relative_path": "Skills_Input/udemy/withBara/27_SQL Advanced Data Analytics Project/05_Part to Whole Analysis.md"
+        },
+        {
+          "lecture_number": 6,
+          "file_name": "06_Data Segmentation.md",
+          "relative_path": "Skills_Input/udemy/withBara/27_SQL Advanced Data Analytics Project/06_Data Segmentation.md"
+        },
+        {
+          "lecture_number": 7,
+          "file_name": "07_Build Customers Report.md",
+          "relative_path": "Skills_Input/udemy/withBara/27_SQL Advanced Data Analytics Project/07_Build Customers Report.md"
+        },
+        {
+          "lecture_number": 8,
+          "file_name": "08_Build Products Report.md",
+          "relative_path": "Skills_Input/udemy/withBara/27_SQL Advanced Data Analytics Project/08_Build Products Report.md"
+        },
+        {
+          "lecture_number": 9,
+          "file_name": "09_Document Your Work in GIT.md",
+          "relative_path": "Skills_Input/udemy/withBara/27_SQL Advanced Data Analytics Project/09_Document Your Work in GIT.md"
+        }
+      ]
+    },
+    {
+      "section_number": 28,
+      "section_name": "28_THANK YOU",
+      "lectures": [
+        {
+          "lecture_number": 1,
+          "file_name": "01_Congratulations & THANK YOU Video.md",
+          "relative_path": "Skills_Input/udemy/withBara/28_THANK YOU/01_Congratulations & THANK YOU Video.md"
+        }
+      ]
+    }
+  ],
+  "resources": {
+    "docs": [
+      {
+        "name": "00_SalesDB_DataModel.png",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/02_docs/00_SalesDB_DataModel.png"
+      },
+      {
+        "name": "01_SQL_Introduction.pdf",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/02_docs/01_SQL_Introduction.pdf"
+      },
+      {
+        "name": "02_Query_Data_SELECT.pdf",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/02_docs/02_Query_Data_SELECT.pdf"
+      },
+      {
+        "name": "03_Data_Definition_DDL.pdf",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/02_docs/03_Data_Definition_DDL.pdf"
+      },
+      {
+        "name": "04_Data_Manipulation_DML.pdf",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/02_docs/04_Data_Manipulation_DML.pdf"
+      },
+      {
+        "name": "05_Filtering_Data.pdf",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/02_docs/05_Filtering_Data.pdf"
+      },
+      {
+        "name": "06_JOINS_and_SET.pdf",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/02_docs/06_JOINS_and_SET.pdf"
+      },
+      {
+        "name": "07_Row_Level_Functions.pdf",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/02_docs/07_Row_Level_Functions.pdf"
+      },
+      {
+        "name": "08_Aggregation_Analytical_Functions.pdf",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/02_docs/08_Aggregation_Analytical_Functions.pdf"
+      },
+      {
+        "name": "09_Advanced_SQL_Techniques.pdf",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/02_docs/09_Advanced_SQL_Techniques.pdf"
+      },
+      {
+        "name": "10_Performance_Optimization.pdf",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/02_docs/10_Performance_Optimization.pdf"
+      },
+      {
+        "name": "10_SQL_30_Performance_Tips.pdf",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/02_docs/10_SQL_30_Performance_Tips.pdf"
+      },
+      {
+        "name": "11_AI_and_SQL.pdf",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/02_docs/11_AI_and_SQL.pdf"
+      },
+      {
+        "name": "12_SQL_Projects.pdf",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/02_docs/12_SQL_Projects.pdf"
+      },
+      {
+        "name": "12_SQL_Projects_Data_Analytics.pdf",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/02_docs/12_SQL_Projects_Data_Analytics.pdf"
+      },
+      {
+        "name": "12_SQL_Projects_ETL.pdf",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/02_docs/12_SQL_Projects_ETL.pdf"
+      }
+    ],
+    "scripts": [
+      {
+        "name": "01_Query_Data_SELECT.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/01_Query_Data_SELECT.sql"
+      },
+      {
+        "name": "02_Data_Definition_DDL.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/02_Data_Definition_DDL.sql"
+      },
+      {
+        "name": "03_Data_Manipulation_DML.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/03_Data_Manipulation_DML.sql"
+      },
+      {
+        "name": "04_Filtering_Data.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/04_Filtering_Data.sql"
+      },
+      {
+        "name": "05_JOINs.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/05_JOINs.sql"
+      },
+      {
+        "name": "06_SETs.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/06_SETs.sql"
+      },
+      {
+        "name": "07_String_Functions.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/07_String_Functions.sql"
+      },
+      {
+        "name": "08_Number_Functions.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/08_Number_Functions.sql"
+      },
+      {
+        "name": "09_Date_Time_Functions.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/09_Date_Time_Functions.sql"
+      },
+      {
+        "name": "10a_Date_Time_Number_Formats.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/10a_Date_Time_Number_Formats.sql"
+      },
+      {
+        "name": "10b_Date_Time_Date_Formats.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/10b_Date_Time_Date_Formats.sql"
+      },
+      {
+        "name": "10c_Date_Time_Date_Parts.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/10c_Date_Time_Date_Parts.sql"
+      },
+      {
+        "name": "10d_Date_Time_Culture_Formats.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/10d_Date_Time_Culture_Formats.sql"
+      },
+      {
+        "name": "11_NULL_Functions.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/11_NULL_Functions.sql"
+      },
+      {
+        "name": "12_Case_Statements.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/12_Case_Statements.sql"
+      },
+      {
+        "name": "13_Aggregate_Functions.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/13_Aggregate_Functions.sql"
+      },
+      {
+        "name": "14_Window_Functions_Basics.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/14_Window_Functions_Basics.sql"
+      },
+      {
+        "name": "15_Window_Aggregations.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/15_Window_Aggregations.sql"
+      },
+      {
+        "name": "16_Window_Ranking.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/16_Window_Ranking.sql"
+      },
+      {
+        "name": "17_Window_Value_Functions.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/17_Window_Value_Functions.sql"
+      },
+      {
+        "name": "18_Subqueries.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/18_Subqueries.sql"
+      },
+      {
+        "name": "19_Common_Table_Expressions_CTE.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/19_Common_Table_Expressions_CTE.sql"
+      },
+      {
+        "name": "20_Views.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/20_Views.sql"
+      },
+      {
+        "name": "21_Temporary_Tables.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/21_Temporary_Tables.sql"
+      },
+      {
+        "name": "22_Stored_Procedures.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/22_Stored_Procedures.sql"
+      },
+      {
+        "name": "23_Triggers.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/23_Triggers.sql"
+      },
+      {
+        "name": "24_Indexes.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/24_Indexes.sql"
+      },
+      {
+        "name": "25_Partitions.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/25_Partitions.sql"
+      },
+      {
+        "name": "26_Performance_Optimization.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/26_Performance_Optimization.sql"
+      },
+      {
+        "name": "27_AI_and_SQL.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/27_AI_and_SQL.sql"
+      },
+      {
+        "name": "SQL_Cheat_Sheet.sql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/03_scripts/SQL_Cheat_Sheet.sql"
+      }
+    ],
+    "datasets": [
+      {
+        "name": "00_sql-server",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/01_datasets/00_sql-server"
+      },
+      {
+        "name": "01_mysql",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/01_datasets/01_mysql"
+      },
+      {
+        "name": "02_postgres",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/01_datasets/02_postgres"
+      },
+      {
+        "name": "03_csv-files",
+        "relative_path": "Skills_Input/udemy/withBara/Resources/01_datasets/03_csv-files"
+      }
+    ]
+  }
+}

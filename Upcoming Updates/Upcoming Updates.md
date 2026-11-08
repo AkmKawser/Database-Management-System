@@ -16,7 +16,11 @@ A centralized tracking board for upcoming database engine modules, reference boo
 - [ ] Implement `DBMSSkill` ingestion script (`scripts/ingest_dbms_problem.py`)
 - [ ] Dynamic Category Taxonomy (`dbms categories.docx` / markdown)
 
-### 2. Theoretical Literature Skills (`SkillsOnFixedResources`)
+### 2. Theoretical & Educational Skills (`SkillsOnFixedResources`)
+- [x] Setup `withBara` SQL & Database Internals skill (30-hr Udemy Course transcripts + `Resources/` slides and scripts)
+  - [x] Machine-readable TOC (`toc.json` & `table_of_contents.md`)
+  - [x] Surgical search & query CLI (`query_withbara.py`)
+  - [x] Published initial query manual: `001_sql_logical_execution_order_internals.md`
 - [ ] Setup `Silberschatz_DBMS` reference skill (Table of Contents routing & page extraction CLI)
 - [ ] Setup `DDIA_Internals` reference skill (Storage engines, replication, distributed consensus)
 
