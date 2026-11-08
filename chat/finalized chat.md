@@ -46,7 +46,9 @@ These rules are permanent operational constraints. The agent must enforce them p
 - **Coverage**: Must list all Sections, Lectures, Headings, Subtopics, Slide Decks, and Companion Scripts to enable zero-token topic discovery.
 
 ### Finalized Rule on README Navigation:
-- **Rule**: The **Skill Outputs Hub** must be the **very first section** at the top of [`README.md`](../README.md) right below the title header, providing direct button links to:
+- **Rule**: The **Skill Outputs Hub** must be the **very first section** at the top of [`README.md`](../README.md) right below the title header, arranged in a **single-column vertical structure** (one badge per line).
+- **Badge Nomenclature**: Query badges must use the clean convention **`Query 1`**, **`Query 2`**, **`Query 3`** (without symbols or leading zeroes like `⚡` or `00`).
+- **Direct Links**:
   1. Universal Query Output Hub (`Query_Hub_README.md` and query badges).
   2. `DBMSSkill` Outputs (Question Bank, Solution Archive, Formatting Specs).
   3. Curriculum Outlines (`withBara`, `withNasser`).

@@ -435,3 +435,21 @@ This document chronologically records all user requests, architectural designs, 
    - Verified that badges align vertically with proper linebreaks across all sections (`Universal Query Output Hub`, `DBMSSkill`, `withBara`, `withNasser`, and `System Tools`).
 3. **Git Synchronization**:
    - Committed and pushed changes to GitHub.
+
+
+---
+
+## Session 21: Query Badge Cleaning (Single-Column & Symbol-Free: Query 1, Query 2, Query 3)
+
+### User Request
+> "there should not be any symbol in front it shuld be qory 1, query 2, query 3. remove the 00 also"
+
+### Actions Taken & Implementation Summary
+1. **Cleaned Badge Labels in `README.md`**:
+   - Removed leading symbols (`⚡`, `📖`, icons).
+   - Removed leading zeroes: converted `Query 001`, `Query 002`, `Query 003` to **`Query 1`**, **`Query 2`**, **`Query 3`**.
+   - Maintained single-column vertical layout (`  \n`).
+2. **Updated `chat/finalized chat.md`**:
+   - Recorded the finalized naming convention rule for query badges.
+3. **Git Synchronization**:
+   - Committed and pushed changes to GitHub.
