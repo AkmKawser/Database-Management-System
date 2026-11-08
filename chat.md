@@ -236,3 +236,22 @@ This document chronologically records all user requests, architectural designs, 
 3. **Synchronized Repository**:
    - Added `Skill Generator` badge to root `README.md`.
    - Committed and pushed to GitHub.
+
+
+---
+
+## Session 12: Documentation of `SkillGenerator` in README & Usage Guide
+
+### User Request
+> "update this in the main readmefile also write how to use it."
+
+### Actions Taken & Implementation Summary
+1. **Updated Root `README.md`**:
+   - Added `SkillGenerator` to Key Deliverables under `.agent/skills/`.
+   - Added dedicated section: `## ⚙️ Universal Skill Generator (SkillGenerator)`.
+   - Included architectural Mermaid flowchart showing the HITL selection process between Type 1 (Fixed) and Type 2 (Dynamic).
+   - Provided comprehensive "How to Use" instructions for both:
+     - **Option 1**: Interactive agent prompts via chat.
+     - **Option 2**: Direct terminal CLI command with sample arguments.
+2. **Synchronized with Remote**:
+   - Committed and pushed updates to GitHub.

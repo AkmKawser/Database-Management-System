@@ -57,8 +57,68 @@ LLM-powered assistants frequently produce naive database code:
      - `Problem Files/`: Ingestion staging area (`Source of Problem/put the file here/`), formatting specs, and the master [`question bank.md`](Skills_Output/DBMSSkill_output/Problem%20Files/question%20bank.md).
      - `Solution Files/`: Solutions organized by Primary Category and Subcategory with separate `<ID>_postgres.sql`, `<ID>_mysql.sql`, and `<ID>_derivation.md` files.
 4. **`.agent/skills/` (Centralized Agent Skills Hub)**:
-   - **`SkillsOnFixedResources/`**: Reference skills with zero-token Table of Contents routing and surgical page extraction.
+   - **`SkillGenerator`**: Universal meta-skill for creating production-ready agent skills via interactive Human-in-the-Loop (HITL) interviews.
+   - **`SkillsOnFixedResources/`**: Reference skills (e.g., `withBara`) with zero-token Table of Contents routing, deep curriculum outlines, and surgical page extraction.
    - **`SkillsOnDynamicResources/DBMSSkill/`**: Autonomous problem ingestion, dynamic category classification (HITL), and question bank manager.
    - **`type of skills.md`**: Architectural manual documenting the fixed vs. dynamic skill paradigms.
 5. **`Upcoming Updates/` Roadmap**: Milestone tracking for planned modules and upcoming manuals.
 6. **`chat.md`**: Chronological log of all architectural decisions and design sessions.
+
+---
+
+## ⚙️ Universal Skill Generator (`SkillGenerator`)
+
+The repository features an autonomous meta-skill, **`SkillGenerator`**, located in [`.agent/skills/SkillGenerator/`](.agent/skills/SkillGenerator/), designed to scaffold new skills conforming to the architectural standard established in `Science_Of_Coding` and `Database Management System`.
+
+### Skill Paradigms Supported
+
+```mermaid
+flowchart TD
+    User["Developer: 'Create a new skill for <Book / Course / Problem Set>'"] --> HITL{"Human-in-the-Loop Dialog:<br/>Select Skill Paradigm"}
+    
+    HITL -->|Type 1: Fixed Resource| Type1["Fixed Resource Skill (SkillsOnFixedResources)<br/>- Textbooks, Udemy courses, PDF manuals<br/>- Outputs: outline/ + query/"]
+    HITL -->|Type 2: Dynamic Resource| Type2["Dynamic Resource Skill (SkillsOnDynamicResources)<br/>- Practice problems, LeetCode, interview banks<br/>- Outputs: Problem Files/ + Solution Files/"]
+
+    Type1 --> GenScript["Run scripts/generate_skill.py"]
+    Type2 --> GenScript
+
+    GenScript --> Scaffold["Automated Scaffolding:<br/>1. .agent/skills/<Type>/<Name>/<br/>2. SkillArchitecture/ (ARCHITECTURE.md + README.md)<br/>3. references/ & scripts/<br/>4. Skills_Output/<Name>_output/"]
+    
+    Scaffold --> Sync["Synchronize README.md & chat.md -> Git Push"]
+
+    classDef stage fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
+    class User,HITL,Type1,Type2,GenScript,Scaffold,Sync stage;
+```
+
+### How to Use `SkillGenerator`
+
+#### Option 1: Interactive Agent Prompt (HITL)
+Simply prompt the agent in chat:
+> *"@SkillGenerator create a new skill for the course in Skills_Input/udemy/withNasser"*
+
+The agent will interview you on:
+1. **Skill Paradigm**: Type 1 (Fixed Reference Book/Course) or Type 2 (Dynamic Intake/Problem Sets).
+2. **Skill Identifier Name**: (e.g., `withNasser`, `DDIA`, `LeetCodeSQL`).
+3. **Source Path**: Location of documents, textbooks, or videos in `Skills_Input/`.
+
+The generator then scaffolds the complete folder tree, sets up `SKILL.md`, writes `SkillArchitecture/`, configures search scripts, and creates output archives automatically.
+
+#### Option 2: Command Line Interface (CLI)
+You can also generate skills directly via the terminal:
+
+```bash
+# Generate a Type 1 (Fixed Resource: Textbook or Course) Skill:
+python .agent/skills/SkillGenerator/scripts/generate_skill.py \
+  --type fixed \
+  --name withNasser \
+  --resource-type "Udemy Course" \
+  --source-path "Skills_Input/udemy/withNasser" \
+  --description "Database Internals & Engineering by Hussein Nasser"
+
+# Generate a Type 2 (Dynamic Resource: Problem & Solution Bank) Skill:
+python .agent/skills/SkillGenerator/scripts/generate_skill.py \
+  --type dynamic \
+  --name LeetCodeSQL \
+  --category-doc "dbms categories.docx" \
+  --description "Dynamic problem intake and multi-dialect SQL solver"
+```
