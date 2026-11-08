@@ -310,3 +310,25 @@ This document chronologically records all user requests, architectural designs, 
    - Added a dedicated section: `## 🗄️ Unified Query Output Architecture (Skills_Output/query/)` complete with a Mermaid flowchart showing single-skill, multi-skill, and hybrid (theory + dynamic problem) routing.
 4. **Git Sync**:
    - Committed and pushed all updates to GitHub.
+
+
+---
+
+## Session 15: Dual-Skill Remake of Query 003 (`withBara` + `withNasser`)
+
+### User Request
+> "using @[.agent/skills/SkillsOnFixedResources/withNasser] & @[.agent/skills/SkillsOnFixedResources/withBara] remake query 003: DCL, TCL & ACID Transaction Engine Architecture"
+
+### Actions Taken & Implementation Summary
+1. **Multi-Source Synthesis**:
+   - Integrated **`withBara`**: Query lifecycle structure, DCL commands (`GRANT`, `REVOKE`, `DENY`), TCL boundary control (`BEGIN`, `COMMIT`, `ROLLBACK`, `SAVEPOINT`), and banking transfer failure models.
+   - Integrated **`withNasser`**:
+     - The **OS Buffer Cache Dilemma**: Why standard OS writes are deceptive, and how the database engine uses `fsync()` system calls to bypass the OS page cache for true durability.
+     - **Undo Log Stacks vs MVCC**: Deep comparison of how PostgreSQL (new version tuples on disk pages) vs MySQL/InnoDB (undo logs & rollback segments) maintain isolation.
+     - **The 4 Read Phenomena**: In-depth analysis of Dirty Reads, Non-repeatable Reads, Phantom Reads, and Lost Updates with sequence diagrams.
+     - **ARIES Crash Recovery**: Analysis, Redo, and Undo passes.
+2. **Updated Universal Query Hub**:
+   - Completely remade [`Skills_Output/query/003_dcl_tcl_acid_properties_internals.md`](Skills_Output/query/003_dcl_tcl_acid_properties_internals.md).
+   - Updated `Skills_Output/query/Query_Hub_README.md` to reflect the multi-course blend.
+3. **Synchronized with Remote**:
+   - Committed and pushed all updates to GitHub.
