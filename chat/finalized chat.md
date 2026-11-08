@@ -14,12 +14,13 @@ These rules are permanent operational constraints. The agent must enforce them p
 - **Directive**: Every interaction, prompt, architectural decision, and action must be systematically recorded in [`chat/chat.md`](chat.md) in chronological session format.
 - **Enforcement**: Never complete a turn involving project updates without appending the session details to `chat/chat.md`.
 
-### Rule 2: Strict Rendering & Formatting Audit (Images & LaTeX Math)
-- **Directive**: Always double-check and audit all Markdown files for rendering integrity before finalizing changes:
-  1. **LaTeX Math & Dollar Signs**: In prose, escape every literal dollar sign with a backslash (e.g. `\*N*500`, not `*N*500`). Unescaped dollar signs cause KaTeX parsers to collapse entire paragraphs into corrupted math blocks.
-  2. **Image & File Embed Links**: Ensure all referenced images (e.g. `.png`, `.jpg`, diagrams) use valid relative paths that resolve on disk.
-  3. **Mermaid Diagrams**: Quote node labels containing special characters (parentheses, brackets, colons) to prevent parser crashes.
-  4. **HTML / Markdown Hygiene**: Ensure all `<details>`, `<table>`, and code fences are properly balanced and closed.
+### Rule 2: Strict Rendering & Formatting Audit (Zero-Failure Policy)
+- **Directive**: Always perform an automated syntax and rendering audit on all Markdown files before completing any response or task:
+  1. **Zero Dollar Signs in Prose**: Never use raw `$` or backslash-escaped `\$` in prose explanation text. Write out the word "dollars" or use appropriate context text. Unescaped `$` or mismatched KaTeX delimiters cause GitHub and IDE Markdown renderers to corrupt subsequent blocks into broken LaTeX formulas.
+  2. **Pure Mermaid Syntax**: Never inject raw HTML tags (`<b>`, `<br/>`, `<span>`) inside Mermaid diagram node labels. Keep Mermaid node labels purely quoted text (e.g. `["Label Text (Details)"]`).
+  3. **Table & Emoji Cleanliness**: Avoid non-standard Unicode or emoji characters in table cells that can break GitHub Flavored Markdown (GFM) column alignments. Use clean text markers (e.g. `PREVENTED`, `ALLOWED`).
+  4. **Code Fence Balance**: Verify that all Markdown code fences (```` ``` ````) are properly balanced (total count must be even).
+  5. **Image & File Embed Links**: Ensure all referenced images use valid, verified paths that resolve cleanly on disk.
 
 ### Rule 3: Git Synchronization Guarantee
 - **Directive**: Whenever files are created, updated, or reorganized, verify git status, commit with clean semantic messages, and push directly to `origin/main` so GitHub is always 100% in sync.

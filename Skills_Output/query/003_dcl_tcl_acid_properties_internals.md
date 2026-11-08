@@ -11,9 +11,9 @@ A unified, deep-dive database engineering manual synthesizing:
 
 | Dimension | `withBara` Contribution | `withNasser` Contribution | Advanced Engineering Reasoning & Insights |
 | :--- | :--- | :--- | :--- |
-| **SQL Operational Lifecycle** | Database evolution: Structure (`DDL`) &rarr; Data Rows (`DML`) &rarr; Analytical Querying (`DQL`). | How multiple TCP client connections create concurrent physical contention on shared disk pages. | **Transaction Boundaries**: Implicit transactions (autocommit) vs Explicit transactions (`BEGIN ... COMMIT`). |
+| **SQL Operational Lifecycle** | Database evolution: Structure (`DDL`) → Data Rows (`DML`) → Analytical Querying (`DQL`). | How multiple TCP client connections create concurrent physical contention on shared disk pages. | **Transaction Boundaries**: Implicit transactions (autocommit) vs Explicit transactions (`BEGIN ... COMMIT`). |
 | **DCL / Governance** | Syntax and permission commands: `GRANT`, `REVOKE`, `DENY`. | Authorization tokens validated against system catalog pages before compilation. | Principle of Least Privilege in microservices; security catalog caching and invalidation hooks. |
-| **TCL / Transactions** | Logical units of work: `BEGIN`, `COMMIT`, `ROLLBACK`, `SAVEPOINT`. | Active Transaction IDs (XID), Undo Log stacks, Rollback segments, and RAM page dirty bits. | **Transaction State Machine**: `ACTIVE` &rarr; `PARTIALLY COMMITTED` &rarr; `COMMITTED` vs `FAILED` &rarr; `ABORTED`. Read-only vs Read-write XID allocation savings. |
+| **TCL / Transactions** | Logical units of work: `BEGIN`, `COMMIT`, `ROLLBACK`, `SAVEPOINT`. | Active Transaction IDs (XID), Undo Log stacks, Rollback segments, and RAM page dirty bits. | **Transaction State Machine**: `ACTIVE` → `PARTIALLY COMMITTED` → `COMMITTED` vs `FAILED` → `ABORTED`. Read-only vs Read-write XID allocation savings. |
 | **Durability Mechanics** | High-level disk persistence upon commit. | **OS Buffer Cache bypass**, the role of `fsync()`, and why sequential Write-Ahead Logging (WAL) beats random B-tree page writes. | The cost of Group Commit, disk write amplification, NVMe write caches, and write exhaustion. |
 | **Isolation Mechanics** | Basic multi-user concurrency and locking. | **4 Read Phenomena** (Dirty, Non-Repeatable, Phantom, Lost Updates), **2PL** vs **MVCC**, MySQL Undo stacks vs Postgres tuple versioning. | Serialization Graph Checking (SGT), Snapshot Isolation anomalies (Write Skew), and Deadlock Cycle Detection (`Wait-For Graph`). |
 
@@ -190,12 +190,12 @@ Relational databases guarantee reliability through four invariant properties: **
 
 ```mermaid
 flowchart TD
-    ACID[ACID Transaction Invariants]
+    ACID["ACID Transaction Invariants"]
     
-    ACID --> A["<b>A - Atomicity</b><br/>'All or Nothing'<br/>Mechanic: Undo Logs & Rollback Segments"]
-    ACID --> C["<b>C - Consistency</b><br/>'Valid Invariants & Constraints'<br/>Mechanic: Foreign Keys, Unique & Check Constraints"]
-    ACID --> I["<b>I - Isolation</b><br/>'Concurrency Shielding'<br/>Mechanic: Two-Phase Locking (2PL) vs MVCC Snapshots"]
-    ACID --> D["<b>D - Durability</b><br/>'Crash Resilience'<br/>Mechanic: Write-Ahead Log (WAL) & OS fsync() Bypass"]
+    ACID --> A["A: Atomicity - All or Nothing (Undo Logs and Rollback Segments)"]
+    ACID --> C["C: Consistency - Valid Invariants (Foreign Keys, Unique and Check Constraints)"]
+    ACID --> I["I: Isolation - Concurrency Shielding (2PL vs MVCC Snapshots)"]
+    ACID --> D["D: Durability - Crash Resilience (WAL and OS fsync Bypass)"]
 
     classDef stage fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
     class ACID,A,C,I,D stage;
@@ -254,12 +254,12 @@ flowchart LR
 #### The Four SQL Isolation Levels:
 | Isolation Level | Dirty Read | Non-Repeatable Read | Phantom Read | Engine Mechanism |
 | :--- | :---: | :---: | :---: | :--- |
-| **Read Uncommitted** | ❌ Allowed | ❌ Allowed | ❌ Allowed | Direct reads from dirty memory buffers; zero locking. |
-| **Read Committed** *(Postgres Default)* |  Prevented | ❌ Allowed | ❌ Allowed | Every individual query takes a new MVCC snapshot. |
-| **Repeatable Read** *(MySQL Default)* |  Prevented |  Prevented | ❌ /  Prevented* | Snapshot established once at transaction start; row locks or version pointers held. |
-| **Serializable** |  Prevented |  Prevented |  Prevented | Strict 2PL range locks, predicate locks, or Serializable Snapshot Isolation (SSI). |
+| **Read Uncommitted** | ALLOWED | ALLOWED | ALLOWED | Direct reads from dirty memory buffers; zero locking. |
+| **Read Committed** *(Postgres Default)* | PREVENTED | ALLOWED | ALLOWED | Every individual query takes a new MVCC snapshot. |
+| **Repeatable Read** *(MySQL Default)* | PREVENTED | PREVENTED | ALLOWED / PREVENTED* | Snapshot established once at transaction start; row locks or version pointers held. |
+| **Serializable** | PREVENTED | PREVENTED | PREVENTED | Strict 2PL range locks, predicate locks, or Serializable Snapshot Isolation (SSI). |
 
-*\*Note: In MySQL InnoDB, Repeatable Read also prevents Phantom Reads in practice using **Next-Key Locks** (combining index record locks with gap locks).*
+*Note: In MySQL InnoDB, Repeatable Read also prevents Phantom Reads in practice using **Next-Key Locks** (combining index record locks with gap locks).*
 
 #### Engine Concurrency Architectures:
 - **Pessimistic Concurrency (Two-Phase Locking - 2PL)**:
