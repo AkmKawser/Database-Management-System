@@ -1,0 +1,782 @@
+{
+  "course_title": "Fundamentals of Database Engineering (withNasser)",
+  "instructor": "Hussein Nasser",
+  "sections": [
+    {
+      "section_number": 1,
+      "section_name": "01_Course Updates",
+      "lectures": [
+        {
+          "name": "01_Welcome to the Course",
+          "relative_path": "Skills_Input/udemy/withNasser/01_Course Updates/01_Welcome to the Course.md"
+        },
+        {
+          "name": "02_Course Note 1",
+          "relative_path": "Skills_Input/udemy/withNasser/01_Course Updates/02_Course Note 1.md"
+        },
+        {
+          "name": "03_Course Note 2",
+          "relative_path": "Skills_Input/udemy/withNasser/01_Course Updates/03_Course Note 2.md"
+        },
+        {
+          "name": "04_Course Note 3",
+          "relative_path": "Skills_Input/udemy/withNasser/01_Course Updates/04_Course Note 3.md"
+        },
+        {
+          "name": "05_Note about Docker",
+          "relative_path": "Skills_Input/udemy/withNasser/01_Course Updates/05_Note about Docker.md"
+        },
+        {
+          "name": "06_Slides",
+          "relative_path": "Skills_Input/udemy/withNasser/01_Course Updates/06_Slides.md"
+        }
+      ]
+    },
+    {
+      "section_number": 2,
+      "section_name": "02_ACID",
+      "lectures": [
+        {
+          "name": "01_Introduction to ACID",
+          "relative_path": "Skills_Input/udemy/withNasser/02_ACID/01_Introduction to ACID.md"
+        },
+        {
+          "name": "02_What is a Transaction",
+          "relative_path": "Skills_Input/udemy/withNasser/02_ACID/02_What is a Transaction.md"
+        },
+        {
+          "name": "03_Atomicity",
+          "relative_path": "Skills_Input/udemy/withNasser/02_ACID/03_Atomicity.md"
+        },
+        {
+          "name": "04_Isolation",
+          "relative_path": "Skills_Input/udemy/withNasser/02_ACID/04_Isolation.md"
+        },
+        {
+          "name": "05_Consistency",
+          "relative_path": "Skills_Input/udemy/withNasser/02_ACID/05_Consistency.md"
+        },
+        {
+          "name": "06_Durability",
+          "relative_path": "Skills_Input/udemy/withNasser/02_ACID/06_Durability.md"
+        },
+        {
+          "name": "07_ACID by Practical Examples",
+          "relative_path": "Skills_Input/udemy/withNasser/02_ACID/07_ACID by Practical Examples.md"
+        },
+        {
+          "name": "08_Phantom Reads",
+          "relative_path": "Skills_Input/udemy/withNasser/02_ACID/08_Phantom Reads.md"
+        },
+        {
+          "name": "09_Serializable vs Repeatable Read",
+          "relative_path": "Skills_Input/udemy/withNasser/02_ACID/09_Serializable vs Repeatable Read.md"
+        },
+        {
+          "name": "10_Eventual Consistency",
+          "relative_path": "Skills_Input/udemy/withNasser/02_ACID/10_Eventual Consistency.md"
+        }
+      ]
+    },
+    {
+      "section_number": 3,
+      "section_name": "03_Understanding Database Internals",
+      "lectures": [
+        {
+          "name": "01_How tables and indexes are stored on disk (MUST WATCH before continue)",
+          "relative_path": "Skills_Input/udemy/withNasser/03_Understanding Database Internals/01_How tables and indexes are stored on disk (MUST WATCH before continue).md"
+        },
+        {
+          "name": "02_Row-Based vs Column-Based Databases",
+          "relative_path": "Skills_Input/udemy/withNasser/03_Understanding Database Internals/02_Row-Based vs Column-Based Databases.md"
+        },
+        {
+          "name": "03_Primary Key vs Secondary Key - What you probably didn't know",
+          "relative_path": "Skills_Input/udemy/withNasser/03_Understanding Database Internals/03_Primary Key vs Secondary Key - What you probably didn't know.md"
+        },
+        {
+          "name": "04_Databases Pages (Article)",
+          "relative_path": "Skills_Input/udemy/withNasser/03_Understanding Database Internals/04_Databases Pages (Article).md"
+        }
+      ]
+    },
+    {
+      "section_number": 4,
+      "section_name": "04_Database Indexing",
+      "lectures": [
+        {
+          "name": "01_Create Postgres Table with a million Rows (from scratch)",
+          "relative_path": "Skills_Input/udemy/withNasser/04_Database Indexing/01_Create Postgres Table with a million Rows (from scratch).md"
+        },
+        {
+          "name": "02_Getting Started with Indexing",
+          "relative_path": "Skills_Input/udemy/withNasser/04_Database Indexing/02_Getting Started with Indexing.md"
+        },
+        {
+          "name": "03_Understanding The SQL Query Planner and Optimizer with Explain",
+          "relative_path": "Skills_Input/udemy/withNasser/04_Database Indexing/03_Understanding The SQL Query Planner and Optimizer with Explain.md"
+        },
+        {
+          "name": "04_Bitmap Index Scan vs Index Scan vs Table Scan",
+          "relative_path": "Skills_Input/udemy/withNasser/04_Database Indexing/04_Bitmap Index Scan vs Index Scan vs Table Scan.md"
+        },
+        {
+          "name": "05_Key vs Non-Key Column Database Indexing",
+          "relative_path": "Skills_Input/udemy/withNasser/04_Database Indexing/05_Key vs Non-Key Column Database Indexing.md"
+        },
+        {
+          "name": "06_Index Scan vs Index Only Scan",
+          "relative_path": "Skills_Input/udemy/withNasser/04_Database Indexing/06_Index Scan vs Index Only Scan.md"
+        },
+        {
+          "name": "07_Combining Database Indexes for Better Performance",
+          "relative_path": "Skills_Input/udemy/withNasser/04_Database Indexing/07_Combining Database Indexes for Better Performance.md"
+        },
+        {
+          "name": "08_How Database Optimizers Decide to Use Indexes",
+          "relative_path": "Skills_Input/udemy/withNasser/04_Database Indexing/08_How Database Optimizers Decide to Use Indexes.md"
+        },
+        {
+          "name": "09_Create Index Concurrently - Avoid Blocking Production Database Writes",
+          "relative_path": "Skills_Input/udemy/withNasser/04_Database Indexing/09_Create Index Concurrently - Avoid Blocking Production Database Writes.md"
+        },
+        {
+          "name": "10_Bloom Filters",
+          "relative_path": "Skills_Input/udemy/withNasser/04_Database Indexing/10_Bloom Filters.md"
+        },
+        {
+          "name": "11_Working with Billion-Row Table",
+          "relative_path": "Skills_Input/udemy/withNasser/04_Database Indexing/11_Working with Billion-Row Table.md"
+        },
+        {
+          "name": "12_How UUIDs in B+Tree Indexes can affect performance",
+          "relative_path": "Skills_Input/udemy/withNasser/04_Database Indexing/12_How UUIDs in B+Tree Indexes can affect performance.md"
+        },
+        {
+          "name": "13_Article - The Cost of Long running Transactions",
+          "relative_path": "Skills_Input/udemy/withNasser/04_Database Indexing/13_Article - The Cost of Long running Transactions.md"
+        },
+        {
+          "name": "14_Article - Microsoft SQL Server Clustered Index Design",
+          "relative_path": "Skills_Input/udemy/withNasser/04_Database Indexing/14_Article - Microsoft SQL Server Clustered Index Design.md"
+        }
+      ]
+    },
+    {
+      "section_number": 5,
+      "section_name": "05_B-Tree vs B+Tree in Production Database Systems",
+      "lectures": [
+        {
+          "name": "01_B-Tree Section's Introduction & Agenda",
+          "relative_path": "Skills_Input/udemy/withNasser/05_B-Tree vs B+Tree in Production Database Systems/01_B-Tree Section's Introduction & Agenda.md"
+        },
+        {
+          "name": "02_Full Table Scans",
+          "relative_path": "Skills_Input/udemy/withNasser/05_B-Tree vs B+Tree in Production Database Systems/02_Full Table Scans.md"
+        },
+        {
+          "name": "03_Original B-Tree",
+          "relative_path": "Skills_Input/udemy/withNasser/05_B-Tree vs B+Tree in Production Database Systems/03_Original B-Tree.md"
+        },
+        {
+          "name": "04_How the Original B-Tree Helps Performance",
+          "relative_path": "Skills_Input/udemy/withNasser/05_B-Tree vs B+Tree in Production Database Systems/04_How the Original B-Tree Helps Performance.md"
+        },
+        {
+          "name": "05_Original B-Tree Limitations",
+          "relative_path": "Skills_Input/udemy/withNasser/05_B-Tree vs B+Tree in Production Database Systems/05_Original B-Tree Limitations.md"
+        },
+        {
+          "name": "06_B+Tree",
+          "relative_path": "Skills_Input/udemy/withNasser/05_B-Tree vs B+Tree in Production Database Systems/06_B+Tree.md"
+        },
+        {
+          "name": "07_B+Tree DBMS Considerations",
+          "relative_path": "Skills_Input/udemy/withNasser/05_B-Tree vs B+Tree in Production Database Systems/07_B+Tree DBMS Considerations.md"
+        },
+        {
+          "name": "08_B+Tree Storage Cost in MySQL vs Postgres",
+          "relative_path": "Skills_Input/udemy/withNasser/05_B-Tree vs B+Tree in Production Database Systems/08_B+Tree Storage Cost in MySQL vs Postgres.md"
+        },
+        {
+          "name": "09_B-Tree Section's Summary",
+          "relative_path": "Skills_Input/udemy/withNasser/05_B-Tree vs B+Tree in Production Database Systems/09_B-Tree Section's Summary.md"
+        }
+      ]
+    },
+    {
+      "section_number": 6,
+      "section_name": "06_Database Partitioning",
+      "lectures": [
+        {
+          "name": "01_Introduction to Database Partitioning",
+          "relative_path": "Skills_Input/udemy/withNasser/06_Database Partitioning/01_Introduction to Database Partitioning.md"
+        },
+        {
+          "name": "02_What is Partitioning",
+          "relative_path": "Skills_Input/udemy/withNasser/06_Database Partitioning/02_What is Partitioning.md"
+        },
+        {
+          "name": "03_Vertical vs Horizontal Partitioning",
+          "relative_path": "Skills_Input/udemy/withNasser/06_Database Partitioning/03_Vertical vs Horizontal Partitioning.md"
+        },
+        {
+          "name": "04_Partitioning Types",
+          "relative_path": "Skills_Input/udemy/withNasser/06_Database Partitioning/04_Partitioning Types.md"
+        },
+        {
+          "name": "05_The Difference Between Partitioning and Sharding",
+          "relative_path": "Skills_Input/udemy/withNasser/06_Database Partitioning/05_The Difference Between Partitioning and Sharding.md"
+        },
+        {
+          "name": "06_Preparing Postgres, Database, Table, Indexes",
+          "relative_path": "Skills_Input/udemy/withNasser/06_Database Partitioning/06_Preparing Postgres, Database, Table, Indexes.md"
+        },
+        {
+          "name": "07_Execute Multiple Queries on the Table",
+          "relative_path": "Skills_Input/udemy/withNasser/06_Database Partitioning/07_Execute Multiple Queries on the Table.md"
+        },
+        {
+          "name": "08_Create and Attach Partitioned Tables",
+          "relative_path": "Skills_Input/udemy/withNasser/06_Database Partitioning/08_Create and Attach Partitioned Tables.md"
+        },
+        {
+          "name": "09_Populate the Partitions and Create Indexes",
+          "relative_path": "Skills_Input/udemy/withNasser/06_Database Partitioning/09_Populate the Partitions and Create Indexes.md"
+        },
+        {
+          "name": "10_Class Project - Querying and Checking the Size of Partitions",
+          "relative_path": "Skills_Input/udemy/withNasser/06_Database Partitioning/10_Class Project - Querying and Checking the Size of Partitions.md"
+        },
+        {
+          "name": "11_The Advantages of Partitioning",
+          "relative_path": "Skills_Input/udemy/withNasser/06_Database Partitioning/11_The Advantages of Partitioning.md"
+        },
+        {
+          "name": "12_The Disadvantages of Partitioning",
+          "relative_path": "Skills_Input/udemy/withNasser/06_Database Partitioning/12_The Disadvantages of Partitioning.md"
+        },
+        {
+          "name": "13_Section Summary - Partitioning",
+          "relative_path": "Skills_Input/udemy/withNasser/06_Database Partitioning/13_Section Summary - Partitioning.md"
+        },
+        {
+          "name": "14_How to Automate Partitioning in Postgres",
+          "relative_path": "Skills_Input/udemy/withNasser/06_Database Partitioning/14_How to Automate Partitioning in Postgres.md"
+        }
+      ]
+    },
+    {
+      "section_number": 7,
+      "section_name": "07_Database Sharding",
+      "lectures": [
+        {
+          "name": "01_Introduction to Database Sharding",
+          "relative_path": "Skills_Input/udemy/withNasser/07_Database Sharding/01_Introduction to Database Sharding.md"
+        },
+        {
+          "name": "02_What is Database Sharding",
+          "relative_path": "Skills_Input/udemy/withNasser/07_Database Sharding/02_What is Database Sharding.md"
+        },
+        {
+          "name": "03_Consistent Hashing",
+          "relative_path": "Skills_Input/udemy/withNasser/07_Database Sharding/03_Consistent Hashing.md"
+        },
+        {
+          "name": "04_Horizontal partitioning vs Sharding",
+          "relative_path": "Skills_Input/udemy/withNasser/07_Database Sharding/04_Horizontal partitioning vs Sharding.md"
+        },
+        {
+          "name": "05_Sharding with Postgres",
+          "relative_path": "Skills_Input/udemy/withNasser/07_Database Sharding/05_Sharding with Postgres.md"
+        },
+        {
+          "name": "06_Spin up Docker Postgres Shards",
+          "relative_path": "Skills_Input/udemy/withNasser/07_Database Sharding/06_Spin up Docker Postgres Shards.md"
+        },
+        {
+          "name": "07_Writing to a Shard",
+          "relative_path": "Skills_Input/udemy/withNasser/07_Database Sharding/07_Writing to a Shard.md"
+        },
+        {
+          "name": "08_Reading from a Shard",
+          "relative_path": "Skills_Input/udemy/withNasser/07_Database Sharding/08_Reading from a Shard.md"
+        },
+        {
+          "name": "09_Advantages of Database Sharding",
+          "relative_path": "Skills_Input/udemy/withNasser/07_Database Sharding/09_Advantages of Database Sharding.md"
+        },
+        {
+          "name": "10_Disadvantages of Database Sharding",
+          "relative_path": "Skills_Input/udemy/withNasser/07_Database Sharding/10_Disadvantages of Database Sharding.md"
+        },
+        {
+          "name": "11_Database Sharding Section Summary",
+          "relative_path": "Skills_Input/udemy/withNasser/07_Database Sharding/11_Database Sharding Section Summary.md"
+        },
+        {
+          "name": "12_When Should you consider Sharding your Database",
+          "relative_path": "Skills_Input/udemy/withNasser/07_Database Sharding/12_When Should you consider Sharding your Database.md"
+        }
+      ]
+    },
+    {
+      "section_number": 8,
+      "section_name": "08_Concurrency Control",
+      "lectures": [
+        {
+          "name": "01_Shared vs Exclusive Locks",
+          "relative_path": "Skills_Input/udemy/withNasser/08_Concurrency Control/01_Shared vs Exclusive Locks.md"
+        },
+        {
+          "name": "02_Dead Locks",
+          "relative_path": "Skills_Input/udemy/withNasser/08_Concurrency Control/02_Dead Locks.md"
+        },
+        {
+          "name": "03_Two-phase Locking",
+          "relative_path": "Skills_Input/udemy/withNasser/08_Concurrency Control/03_Two-phase Locking.md"
+        },
+        {
+          "name": "04_Solving the Double Booking Problem (Code Example)",
+          "relative_path": "Skills_Input/udemy/withNasser/08_Concurrency Control/04_Solving the Double Booking Problem (Code Example).md"
+        },
+        {
+          "name": "05_Double Booking Problem Part 2 ( Alternative Solution and explination)",
+          "relative_path": "Skills_Input/udemy/withNasser/08_Concurrency Control/05_Double Booking Problem Part 2 ( Alternative Solution and explination).md"
+        },
+        {
+          "name": "06_SQL Pagination With Offset is Very Slow",
+          "relative_path": "Skills_Input/udemy/withNasser/08_Concurrency Control/06_SQL Pagination With Offset is Very Slow.md"
+        },
+        {
+          "name": "07_Database Connection Pooling",
+          "relative_path": "Skills_Input/udemy/withNasser/08_Concurrency Control/07_Database Connection Pooling.md"
+        }
+      ]
+    },
+    {
+      "section_number": 9,
+      "section_name": "09_Database Replication",
+      "lectures": [
+        {
+          "name": "01_Introduction to Database Replication",
+          "relative_path": "Skills_Input/udemy/withNasser/09_Database Replication/01_Introduction to Database Replication.md"
+        },
+        {
+          "name": "02_MasterStandby Replication",
+          "relative_path": "Skills_Input/udemy/withNasser/09_Database Replication/02_MasterStandby Replication.md"
+        },
+        {
+          "name": "03_Multi-master Replication",
+          "relative_path": "Skills_Input/udemy/withNasser/09_Database Replication/03_Multi-master Replication.md"
+        },
+        {
+          "name": "04_Synchronous vs Asynchronous Replication",
+          "relative_path": "Skills_Input/udemy/withNasser/09_Database Replication/04_Synchronous vs Asynchronous Replication.md"
+        },
+        {
+          "name": "05_Replication Demo with Postgres",
+          "relative_path": "Skills_Input/udemy/withNasser/09_Database Replication/05_Replication Demo with Postgres.md"
+        },
+        {
+          "name": "06_Pros and Cons of Replication",
+          "relative_path": "Skills_Input/udemy/withNasser/09_Database Replication/06_Pros and Cons of Replication.md"
+        }
+      ]
+    },
+    {
+      "section_number": 10,
+      "section_name": "10_Database System Design",
+      "lectures": [
+        {
+          "name": "01_Twitter System Design Database Design",
+          "relative_path": "Skills_Input/udemy/withNasser/10_Database System Design/01_Twitter System Design Database Design.md"
+        },
+        {
+          "name": "02_Building a Short URL System Database Backend",
+          "relative_path": "Skills_Input/udemy/withNasser/10_Database System Design/02_Building a Short URL System Database Backend.md"
+        }
+      ]
+    },
+    {
+      "section_number": 11,
+      "section_name": "11_Database Engines",
+      "lectures": [
+        {
+          "name": "01_Database Engines Introduction",
+          "relative_path": "Skills_Input/udemy/withNasser/11_Database Engines/01_Database Engines Introduction.md"
+        },
+        {
+          "name": "02_What is a Database Engine",
+          "relative_path": "Skills_Input/udemy/withNasser/11_Database Engines/02_What is a Database Engine.md"
+        },
+        {
+          "name": "03_XtraDB",
+          "relative_path": "Skills_Input/udemy/withNasser/11_Database Engines/03_XtraDB.md"
+        },
+        {
+          "name": "04_SQLite",
+          "relative_path": "Skills_Input/udemy/withNasser/11_Database Engines/04_SQLite.md"
+        },
+        {
+          "name": "05_Aria",
+          "relative_path": "Skills_Input/udemy/withNasser/11_Database Engines/05_Aria.md"
+        },
+        {
+          "name": "06_BerkeleyDB",
+          "relative_path": "Skills_Input/udemy/withNasser/11_Database Engines/06_BerkeleyDB.md"
+        },
+        {
+          "name": "07_LevelDB",
+          "relative_path": "Skills_Input/udemy/withNasser/11_Database Engines/07_LevelDB.md"
+        },
+        {
+          "name": "08_RocksDB",
+          "relative_path": "Skills_Input/udemy/withNasser/11_Database Engines/08_RocksDB.md"
+        },
+        {
+          "name": "09_Popular Database Engines",
+          "relative_path": "Skills_Input/udemy/withNasser/11_Database Engines/09_Popular Database Engines.md"
+        },
+        {
+          "name": "10_MyISAM",
+          "relative_path": "Skills_Input/udemy/withNasser/11_Database Engines/10_MyISAM.md"
+        },
+        {
+          "name": "11_InnoDB",
+          "relative_path": "Skills_Input/udemy/withNasser/11_Database Engines/11_InnoDB.md"
+        },
+        {
+          "name": "12_Switching Database Engines with mySQL",
+          "relative_path": "Skills_Input/udemy/withNasser/11_Database Engines/12_Switching Database Engines with mySQL.md"
+        }
+      ]
+    },
+    {
+      "section_number": 12,
+      "section_name": "12_Database Cursors",
+      "lectures": [
+        {
+          "name": "01_What are Database Cursors",
+          "relative_path": "Skills_Input/udemy/withNasser/12_Database Cursors/01_What are Database Cursors.md"
+        },
+        {
+          "name": "02_Server Side vs Client Side Database Cursors",
+          "relative_path": "Skills_Input/udemy/withNasser/12_Database Cursors/02_Server Side vs Client Side Database Cursors.md"
+        },
+        {
+          "name": "03_Inserting Million Rows with Python in Postgres using Client Side Cursor",
+          "relative_path": "Skills_Input/udemy/withNasser/12_Database Cursors/03_Inserting Million Rows with Python in Postgres using Client Side Cursor.md"
+        },
+        {
+          "name": "04_Querying with Server Side Cursor",
+          "relative_path": "Skills_Input/udemy/withNasser/12_Database Cursors/04_Querying with Server Side Cursor.md"
+        },
+        {
+          "name": "05_Pros and Cons of Server vs Client Side Cursors",
+          "relative_path": "Skills_Input/udemy/withNasser/12_Database Cursors/05_Pros and Cons of Server vs Client Side Cursors.md"
+        },
+        {
+          "name": "06_Article - Server Side Cursor Types in SQL Server",
+          "relative_path": "Skills_Input/udemy/withNasser/12_Database Cursors/06_Article - Server Side Cursor Types in SQL Server.md"
+        }
+      ]
+    },
+    {
+      "section_number": 13,
+      "section_name": "13_NoSQL Architecture",
+      "lectures": [
+        {
+          "name": "01_SQL vs NoSQL and how MongoDB Revolutionized NoSQL",
+          "relative_path": "Skills_Input/udemy/withNasser/13_NoSQL Architecture/01_SQL vs NoSQL and how MongoDB Revolutionized NoSQL.md"
+        },
+        {
+          "name": "02_MongoDB Internals",
+          "relative_path": "Skills_Input/udemy/withNasser/13_NoSQL Architecture/02_MongoDB Internals.md"
+        },
+        {
+          "name": "03_MongoDB Clustered Collections",
+          "relative_path": "Skills_Input/udemy/withNasser/13_NoSQL Architecture/03_MongoDB Clustered Collections.md"
+        },
+        {
+          "name": "04_Querying with Client Side Cursor",
+          "relative_path": "Skills_Input/udemy/withNasser/13_NoSQL Architecture/04_Querying with Client Side Cursor.md"
+        },
+        {
+          "name": "05_MemCached In-Memory database Architecture",
+          "relative_path": "Skills_Input/udemy/withNasser/13_NoSQL Architecture/05_MemCached In-Memory database Architecture.md"
+        },
+        {
+          "name": "06_Memcached NoSQL Architecture",
+          "relative_path": "Skills_Input/udemy/withNasser/13_NoSQL Architecture/06_Memcached NoSQL Architecture.md"
+        },
+        {
+          "name": "07_NOSQL Redis Internals",
+          "relative_path": "Skills_Input/udemy/withNasser/13_NoSQL Architecture/07_NOSQL Redis Internals.md"
+        },
+        {
+          "name": "08_CAP Theorem Explained",
+          "relative_path": "Skills_Input/udemy/withNasser/13_NoSQL Architecture/08_CAP Theorem Explained.md"
+        }
+      ]
+    },
+    {
+      "section_number": 14,
+      "section_name": "14_Database Security",
+      "lectures": [
+        {
+          "name": "01_How to Secure Your Postgres Database by Enabling TLSSSL",
+          "relative_path": "Skills_Input/udemy/withNasser/14_Database Security/01_How to Secure Your Postgres Database by Enabling TLSSSL.md"
+        },
+        {
+          "name": "02_Deep Look into Postgres Wire Protocol with Wireshark",
+          "relative_path": "Skills_Input/udemy/withNasser/14_Database Security/02_Deep Look into Postgres Wire Protocol with Wireshark.md"
+        },
+        {
+          "name": "03_Deep Look Into MongoDB Wire Protocol with Wireshark",
+          "relative_path": "Skills_Input/udemy/withNasser/14_Database Security/03_Deep Look Into MongoDB Wire Protocol with Wireshark.md"
+        },
+        {
+          "name": "04_What is the Largest SQL Statement that You can Send to Your Database",
+          "relative_path": "Skills_Input/udemy/withNasser/14_Database Security/04_What is the Largest SQL Statement that You can Send to Your Database.md"
+        },
+        {
+          "name": "05_Best Practices Working with REST & Databases",
+          "relative_path": "Skills_Input/udemy/withNasser/14_Database Security/05_Best Practices Working with REST & Databases.md"
+        },
+        {
+          "name": "06_Database Permissions and Best Practices for Building REST API",
+          "relative_path": "Skills_Input/udemy/withNasser/14_Database Security/06_Database Permissions and Best Practices for Building REST API.md"
+        }
+      ]
+    },
+    {
+      "section_number": 15,
+      "section_name": "15_Homomorphic Encryption - Performing Database Queries on Encrypted Data",
+      "lectures": [
+        {
+          "name": "01_Introduction to Homomorphic Encryption",
+          "relative_path": "Skills_Input/udemy/withNasser/15_Homomorphic Encryption - Performing Database Queries on Encrypted Data/01_Introduction to Homomorphic Encryption.md"
+        },
+        {
+          "name": "02_What is Encryption",
+          "relative_path": "Skills_Input/udemy/withNasser/15_Homomorphic Encryption - Performing Database Queries on Encrypted Data/02_What is Encryption.md"
+        },
+        {
+          "name": "03_Why Can't we always Encrypt",
+          "relative_path": "Skills_Input/udemy/withNasser/15_Homomorphic Encryption - Performing Database Queries on Encrypted Data/03_Why Can't we always Encrypt.md"
+        },
+        {
+          "name": "04_What is Homomorphic Encryption",
+          "relative_path": "Skills_Input/udemy/withNasser/15_Homomorphic Encryption - Performing Database Queries on Encrypted Data/04_What is Homomorphic Encryption.md"
+        },
+        {
+          "name": "05_Homomorphic Encryption Demo",
+          "relative_path": "Skills_Input/udemy/withNasser/15_Homomorphic Encryption - Performing Database Queries on Encrypted Data/05_Homomorphic Encryption Demo.md"
+        },
+        {
+          "name": "06_Clone and Build the Code",
+          "relative_path": "Skills_Input/udemy/withNasser/15_Homomorphic Encryption - Performing Database Queries on Encrypted Data/06_Clone and Build the Code.md"
+        },
+        {
+          "name": "07_Going Through the Code and the Database",
+          "relative_path": "Skills_Input/udemy/withNasser/15_Homomorphic Encryption - Performing Database Queries on Encrypted Data/07_Going Through the Code and the Database.md"
+        },
+        {
+          "name": "08_Searching The Encrypted Database",
+          "relative_path": "Skills_Input/udemy/withNasser/15_Homomorphic Encryption - Performing Database Queries on Encrypted Data/08_Searching The Encrypted Database.md"
+        },
+        {
+          "name": "09_Is Homomorphic Encryption Ready",
+          "relative_path": "Skills_Input/udemy/withNasser/15_Homomorphic Encryption - Performing Database Queries on Encrypted Data/09_Is Homomorphic Encryption Ready.md"
+        }
+      ]
+    },
+    {
+      "section_number": 16,
+      "section_name": "16_Answering your Questions",
+      "lectures": [
+        {
+          "name": "01_Heap Index scan instead of Index only scan why",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/01_Heap Index scan instead of Index only scan why.md"
+        },
+        {
+          "name": "02_What is the unit of the Cost in Postgres Planner",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/02_What is the unit of the Cost in Postgres Planner.md"
+        },
+        {
+          "name": "03_All Isolation Levels - Explained Details",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/03_All Isolation Levels - Explained Details.md"
+        },
+        {
+          "name": "04_Snapshot and Repeatable Read Isolation difference",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/04_Snapshot and Repeatable Read Isolation difference.md"
+        },
+        {
+          "name": "05_I have an Index why is the database doing a full table scan",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/05_I have an Index why is the database doing a full table scan.md"
+        },
+        {
+          "name": "06_Why Databases Read Pages instead of Rows",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/06_Why Databases Read Pages instead of Rows.md"
+        },
+        {
+          "name": "07_How does Indexing a column with duplicate values work",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/07_How does Indexing a column with duplicate values work.md"
+        },
+        {
+          "name": "08_Should I drop unused indexes",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/08_Should I drop unused indexes.md"
+        },
+        {
+          "name": "09_Why use serializable Isolation Level when we have SELECT FOR UPDATE",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/09_Why use serializable Isolation Level when we have SELECT FOR UPDATE.md"
+        },
+        {
+          "name": "10_Can I use the same database connection for multiple clients",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/10_Can I use the same database connection for multiple clients.md"
+        },
+        {
+          "name": "11_Do I need a transaction if I'm only reading",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/11_Do I need a transaction if I'm only reading.md"
+        },
+        {
+          "name": "12_Why does an update in Postgres touches all indexes",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/12_Why does an update in Postgres touches all indexes.md"
+        },
+        {
+          "name": "13_What is the value of bitmap index scan",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/13_What is the value of bitmap index scan.md"
+        },
+        {
+          "name": "14_What does Explain Analyze actually do",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/14_What does Explain Analyze actually do.md"
+        },
+        {
+          "name": "15_Postgres vs MySQL (The fundamental differences)",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/15_Postgres vs MySQL (The fundamental differences).md"
+        },
+        {
+          "name": "16_Does Create Index block writes and Why",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/16_Does Create Index block writes and Why.md"
+        },
+        {
+          "name": "17_Postgres Process Architecture",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/17_Postgres Process Architecture.md"
+        },
+        {
+          "name": "18_Index Scan vs Index Seek",
+          "relative_path": "Skills_Input/udemy/withNasser/16_Answering your Questions/18_Index Scan vs Index Seek.md"
+        }
+      ]
+    },
+    {
+      "section_number": 17,
+      "section_name": "17_Database Discussions",
+      "lectures": [
+        {
+          "name": "01_SELECT COUNT () can impact your Backend Application performance, here is why",
+          "relative_path": "Skills_Input/udemy/withNasser/17_Database Discussions/01_SELECT COUNT () can impact your Backend Application performance, here is why.md"
+        },
+        {
+          "name": "02_How Shopify Switched from UUID as Primary Key",
+          "relative_path": "Skills_Input/udemy/withNasser/17_Database Discussions/02_How Shopify Switched from UUID as Primary Key.md"
+        },
+        {
+          "name": "03_How does the Database Store Data On Disk",
+          "relative_path": "Skills_Input/udemy/withNasser/17_Database Discussions/03_How does the Database Store Data On Disk.md"
+        },
+        {
+          "name": "04_Postgres Architecture",
+          "relative_path": "Skills_Input/udemy/withNasser/17_Database Discussions/04_Postgres Architecture.md"
+        },
+        {
+          "name": "05_Is QUIC a Good Protocol for Databases",
+          "relative_path": "Skills_Input/udemy/withNasser/17_Database Discussions/05_Is QUIC a Good Protocol for Databases.md"
+        },
+        {
+          "name": "06_What is a Distributed Transaction",
+          "relative_path": "Skills_Input/udemy/withNasser/17_Database Discussions/06_What is a Distributed Transaction.md"
+        },
+        {
+          "name": "07_Hash Tables and Consistent Hashing",
+          "relative_path": "Skills_Input/udemy/withNasser/17_Database Discussions/07_Hash Tables and Consistent Hashing.md"
+        },
+        {
+          "name": "08_Indexing in PostgreSQL vs MySQL",
+          "relative_path": "Skills_Input/udemy/withNasser/17_Database Discussions/08_Indexing in PostgreSQL vs MySQL.md"
+        },
+        {
+          "name": "09_Why Uber Moved from Postgres to MySQL (Discussion)",
+          "relative_path": "Skills_Input/udemy/withNasser/17_Database Discussions/09_Why Uber Moved from Postgres to MySQL (Discussion).md"
+        },
+        {
+          "name": "10_Can NULLs Improve your Database Queries Performance",
+          "relative_path": "Skills_Input/udemy/withNasser/17_Database Discussions/10_Can NULLs Improve your Database Queries Performance.md"
+        },
+        {
+          "name": "11_Write Amplification Explained in Backend Apps, Database Systems and SSDs",
+          "relative_path": "Skills_Input/udemy/withNasser/17_Database Discussions/11_Write Amplification Explained in Backend Apps, Database Systems and SSDs.md"
+        },
+        {
+          "name": "12_WAL, Redo and Undo logs",
+          "relative_path": "Skills_Input/udemy/withNasser/17_Database Discussions/12_WAL, Redo and Undo logs.md"
+        },
+        {
+          "name": "13_Optimistic vs Pessmistic Concurrency Control",
+          "relative_path": "Skills_Input/udemy/withNasser/17_Database Discussions/13_Optimistic vs Pessmistic Concurrency Control.md"
+        },
+        {
+          "name": "14_Avoid SELECT , even on a single-column tables",
+          "relative_path": "Skills_Input/udemy/withNasser/17_Database Discussions/14_Avoid SELECT , even on a single-column tables.md"
+        },
+        {
+          "name": "15_Postgres Locks - A Deep Dive",
+          "relative_path": "Skills_Input/udemy/withNasser/17_Database Discussions/15_Postgres Locks - A Deep Dive.md"
+        },
+        {
+          "name": "16_How Slow is select in row store",
+          "relative_path": "Skills_Input/udemy/withNasser/17_Database Discussions/16_How Slow is select in row store.md"
+        },
+        {
+          "name": "17_MySQL InnoDB Advanced Locking Techniques",
+          "relative_path": "Skills_Input/udemy/withNasser/17_Database Discussions/17_MySQL InnoDB Advanced Locking Techniques.md"
+        }
+      ]
+    },
+    {
+      "section_number": 18,
+      "section_name": "18_Archived Lectures",
+      "lectures": [
+        {
+          "name": "01_Introduction to ACID (Archived)",
+          "relative_path": "Skills_Input/udemy/withNasser/18_Archived Lectures/01_Introduction to ACID (Archived).md"
+        },
+        {
+          "name": "02_What is a Transaction (Archived)",
+          "relative_path": "Skills_Input/udemy/withNasser/18_Archived Lectures/02_What is a Transaction (Archived).md"
+        },
+        {
+          "name": "03_Atomicity (Archived 2022)",
+          "relative_path": "Skills_Input/udemy/withNasser/18_Archived Lectures/03_Atomicity (Archived 2022).md"
+        },
+        {
+          "name": "04_Isolation (Archived 2022)",
+          "relative_path": "Skills_Input/udemy/withNasser/18_Archived Lectures/04_Isolation (Archived 2022).md"
+        },
+        {
+          "name": "05_Consistency (Archived 2022)",
+          "relative_path": "Skills_Input/udemy/withNasser/18_Archived Lectures/05_Consistency (Archived 2022).md"
+        },
+        {
+          "name": "06_Durability (Archived 2022)",
+          "relative_path": "Skills_Input/udemy/withNasser/18_Archived Lectures/06_Durability (Archived 2022).md"
+        },
+        {
+          "name": "07_Atomicity (Archived 2024)",
+          "relative_path": "Skills_Input/udemy/withNasser/18_Archived Lectures/07_Atomicity (Archived 2024).md"
+        }
+      ]
+    }
+  ]
+}
