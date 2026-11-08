@@ -46,3 +46,4 @@ python .agent/skills/SkillGenerator/scripts/generate_skill.py --type <fixed|dyna
 2. Append task milestones to [`Upcoming Updates/Upcoming Updates.md`](../../../../Upcoming%20Updates/Upcoming%20Updates.md).
 3. Record the session in [`chat.md`](../../../../chat.md).
 4. Commit and push changes to GitHub.
+

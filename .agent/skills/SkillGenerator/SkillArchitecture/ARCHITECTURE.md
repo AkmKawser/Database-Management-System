@@ -38,3 +38,4 @@ flowchart TD
 | **Scripts** | `query_<name>.py` (keyword / page extractor) | `ingest_manager.py` (queue reader & HITL parser) |
 | **`Skills_Output/`** | `<Name>_output/outline/` & `<Name>_output/query/` | `<Name>_output/Problem Files/` & `Solution Files/` |
 | **Master Index** | `<Name>_Output_README.md` | `question bank.md` & `<Name>_Output_README.md` |
+

@@ -317,3 +317,4 @@ if __name__ == "__main__":
         create_type1_fixed_resource_skill(args.name, args.resource_type, args.source_path, args.description)
     else:
         create_type2_dynamic_resource_skill(args.name, args.category_doc, args.description)
+
