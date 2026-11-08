@@ -11,9 +11,9 @@ A unified, deep-dive database engineering manual synthesizing:
 
 | Dimension | `withBara` Contribution | `withNasser` Contribution | Advanced Engineering Reasoning & Insights |
 | :--- | :--- | :--- | :--- |
-| **SQL Operational Lifecycle** | Database evolution: Structure (`DDL`) $\to$ Data Rows (`DML`) $\to$ Analytical Querying (`DQL`). | How multiple TCP client connections create concurrent physical contention on shared disk pages. | **Transaction Boundaries**: Implicit transactions (autocommit) vs Explicit transactions (`BEGIN ... COMMIT`). |
+| **SQL Operational Lifecycle** | Database evolution: Structure (`DDL`) &rarr; Data Rows (`DML`) &rarr; Analytical Querying (`DQL`). | How multiple TCP client connections create concurrent physical contention on shared disk pages. | **Transaction Boundaries**: Implicit transactions (autocommit) vs Explicit transactions (`BEGIN ... COMMIT`). |
 | **DCL / Governance** | Syntax and permission commands: `GRANT`, `REVOKE`, `DENY`. | Authorization tokens validated against system catalog pages before compilation. | Principle of Least Privilege in microservices; security catalog caching and invalidation hooks. |
-| **TCL / Transactions** | Logical units of work: `BEGIN`, `COMMIT`, `ROLLBACK`, `SAVEPOINT`. | Active Transaction IDs (XID), Undo Log stacks, Rollback segments, and RAM page dirty bits. | **Transaction State Machine**: `ACTIVE` $\to$ `PARTIALLY COMMITTED` $\to$ `COMMITTED` vs `FAILED` $\to$ `ABORTED`. Read-only vs Read-write XID allocation savings. |
+| **TCL / Transactions** | Logical units of work: `BEGIN`, `COMMIT`, `ROLLBACK`, `SAVEPOINT`. | Active Transaction IDs (XID), Undo Log stacks, Rollback segments, and RAM page dirty bits. | **Transaction State Machine**: `ACTIVE` &rarr; `PARTIALLY COMMITTED` &rarr; `COMMITTED` vs `FAILED` &rarr; `ABORTED`. Read-only vs Read-write XID allocation savings. |
 | **Durability Mechanics** | High-level disk persistence upon commit. | **OS Buffer Cache bypass**, the role of `fsync()`, and why sequential Write-Ahead Logging (WAL) beats random B-tree page writes. | The cost of Group Commit, disk write amplification, NVMe write caches, and write exhaustion. |
 | **Isolation Mechanics** | Basic multi-user concurrency and locking. | **4 Read Phenomena** (Dirty, Non-Repeatable, Phantom, Lost Updates), **2PL** vs **MVCC**, MySQL Undo stacks vs Postgres tuple versioning. | Serialization Graph Checking (SGT), Snapshot Isolation anomalies (Write Skew), and Deadlock Cycle Detection (`Wait-For Graph`). |
 
@@ -87,7 +87,7 @@ stateDiagram-v2
 ---
 
 ### 3.3 The Banking Metaphor (Why TCL is Mandatory)
-Consider transferring \$500 between two bank accounts:
+Consider transferring 500 dollars between two bank accounts:
 ```sql
 BEGIN TRANSACTION;
 -- Step 1: Check balance
@@ -102,7 +102,7 @@ UPDATE accounts SET balance = balance - 500 WHERE account_id = 'A';
 UPDATE accounts SET balance = balance + 500 WHERE account_id = 'B';
 COMMIT;
 ```
-If the system crashes after Step 2, \$500 vanishes without TCL. With TCL, the engine guarantees that both updates either **commit together** or **roll back completely**.
+If the system crashes after Step 2, the 500 dollars vanishes without TCL. With TCL, the engine guarantees that both updates either **commit together** or **roll back completely**.
 
 ---
 

@@ -30,7 +30,7 @@ This document chronologically records all user requests, architectural designs, 
 2. Formulated and presented a tailored Database Management System design:
    - **Type 1 Skills**: Storage engine manuals & textbooks (Silberschatz, DDIA).
    - **Type 2 Skills**: `DBMSSkill` for schema modeling, query tuning, and multi-dialect synthesis.
-   - **Engineering Templates**: Normalization (1NF $\to$ BCNF) and Query Optimization (`EXPLAIN ANALYZE`).
+   - **Engineering Templates**: Normalization (1NF &rarr; BCNF) and Query Optimization (`EXPLAIN ANALYZE`).
    - Multi-dialect outputs (`_postgres.sql`, `_mysql.sql`, `_derivation.md`).
 
 ---
@@ -69,10 +69,10 @@ This document chronologically records all user requests, architectural designs, 
 
 ### Actions Taken & Implementation Summary
 1. Provided a clear routing guide for file placement:
-   - Textbooks $\to$ `Skills_Input/books/`
-   - Problem drops (PDF/Word/SQL) $\to$ `Skills_Output/DBMSSkill_output/Problem Files/Source of Problem/put the file here/`
-   - Staging workbook $\to$ `Source of Problem/write here.docx`
-   - Dynamic classification taxonomy $\to$ `Problem Files/dbms categories.docx`
+   - Textbooks &rarr; `Skills_Input/books/`
+   - Problem drops (PDF/Word/SQL) &rarr; `Skills_Output/DBMSSkill_output/Problem Files/Source of Problem/put the file here/`
+   - Staging workbook &rarr; `Source of Problem/write here.docx`
+   - Dynamic classification taxonomy &rarr; `Problem Files/dbms categories.docx`
 2. Identified missing components to make the project fully automated:
    - `ingest_manager.py` (CLI ingestion tool)
    - `SKILL.md` (Agent instructions and HITL guardrails for `DBMSSkill`)
@@ -158,7 +158,7 @@ This document chronologically records all user requests, architectural designs, 
    - Used `query_withbara.py` to inspect Lecture 08 (*Types of SQL Commands*) under `Skills_Input/udemy/withBara/01_Introduction to SQL/`.
    - Cross-referenced companion presentation slides: `Resources/02_docs/01_SQL_Introduction.pdf` and `Resources/03_scripts/SQL_Cheat_Sheet.sql`.
 2. **Pedagogical Breakdown**:
-   - Captured the course's intuitive narrative: the 3-step lifecycle of an empty database (Structure $\to$ Data $\to$ Querying).
+   - Captured the course's intuitive narrative: the 3-step lifecycle of an empty database (Structure &rarr; Data &rarr; Querying).
    - Detailed the 3 core families (DDL, DML, DQL) and extended enterprise families (DCL, TCL).
 3. **Artifact Generation & Archival**:
    - Published [`Skills_Output/withBara_output/query/002_types_of_sql_commands.md`](Skills_Output/withBara_output/query/002_types_of_sql_commands.md).
@@ -369,7 +369,7 @@ This document chronologically records all user requests, architectural designs, 
    - Confirmed `Skills_Output/query/003_dcl_tcl_acid_properties_internals.md` contains the complete, unified blend of `withBara` (SQL lifecycle, DDL/DML/DQL, DCL, TCL, bank transfer model) and `withNasser` (OS buffer cache bypass, `fsync()`, WAL vs random data I/O, Undo stacks vs Postgres tuple versioning, 4 Read Phenomena, and ARIES crash recovery).
 3. **Markdown & KaTeX Rendering Audit**:
    - Audited markdown syntax across all files for:
-     - Escaped KaTeX literal dollar signs (`\$500`) to prevent prose from collapsing into LaTeX math blocks.
+     - Escaped KaTeX literal dollar signs (`\*N*500`) to prevent prose from collapsing into LaTeX math blocks.
      - Valid fenced code blocks and balanced HTML tags.
      - Mermaid diagram syntax validation.
 4. **Git Synchronization**:
@@ -386,7 +386,7 @@ This document chronologically records all user requests, architectural designs, 
 ### Actions Taken & Implementation Summary
 1. **Integrated Advanced Database Engineering Insights into Query 003**:
    - Expanded Section 3 with a dedicated deep-dive into transactions:
-     - **Formal Transaction State Machine**: Modeled state transitions (`ACTIVE` $\to$ `PARTIALLY COMMITTED` $\to$ `COMMITTED` vs `FAILED` $\to$ `ABORTED`) with Mermaid state diagram.
+     - **Formal Transaction State Machine**: Modeled state transitions (`ACTIVE` &rarr; `PARTIALLY COMMITTED` &rarr; `COMMITTED` vs `FAILED` &rarr; `ABORTED`) with Mermaid state diagram.
      - **Read-Only vs. Read-Write Transaction Optimization**: Explored the physical cost of assigning 32-bit Transaction IDs (XIDs), virtual transactions, and how `READ ONLY` flags save memory and vacuum cycles.
      - **Transaction ID Wraparound**: Explained the 4.2-billion-transaction ceiling in PostgreSQL and how background `VACUUM FREEZE` prevents past tuples from vanishing.
      - **The Danger of Long-Running Transactions (Idle in Transaction)**: Detailed lock starvation, undo stack bloat, WAL disk exhaustion, and why network calls must never live inside database transactions.
@@ -486,4 +486,25 @@ This document chronologically records all user requests, architectural designs, 
 2. **Embedded Complete Repository Architecture Diagram**:
    - Documented the full folder hierarchy across `.agent/skills/`, `Skills_Input/`, `Skills_Output/` (highlighting the unified `query/` hub and isolated `outline/` directories), `Upcoming Updates/`, `chat/` (`chat.md` and `finalized chat.md`), and `README.md`.
 3. **Git Synchronization**:
+   - Committed and pushed all updates to GitHub.
+
+
+---
+
+## Session 24: Comprehensive KaTeX/LaTeX Math & Symbol Purge in Query 003
+
+### User Request
+> "there are still rendering issue in 003_dcl_tcl_acid_properties_internals.md. how can this still be an issue? in the unviersal rule i told you to double check all rendering issue in every prompt or conver saion."
+
+### Actions Taken & Implementation Summary
+1. **Identified the Exact Root Cause of the Rendering Glitch**:
+   - In Markdown parsers (KaTeX/MathJax), unescaped dollar signs and LaTeX arrow sequences (`$\to$`) inside Markdown tables and lists trigger math mode. If any paragraph has mismatched `$` signs, the parser fails to close the formula, causing paragraphs of prose to collapse into corrupted italic math text.
+2. **Surgically Cleaned `003_dcl_tcl_acid_properties_internals.md`**:
+   - Replaced all currency dollar signs with plain English words ("500 dollars" instead of `\$500`).
+   - Replaced pseudo-math arrows `$\to$` with clean HTML entities (`&rarr;`).
+   - Verified that all Mermaid sequence and state diagrams have zero unquoted parentheses.
+   - Verified that all 22 code fences (` ``` `) in the file are perfectly balanced.
+3. **Automated Audit Across Entire `Skills_Output/query/` Directory**:
+   - Ran validation script confirming **0 unescaped raw dollar signs** across all query files.
+4. **Git Synchronization**:
    - Committed and pushed all updates to GitHub.

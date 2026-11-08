@@ -16,7 +16,7 @@ These rules are permanent operational constraints. The agent must enforce them p
 
 ### Rule 2: Strict Rendering & Formatting Audit (Images & LaTeX Math)
 - **Directive**: Always double-check and audit all Markdown files for rendering integrity before finalizing changes:
-  1. **LaTeX Math & Dollar Signs**: In prose, escape every literal dollar sign with a backslash (e.g. `\$500`, not `$500`). Unescaped dollar signs cause KaTeX parsers to collapse entire paragraphs into corrupted math blocks.
+  1. **LaTeX Math & Dollar Signs**: In prose, escape every literal dollar sign with a backslash (e.g. `\*N*500`, not `*N*500`). Unescaped dollar signs cause KaTeX parsers to collapse entire paragraphs into corrupted math blocks.
   2. **Image & File Embed Links**: Ensure all referenced images (e.g. `.png`, `.jpg`, diagrams) use valid relative paths that resolve on disk.
   3. **Mermaid Diagrams**: Quote node labels containing special characters (parentheses, brackets, colons) to prevent parser crashes.
   4. **HTML / Markdown Hygiene**: Ensure all `<details>`, `<table>`, and code fences are properly balanced and closed.

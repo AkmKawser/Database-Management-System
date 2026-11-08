@@ -19,7 +19,7 @@ A comprehensive, internal engine manual based on **Section 02: SELECT Query (Lec
 
 ---
 
-## 2. Intuition: Why Coding Order $\neq$ Execution Order
+## 2. Intuition: Why Coding Order &ne; Execution Order
 
 In SQL, we write queries declaratively (describing *what* we want to see), but the relational database engine executes them procedurally (determining *how* to find and filter data efficiently).
 
@@ -77,7 +77,7 @@ flowchart TD
 - **What the Engine Does**: Sorts the final projected rows based on specified sorting criteria. Because this runs after Step 5, it **can** reference column aliases created in `SELECT`.
 
 #### Step 7: `TOP` / `LIMIT`
-- **What the Engine Does**: Slices the top $N$ rows from the sorted dataset and discards the rest.
+- **What the Engine Does**: Slices the top *N*N*N* rows from the sorted dataset and discards the rest.
 
 ---
 
@@ -131,5 +131,5 @@ Based on `10_SQL_30_Performance_Tips.pdf`:
    - ❌ *Anti-Pattern*: Grouping 1,000,000 rows and filtering out inactive users in `HAVING`.
    - ✅ *Optimized*: Filter inactive users in `WHERE` (Step 2) before the engine wastes memory aggregating (Step 3).
 2. **Alias Visibility Rule**:
-   - `SELECT score * 1.1 AS adjusted_score FROM customers WHERE adjusted_score > 500;` $\to$ **Fails with syntax error** because `WHERE` runs at Step 2, long before `adjusted_score` is defined in Step 5.
+   - `SELECT score * 1.1 AS adjusted_score FROM customers WHERE adjusted_score > 500;` &rarr; **Fails with syntax error** because `WHERE` runs at Step 2, long before `adjusted_score` is defined in Step 5.
 

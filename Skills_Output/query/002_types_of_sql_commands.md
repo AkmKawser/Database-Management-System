@@ -65,7 +65,7 @@ flowchart LR
 
 ### 3. DQL: Data Query Language (Asking Analytical Questions)
 - **Purpose**: Retrieves and analyzes data stored in the database without modifying the underlying tables or structures.
-- **Engine Impact**: Triggers the Query Optimizer, executes logical query processing (`FROM` $\to$ `WHERE` $\to$ `GROUP BY` $\to$ `HAVING` $\to$ `SELECT` $\to$ `ORDER BY`), reads data from the buffer cache, and streams results back to the client.
+- **Engine Impact**: Triggers the Query Optimizer, executes logical query processing (`FROM` &rarr; `WHERE` &rarr; `GROUP BY` &rarr; `HAVING` &rarr; `SELECT` &rarr; `ORDER BY`), reads data from the buffer cache, and streams results back to the client.
 - **Key Command**:
   - `SELECT`: The single, most widely used command in SQL. It forms the backbone of queries, reports, dashboards, and analytical pipelines.
 

@@ -64,7 +64,7 @@ LLM-powered assistants frequently produce naive database code:
 2. **`Skills_Input/` Directory (Central Ingestion & Reference Assets)**:
    - **`Skills_Input/books/`**: Curated textbooks and domain books (`Fundamentals/`, `Internals/`, `Distributed/`).
    - **`Skills_Input/Templates/`**: Step-by-step blueprints instructing the agent on *how* to systematically model schemas and optimize queries:
-     - [`Relational Schema & Normalization Template`](Skills_Input/Templates/Relational_Schema_Normalization_Template.md): 1NF $\to$ 2NF $\to$ 3NF $\to$ BCNF minimal cover and lossless-join derivations.
+     - [`Relational Schema & Normalization Template`](Skills_Input/Templates/Relational_Schema_Normalization_Template.md): 1NF &rarr; 2NF &rarr; 3NF &rarr; BCNF minimal cover and lossless-join derivations.
      - [`Query Optimization & Indexing Template`](Skills_Input/Templates/Query_Optimization_&_Index_Template.md): Predicate selectivity, composite index rules, and `EXPLAIN ANALYZE` audits.
 3. **`Skills_Output/` Directory (Output Hub & Universal Query Center)**:
    - **`Skills_Output/query/` (Unified Investigation & Multi-Skill Query Hub)**:
