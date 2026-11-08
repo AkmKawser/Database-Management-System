@@ -97,3 +97,4 @@ flowchart TD
 
 1. **Isolation has a Cost**: Higher isolation levels (Serializable) eliminate anomalies but reduce concurrency and throughput due to lock contention or serialization aborts (`40001: could not serialize access`).
 2. **Postgres vs MySQL Defaults**: Always remember that PostgreSQL defaults to **Read Committed**, while MySQL InnoDB defaults to **Repeatable Read**.
+
