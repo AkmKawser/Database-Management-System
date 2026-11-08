@@ -11,10 +11,22 @@ Following the engineering standard established in `Science_Of_Coding`, skills ar
 ## 📚 Type 1: Database Reference Skills (`SkillsOnFixedResources`)
 
 ### 1. Concept & Purpose
-A **Database Reference Skill** encapsulates an entire textbook, academic monograph, or storage engine specification into a structured, agent-executable knowledge base. Rather than loading massive PDF text dumps into LLM context (which induces high latency, hallucinations, and context dilution), the skill organizes the literature into:
-1. **Machine-Readable Routing Maps**: Structural indices (`table_of_contents.md`, `toc.json`) enabling zero-token navigation down to chapter, section, and page ranges.
-2. **Surgical Page Extraction CLI**: Dedicated Python scripts (`query_dbms_book.py`) that extract exact page windows (theorems, proof of serializability, B+ Tree split algorithms, WAL ARIES protocols, buffer manager strategies).
-3. **Collaborative Trade-off Protocols**: When designing a database schema, storage tier, or query plan with multiple valid trade-offs (e.g., B+ Tree vs. LSM-Tree; 3NF vs. Denormalized Star Schema; Optimistic vs. Pessimistic Concurrency), the agent **must** present trade-offs to the developer and confirm the path before implementation.
+A **Database Reference Skill** encapsulates an entire textbook, academic monograph, or educational course (e.g. Udemy course transcripts) into a structured, agent-executable knowledge base. Rather than loading massive PDF text dumps into LLM context (which induces high latency, hallucinations, and context dilution), the skill organizes the literature into:
+1. **Mandatory Deep Outlines (`Skills_Output/<skill>_output/outline/`)**: An exhaustive, hierarchical map listing every section, lecture/chapter, subtopic, and sub-subtopic. This provides an instant search index for the user to discover covered concepts.
+2. **Machine-Readable Routing Maps**: Structural indices (`table_of_contents.md`, `toc.json`) enabling zero-token navigation down to chapter, section, and page ranges.
+3. **Surgical Page Extraction CLI**: Dedicated Python scripts (`query_dbms_book.py` / `query_withbara.py`) that extract exact page windows or lecture transcript passages.
+4. **Collaborative Trade-off Protocols**: When designing a database schema, storage tier, or query plan with multiple valid trade-offs (e.g., B+ Tree vs. LSM-Tree; 3NF vs. Denormalized Star Schema; Optimistic vs. Pessimistic Concurrency), the agent **must** present trade-offs to the developer and confirm the path before implementation.
+
+### 2. Standardized Output Structure for `SkillsOnFixedResources`
+Every fixed resource skill adheres to the following output folder architecture:
+```
+Skills_Output/<skill_name>_output/
+├── outline/                 # Exhaustive curriculum/book breakdown with all subtopics
+│   └── <skill>_Complete_Course_Outline.md
+├── query/                   # Generated topic manuals & execution deep-dives
+│   └── <NNN>_<topic_name>.md
+└── <skill>_Output_README.md # Master output index and navigation badges
+```
 
 ### 2. Concrete Examples for DBMS
 - **`silberschatz_dbms`**: Covers core relational theory, relational algebra, SQL DDL/DML semantics, functional dependencies, 3NF/BCNF normalization algorithms, and ACID crash recovery.

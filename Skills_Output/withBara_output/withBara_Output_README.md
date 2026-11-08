@@ -4,6 +4,13 @@ This directory stores in-depth, lecture-grounded manuals explaining how SQL work
 
 ---
 
+## ⚡ Navigation: Curriculum Outline & Query Manuals
+
+- 🗺️ **[Complete 28-Module Course & Subtopic Outline](outline/withBara_Complete_Course_Outline.md)**: Exhaustive hierarchical index of all sections, lectures, subtopics, companion presentation decks, and SQL scripts.
+- 📁 **[Generated Deep-Dive Query Manuals](query/)**: Topic manuals covering how SQL works internally.
+
+---
+
 ## 📑 Generated Query Manuals Index
 
 | Query ID | Topic / Manual Title | Source Section | Companion Slides / Script | Status |

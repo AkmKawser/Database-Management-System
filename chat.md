@@ -117,3 +117,30 @@ This document chronologically records all user requests, architectural designs, 
 5. **Updated Navigation & Roadmap**:
    - Updated `README.md` with new `withBara` navigation badges.
    - Updated `Upcoming Updates/Upcoming Updates.md`.
+
+
+---
+
+## Session 7: Standardized Outline Folder Architecture for `SkillsOnFixedResources`
+
+### User Request
+> "In skills where books / udemy courses are used as resources 1st this to this is put the complete outline of the book/udemy course so that i can know what are the topics covered. make you you write every topics even the subtopics and sub subtopics of that course so it become easy to know by which topic i can search for. keep this outline in a folder named outline inside the withBara_output folder. this folder structure should be followed for all sort of skillonfixedresoruces type."
+
+### Actions Taken & Implementation Summary
+1. **Standardized Architecture for Fixed Resource Skills**:
+   - Codified the mandatory rule in `.agent/skills/type of skills.md`: Every Type 1 skill (`SkillsOnFixedResources`) must maintain an `outline/` folder inside its output directory:
+     ```
+     Skills_Output/<SkillName>_output/
+     ├── outline/
+     │   └── <SkillName>_Complete_Course_Outline.md
+     ├── query/
+     │   └── <NNN>_<topic_name>.md
+     └── <SkillName>_Output_README.md
+     ```
+2. **Generated Exhaustive Course Outline**:
+   - Developed `generate_complete_outline.py` to extract every Section, Lecture, Heading (H2, H3, H4), and key syntax concept across all 28 sections of the withBara course.
+   - Published [`Skills_Output/withBara_output/outline/withBara_Complete_Course_Outline.md`](Skills_Output/withBara_output/outline/withBara_Complete_Course_Outline.md) containing full navigation anchors.
+3. **Updated Hubs & Readmes**:
+   - Linked the new outline in `Skills_Output/withBara_output/withBara_Output_README.md`.
+   - Added badge navigation to `README.md`.
+   - Committed and pushed changes to GitHub.
