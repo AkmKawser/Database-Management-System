@@ -84,3 +84,4 @@ Save all manuals in:
    - Demonstrate the correct pattern vs. the anti-pattern.
 6. **Performance & Common Pitfalls**:
    - Cross-reference with `10_SQL_30_Performance_Tips.pdf` and engine optimizations.
+

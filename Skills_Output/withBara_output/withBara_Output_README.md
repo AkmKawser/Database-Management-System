@@ -19,3 +19,4 @@ Every manual in `query/` is generated using the [`withBara` Agent Skill](../../.
 - **Engine Execution Pipeline**: Step-by-step memory/filter passes (Mermaid diagram).
 - **Execution vs. Coding Order**: Why specific clauses fail or succeed based on engine timing.
 - **Companion Resources**: Cross-referencing `Resources/02_docs/` and `Resources/03_scripts/`.
+

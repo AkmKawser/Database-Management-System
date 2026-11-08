@@ -132,3 +132,4 @@ Based on `10_SQL_30_Performance_Tips.pdf`:
    - ✅ *Optimized*: Filter inactive users in `WHERE` (Step 2) before the engine wastes memory aggregating (Step 3).
 2. **Alias Visibility Rule**:
    - `SELECT score * 1.1 AS adjusted_score FROM customers WHERE adjusted_score > 500;` $\to$ **Fails with syntax error** because `WHERE` runs at Step 2, long before `adjusted_score` is defined in Step 5.
+

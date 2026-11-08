@@ -71,3 +71,4 @@ if __name__ == "__main__":
     parser.add_argument("keyword", help="Topic or keyword to search (e.g., 'execution order', 'index', 'partition', 'join')")
     args = parser.parse_args()
     search_course(args.keyword)
+
