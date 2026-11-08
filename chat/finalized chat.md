@@ -30,6 +30,12 @@ These rules are permanent operational constraints. The agent must enforce them p
 ### Rule 5: Non-Destructive Ingestion & Zero Data Loss
 - **Directive**: Raw source files, staging workbooks, or challenge documents dropped into `put the file here/` or `write here.docx` must **never** be deleted or cleared until the extracted entry is 100% verified inside `question bank.md`.
 
+### Rule 6: Skill Reference Grounding & Autonomous Reasoning for Depth
+- **Directive**: The agent must always use skills as authoritative reference points, but is **explicitly empowered and required to inject its own reasoning, architectural deep dives, and simplifications** to provide greater insight than the source lecture alone.
+
+### Rule 7: Mandatory Skill Source Attribution & Quotes
+- **Directive**: In every `.md` manual or output file generated using skills, the agent **must explicitly quote and cite the exact skill(s), sections, and lecture materials** from which the content was derived (e.g. `> Synthesized from @withBara (Section 01, Lecture 08) & @withNasser (Section 02: ACID)`).
+
 ---
 
 ## 🏛️ 2. Finalized Repository Architecture & Output Guidelines

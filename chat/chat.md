@@ -453,3 +453,21 @@ This document chronologically records all user requests, architectural designs, 
    - Recorded the finalized naming convention rule for query badges.
 3. **Git Synchronization**:
    - Committed and pushed changes to GitHub.
+
+
+---
+
+## Session 22: Codification of Universal Rules 6 & 7 in `finalized chat.md`
+
+### User Request
+> "anohter universal rule is you take help from the skills as reference but you can also put your reasoning for depth and simplificaiton. also in the md files while using skills make sure you also quote from which skill your genrated the output. its a universal rule. so update is in the update chat"
+
+### Actions Taken & Implementation Summary
+1. **Added Universal Rule 6 (Skill Reference Grounding & Autonomous Reasoning for Depth)**:
+   - Formally codified that the agent must use skills as references while actively contributing its own engineering depth, simplifications, state machines, and physical storage reasoning.
+2. **Added Universal Rule 7 (Mandatory Skill Source Attribution & Quotes)**:
+   - Mandated that every generated `.md` manual or output must explicitly cite and quote the exact skill(s), sections, and lecture resources used in its derivation.
+3. **Updated `chat/finalized chat.md`**:
+   - Recorded both new rules under `## 🌐 1. Universal Rules`.
+4. **Git Synchronization**:
+   - Committed and pushed changes to GitHub.
