@@ -209,3 +209,30 @@ This document chronologically records all user requests, architectural designs, 
    - Published [`Skills_Output/withBara_output/query/003_dcl_tcl_acid_properties_internals.md`](Skills_Output/withBara_output/query/003_dcl_tcl_acid_properties_internals.md).
    - Updated `Skills_Output/withBara_output/withBara_Output_README.md`.
    - Logged session in `chat.md` and pushed all changes to GitHub.
+
+
+---
+
+## Session 11: Creation of Universal `SkillGenerator` with HITL Selection
+
+### User Request
+> "you already have my chat history also the github repo that i told you to take as reference.. make a skill generator for file. where you will generatre skill cosidering my steps and make a hitl which type of skill i want."
+
+### Actions Taken & Implementation Summary
+1. **Analyzed Skill Engineering Process in `Science_Of_Coding` & `Database Management System`**:
+   - Reviewed chat history and established conventions for Type 1 (`SkillsOnFixedResources`) and Type 2 (`SkillsOnDynamicResources`).
+   - Identified the recurring scaffolding steps:
+     - Directory creation (`.agent/skills/<Type>/<Name>/`, `SkillArchitecture/`, `references/`, `scripts/`, `Skills_Output/<Name>_output/`).
+     - Generation of `SKILL.md` frontmatter and execution guidelines.
+     - Generation of `SkillArchitecture/ARCHITECTURE.md` and `<Name>_Architecture_README.md`.
+     - Output routing (`outline/` + `query/` for Type 1, `Problem Files/` + `Solution Files/` for Type 2).
+     - CLI query tool scaffolding.
+2. **Built the `SkillGenerator` Capability**:
+   - Generator Engine Script: `.agent/skills/SkillGenerator/scripts/generate_skill.py`.
+   - Skill Specification: `.agent/skills/SkillGenerator/SKILL.md` enforcing the mandatory Human-in-the-Loop (HITL) prompt before building any skill.
+   - Skill Architecture Manuals:
+     - `.agent/skills/SkillGenerator/SkillArchitecture/ARCHITECTURE.md`
+     - `.agent/skills/SkillGenerator/SkillArchitecture/SkillGenerator_Architecture_README.md`
+3. **Synchronized Repository**:
+   - Added `Skill Generator` badge to root `README.md`.
+   - Committed and pushed to GitHub.

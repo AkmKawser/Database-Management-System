@@ -192,3 +192,4 @@ flowchart TD
 | **Consistency (C)**| Constraints, Primary Keys, Foreign Keys | Valid database states | Validates relational schema rules prior to commit |
 | **Isolation (I)** | Locks, Isolation Levels, MVCC | Concurrency without interference | 2-Phase Locking (2PL) or row version snapshots |
 | **Durability (D)** | WAL / Transaction Log, `COMMIT` | Crash resilience | Flushes Redo logs via disk `fsync` before ACK |
+
