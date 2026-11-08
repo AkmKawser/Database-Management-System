@@ -36,9 +36,64 @@ These rules are permanent operational constraints. The agent must enforce them p
 ### Rule 7: Mandatory Skill Source Attribution & Quotes
 - **Directive**: In every `.md` manual or output file generated using skills, the agent **must explicitly quote and cite the exact skill(s), sections, and lecture materials** from which the content was derived (e.g. `> Synthesized from @withBara (Section 01, Lecture 08) & @withNasser (Section 02: ACID)`).
 
+### Rule 8: Continuous Synchronization of the Canonical Folder Structure
+- **Directive**: The agent must maintain and continuously update the **latest, complete folder structure tree** inside this document (`chat/finalized chat.md`). Whenever directories are moved, added, or restructured, the canonical architecture diagram in Section 2 must be refreshed immediately to reflect the exact state of the project.
+
 ---
 
 ## 🏛️ 2. Finalized Repository Architecture & Output Guidelines
+
+### Canonical Repository Folder Structure (Always Kept Up to Date)
+
+```
+Database Management System/
+├── .agent/
+│   └── skills/
+│       ├── SkillGenerator/                         # Universal HITL Skill Scaffolder (scripts/, SKILL.md, SkillArchitecture/)
+│       ├── SkillsOnFixedResources/                 # Type 1: Textbooks & Static Course Skills
+│       │   ├── withBara/                           # SQL Engine Internals (scripts/, references/, SKILL.md, SkillArchitecture/)
+│       │   └── withNasser/                         # Database Engineering & Storage (scripts/, references/, SKILL.md, SkillArchitecture/)
+│       ├── SkillsOnDynamicResources/               # Type 2: Dynamic Practice & Ingestion Skills
+│       │   └── DBMSSkill/                          # Schema modeling, query tuning & question bank manager
+│       └── type of skills.md                       # Skill Typology Specification
+├── Skills_Input/
+│   ├── books/                                      # Curated Textbooks (Fundamentals/, Internals/, Distributed/)
+│   ├── udemy/                                      # Video Course Transcripts & Assets
+│   │   ├── withBara/                               # 28 Modules, Slides (02_docs/), Scripts (03_scripts/)
+│   │   └── withNasser/                             # 18 Sections, Slides, Benchmark Scripts
+│   └── Templates/                                  # Mathematical Blueprints & Step-by-Step Problem Solving
+│       ├── Relational_Schema_Normalization_Template.md # 1NF -> 2NF -> 3NF -> BCNF derivations
+│       └── Query_Optimization_&_Index_Template.md      # EXPLAIN ANALYZE, selectivity, composite indexing
+├── Skills_Output/
+│   ├── query/                                      # 🌟 UNIFIED QUERY HUB (All Single & Combined Syntheses)
+│   │   ├── Query_Hub_README.md                     # Master index table of all generated manuals
+│   │   ├── 001_sql_logical_execution_order_internals.md
+│   │   ├── 002_types_of_sql_commands.md
+│   │   └── 003_dcl_tcl_acid_properties_internals.md
+│   ├── withBara_output/
+│   │   ├── outline/                                # Deep curriculum outlines
+│   │   │   └── withBara_Complete_Course_Outline.md
+│   │   └── withBara_Output_README.md               # Resource Hub
+│   ├── withNasser_output/
+│   │   ├── outline/
+│   │   │   └── withNasser_Complete_Course_Outline.md
+│   │   └── withNasser_Output_README.md
+│   └── DBMSSkill_output/
+│       ├── Problem Files/                          # Ingestion staging & Master Question Bank
+│       │   ├── Source of Problem/put the file here/
+│       │   ├── problem formatting.md
+│       │   └── question bank.md
+│       └── Solution Files/                         # Categorized multi-dialect SQL solutions
+│           └── Solution formatting.md
+├── Upcoming Updates/
+│   └── Upcoming Updates.md                         # Milestones & Feature Roadmap
+├── chat/
+│   ├── chat.md                                     # Chronological conversation & implementation log (Sessions 1 to N)
+│   └── finalized chat.md                           # Single source of truth for Universal Rules & Directives
+└── README.md                                       # Master navigation hub with vertical badge layout
+```
+
+---
 
 ### Finalized Rule on Query Hub Structure:
 - **Rule**: There is **only ONE centralized query folder** in the repository:

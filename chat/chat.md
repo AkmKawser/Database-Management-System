@@ -471,3 +471,19 @@ This document chronologically records all user requests, architectural designs, 
    - Recorded both new rules under `## 🌐 1. Universal Rules`.
 4. **Git Synchronization**:
    - Committed and pushed changes to GitHub.
+
+
+---
+
+## Session 23: Addition of Universal Rule 8 & Canonical Folder Structure in `finalized chat.md`
+
+### User Request
+> "in the universal rule always update my latest folder structure for this type of projects. so do it now."
+
+### Actions Taken & Implementation Summary
+1. **Added Universal Rule 8**:
+   - Formally mandated that the agent must continuously maintain the **latest, complete canonical folder structure** inside `chat/finalized chat.md`.
+2. **Embedded Complete Repository Architecture Diagram**:
+   - Documented the full folder hierarchy across `.agent/skills/`, `Skills_Input/`, `Skills_Output/` (highlighting the unified `query/` hub and isolated `outline/` directories), `Upcoming Updates/`, `chat/` (`chat.md` and `finalized chat.md`), and `README.md`.
+3. **Git Synchronization**:
+   - Committed and pushed all updates to GitHub.
