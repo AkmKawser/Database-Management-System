@@ -418,3 +418,20 @@ This document chronologically records all user requests, architectural designs, 
    - Updated all references pointing from `chat.md` to `chat/chat.md`.
 4. **Git Synchronization**:
    - Committed and pushed all updates to GitHub.
+
+
+---
+
+## Session 20: Single-Column Layout for README Skill Navigation Badges
+
+### User Request
+> "In the readme file the query output file should not be kept side by side. it should be new line in one column type structure"
+
+### Actions Taken & Implementation Summary
+1. **Reformatted README Navigation Hub**:
+   - Converted the horizontal badge lists into a clean, vertical, single-column layout using trailing two-space linebreaks (`  \n`).
+   - Each query output badge and skill resource badge now renders on its own dedicated line.
+2. **Rendering & Layout Audit**:
+   - Verified that badges align vertically with proper linebreaks across all sections (`Universal Query Output Hub`, `DBMSSkill`, `withBara`, `withNasser`, and `System Tools`).
+3. **Git Synchronization**:
+   - Committed and pushed changes to GitHub.

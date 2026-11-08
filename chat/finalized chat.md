@@ -63,3 +63,4 @@ These rules are permanent operational constraints. The agent must enforce them p
   - Add concurrency anomaly deep-dives (Dirty reads, Non-repeatable reads, Phantom reads, Lost updates).
   - Compare engine dialect differences (e.g. PostgreSQL tuple versioning vs. MySQL InnoDB Undo logs).
   - Include ASCII matrices and visual Mermaid flowcharts/sequence diagrams.
+
