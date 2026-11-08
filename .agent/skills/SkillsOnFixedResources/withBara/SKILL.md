@@ -29,16 +29,16 @@ All knowledge assets for this skill reside under:
 `Skills_Input/udemy/withBara/`
 
 1. **Course Modules & Lecture Transcripts**:
-   - `01_Introduction to SQL/` $\to$ Core components & client-server architecture.
-   - `02_SELECT Query/` $\to$ Logical execution order, `FROM` $\to$ `WHERE` $\to$ `GROUP BY` $\to$ `HAVING` $\to$ `SELECT` $\to$ `DISTINCT` $\to$ `ORDER BY` $\to$ `TOP/LIMIT`.
-   - `03_Data Definition (DDL)` & `04_Data Manipulation (DML)` $\to$ Constraints, transactions, ACID.
-   - `05_Filtering Data/` & `06_SQL Joins/` $\to$ Venn logic, Cartesian products, match stages, NULL handling.
-   - `07_SQL SET Operators/` $\to$ `UNION`, `UNION ALL`, `INTERSECT`, `EXCEPT`.
+   - `01_Introduction to SQL/` → Core components & client-server architecture.
+   - `02_SELECT Query/` → Logical execution order, `FROM` → `WHERE` → `GROUP BY` → `HAVING` → `SELECT` → `DISTINCT` → `ORDER BY` → `TOP/LIMIT`.
+   - `03_Data Definition (DDL)` & `04_Data Manipulation (DML)` → Constraints, transactions, ACID.
+   - `05_Filtering Data/` & `06_SQL Joins/` → Venn logic, Cartesian products, match stages, NULL handling.
+   - `07_SQL SET Operators/` → `UNION`, `UNION ALL`, `INTERSECT`, `EXCEPT`.
    - `08_String Functions/` to `11_CASE WHEN Statement/`.
-   - `12_Window Functions Basics/` to `15_Window Value Functions/` $\to$ Partitioning, ordering, framing (`ROWS BETWEEN`).
-   - `16_Subqueries/` & `17_Common Table Expression (CTE)/` $\to$ Correlated vs. un-correlated, recursion.
-   - `18_Views/` & `19_CTAS & TEMP Tables/` $\to$ In-memory vs. tempdb storage.
-   - `20_Stored Procedures/` to `23_Performance Best Practices/` $\to$ SARGability, index fragmentation, statistics.
+   - `12_Window Functions Basics/` to `15_Window Value Functions/` → Partitioning, ordering, framing (`ROWS BETWEEN`).
+   - `16_Subqueries/` & `17_Common Table Expression (CTE)/` → Correlated vs. un-correlated, recursion.
+   - `18_Views/` & `19_CTAS & TEMP Tables/` → In-memory vs. tempdb storage.
+   - `20_Stored Procedures/` to `23_Performance Best Practices/` → SARGability, index fragmentation, statistics.
    - `25_SQL Data Warehouse Project/` to `27_SQL Advanced Data Analytics Project/`.
 
 2. **Companion Assets (`Skills_Input/udemy/withBara/Resources/`)**:

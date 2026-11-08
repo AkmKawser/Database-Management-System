@@ -24,7 +24,7 @@ All database challenges, schema design tasks, and query optimization problems in
 - **Read/Write Ratio**: `95% Read / 5% Write` (or OLTP vs. OLAP)
 
 #### 3. Constraints & Expected Invariants
-- Functional Dependencies: $X \to Y$
+- Functional Dependencies: `X → Y`
 - Integrity Constraints: Foreign Keys, Unique Keys, Check Constraints
 - Latency / SLA Target: `< 10ms at p99`
 

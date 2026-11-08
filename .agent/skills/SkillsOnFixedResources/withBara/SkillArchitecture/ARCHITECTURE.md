@@ -36,29 +36,29 @@ This skill connects any agentic AI system (Antigravity, Claude Code, Cursor, Cod
 
 ```mermaid
 flowchart TD
-    User([User Prompt / SQL Topic Request]) --> Agent[Agentic AI Engine]
+    User(["User Prompt / SQL Topic Request"]) --> Agent["Agentic AI Engine"]
     
     subgraph KnowledgeSources["Tri-Source Knowledge Ingestion"]
         direction TB
-        Transcripts["Course Lecture Transcripts (.md)<br/>(Skills_Input/udemy/withBara/)"]
-        Resources["Companion Resources<br/>- Slides (02_docs/)<br/>- Scripts (03_scripts/)"]
-        Router["Zero-Token Fast Router<br/>(table_of_contents.md / toc.json)"]
-        CLISearch["Surgical CLI Search<br/>(python query_withbara.py)"]
+        Transcripts["Course Lecture Transcripts - Skills_Input/udemy/withBara/"]
+        Resources["Companion Resources - Slides (02_docs/) and Scripts (03_scripts/)"]
+        Router["Zero-Token Fast Router - table_of_contents.md / toc.json"]
+        CLISearch["Surgical CLI Search - python query_withbara.py"]
         
         Router --> CLISearch
         Transcripts --> CLISearch
         Resources --> CLISearch
         
-        LLM["Pre-trained Engine Reasoning & Memory"]
-        Web["Targeted Web Search & Docs"]
+        LLM["Pre-trained Engine Reasoning and Memory"]
+        Web["Targeted Web Search and Docs"]
     end
     
     Agent --> KnowledgeSources
     
-    subgraph ExecutionAnalysis["Execution & Internal Mechanics Layer"]
+    subgraph ExecutionAnalysis["Execution and Internal Mechanics Layer"]
         direction TB
         Step1["Analyze Logical Execution Order vs Coding Order"]
-        Step2["Dissect Storage Engine Operations<br/>(Buffer pool, WAL, locks, scan types)"]
+        Step2["Dissect Storage Engine Operations (Buffer pool, WAL, locks, scan types)"]
         Step3["Synthesize Visual Pipeline Diagram (Mermaid)"]
         Step4["Cross-reference 10_SQL_30_Performance_Tips.pdf"]
         Step1 --> Step2 --> Step3 --> Step4
@@ -66,7 +66,7 @@ flowchart TD
     
     KnowledgeSources --> ExecutionAnalysis
     
-    ExecutionAnalysis --> Output["Standardized Query Output<br/>(Skills_Output/withBara_output/query/<NNN>_<topic>.md)"]
+    ExecutionAnalysis --> Output["Standardized Query Output - Skills_Output/query/"]
 ```
 
 ---

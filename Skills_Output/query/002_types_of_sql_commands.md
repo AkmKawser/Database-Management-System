@@ -19,17 +19,17 @@ As taught in the course, rather than memorizing dry acronyms, you understand the
 
 ```mermaid
 flowchart LR
-    subgraph Step 1: DDL
-        A[Empty Database] -->|CREATE| B[Empty Table Structure]
-        B -->|ALTER / DROP| B
+    subgraph Step1["Step 1: DDL"]
+        A["Empty Database"] -->|"CREATE"| B["Empty Table Structure"]
+        B -->|"ALTER / DROP"| B
     end
 
-    subgraph Step 2: DML
-        C[Application / Web App] -->|INSERT / UPDATE / DELETE| D[(Table with Data)]
+    subgraph Step2["Step 2: DML"]
+        C["Application / Web App"] -->|"INSERT / UPDATE / DELETE"| D[("Table with Data")]
     end
 
-    subgraph Step 3: DQL
-        D -->|SELECT / SQL Query| E[Business Questions & Answers]
+    subgraph Step3["Step 3: DQL"]
+        D -->|"SELECT / SQL Query"| E["Business Questions and Answers"]
     end
 
     B --> D
@@ -65,7 +65,7 @@ flowchart LR
 
 ### 3. DQL: Data Query Language (Asking Analytical Questions)
 - **Purpose**: Retrieves and analyzes data stored in the database without modifying the underlying tables or structures.
-- **Engine Impact**: Triggers the Query Optimizer, executes logical query processing (`FROM` &rarr; `WHERE` &rarr; `GROUP BY` &rarr; `HAVING` &rarr; `SELECT` &rarr; `ORDER BY`), reads data from the buffer cache, and streams results back to the client.
+- **Engine Impact**: Triggers the Query Optimizer, executes logical query processing (`FROM` → `WHERE` → `GROUP BY` → `HAVING` → `SELECT` → `ORDER BY`), reads data from the buffer cache, and streams results back to the client.
 - **Key Command**:
   - `SELECT`: The single, most widely used command in SQL. It forms the backbone of queries, reports, dashboards, and analytical pipelines.
 

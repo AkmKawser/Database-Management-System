@@ -10,17 +10,17 @@ The **`SkillGenerator`** is a meta-skill designed to eliminate manual boilerplat
 
 ```mermaid
 flowchart TD
-    UserPrompt["User: 'Make a skill for this new book / course / problem set'"] --> HITL{"Human-in-the-Loop Dialog:<br/>Which Type of Skill?"}
+    UserPrompt["User: Make a skill for this new book or course or problem set"] --> HITL{"Human-in-the-Loop Dialog: Which Type of Skill?"}
     
-    HITL -->|Type 1: Fixed Resource| FixedBranch["Fixed Resource Skill (SkillsOnFixedResources)<br/>- Textbooks, Udemy courses, PDF manuals<br/>- Outputs: outline/ + query/"]
-    HITL -->|Type 2: Dynamic Resource| DynamicBranch["Dynamic Resource Skill (SkillsOnDynamicResources)<br/>- Problem sets, practice challenges<br/>- Outputs: Problem Files/ + Solution Files/"]
+    HITL -->|"Type 1: Fixed Resource"| FixedBranch["Fixed Resource Skill (SkillsOnFixedResources) - Textbooks, Udemy courses, PDF manuals"]
+    HITL -->|"Type 2: Dynamic Resource"| DynamicBranch["Dynamic Resource Skill (SkillsOnDynamicResources) - Problem sets and practice challenges"]
 
     FixedBranch --> GenCLI["Run scripts/generate_skill.py"]
     DynamicBranch --> GenCLI
 
-    GenCLI --> Scaffold["1. Create .agent/skills/<Type>/<Name>/<br/>2. Create SkillArchitecture/ (ARCHITECTURE.md + README.md)<br/>3. Create scripts/ & references/<br/>4. Create Skills_Output/<Name>_output/"]
+    GenCLI --> Scaffold["Create .agent/skills/, SkillArchitecture/, scripts/, references/, and Skills_Output/"]
     
-    Scaffold --> Sync["5. Update README.md navigation badges<br/>6. Record session in chat.md<br/>7. Git commit & push"]
+    Scaffold --> Sync["Update README.md navigation badges, record session in chat.md, and Git push"]
 
     classDef stage fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
     class UserPrompt,HITL,FixedBranch,DynamicBranch,GenCLI,Scaffold,Sync stage;

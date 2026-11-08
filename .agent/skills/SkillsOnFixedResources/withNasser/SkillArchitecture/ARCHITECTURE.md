@@ -30,31 +30,31 @@ The **`withNasser`** skill is a portable, self-contained, agent-agnostic knowled
 
 ```mermaid
 flowchart TD
-    User([User Prompt / Topic Request]) --> Agent[Agentic AI Engine]
+    User(["User Prompt / Topic Request"]) --> Agent["Agentic AI Engine"]
     
     subgraph KnowledgeSources["Tri-Source Knowledge Ingestion"]
         direction TB
-        SourceData["Source Material (Skills_Input/udemy/withNasser)"]
-        Router["Zero-Token Fast Router<br/>(table_of_contents.md / toc.json)"]
-        CLISearch["Precision CLI Search<br/>(python query_withnasser.py)"]
+        SourceData["Source Material - Skills_Input/udemy/withNasser"]
+        Router["Zero-Token Fast Router - table_of_contents.md / toc.json"]
+        CLISearch["Precision CLI Search - python query_withnasser.py"]
         
         Router --> CLISearch
         SourceData --> CLISearch
         
-        LLM["Pre-trained Reasoning & Memory"]
-        Web["Targeted Web Search & Docs"]
+        LLM["Pre-trained Reasoning and Memory"]
+        Web["Targeted Web Search and Docs"]
     end
     
     Agent --> KnowledgeSources
     
-    subgraph SynthesisLayer["Analysis & Synthesis Layer"]
+    subgraph SynthesisLayer["Analysis and Synthesis Layer"]
         direction TB
-        Step1["Analyze Theoretical Foundations & Invariants"]
-        Step2["Dissect Engine Operations / Relational Algebra"]
+        Step1["Analyze Theoretical Foundations and Invariants"]
+        Step2["Dissect Engine Operations and Relational Algebra"]
         Step3["Synthesize Visual Architecture Diagram (Mermaid)"]
         Step1 --> Step2 --> Step3
     end
     
     KnowledgeSources --> SynthesisLayer
-    SynthesisLayer --> Output["Standardized Query Output<br/>(Skills_Output/withNasser_output/query/<NNN>_<topic>.md)"]
+    SynthesisLayer --> Output["Standardized Query Output - Skills_Output/query/"]
 ```

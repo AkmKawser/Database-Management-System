@@ -18,13 +18,15 @@ These rules are permanent operational constraints. The agent must enforce them p
 - **Directive**: Always run or invoke the **Optimized Single-Pass Rendering Auditor** ([`scripts/audit_rendering.py`](../scripts/audit_rendering.py)) before finalizing any prompt or task.
 - **The Optimized Verification Algorithm**:
   Rather than sequentially reading and brute-forcing all 500+ files in the repository (which wastes compute and tokens), the agent uses an **event-driven diff-scoped linear algorithm**:
-  1. **Git-Aware Diff Scoping**: Inspects `git status --porcelain` to identify only the subset of files modified, added, or staged in the current conversation ($O(1)$ file selection instead of $O(TotalFiles)$).
-  2. **Single-Pass Stream Tokenizer**: Evaluates each targeted file in a single linear pass ($O(Lines)$) tracking code fences, Mermaid block contexts, and prose tokens simultaneously.
-  3. **Zero Dollar Signs in Prose**: Enforces that no raw `$` or `\$` symbols appear in prose text (uses explicit words like "dollars" or backticked expressions).
-  4. **Pure Mermaid Syntax Guarantee**: Verifies that no raw HTML tags (`<b>`, `<br/>`, `<span>`, `<div>`) are present inside Mermaid node labels or flowcharts.
+  1. **Git-Aware Diff Scoping**: Inspects `git status --porcelain` to identify only the subset of files modified, added, or staged in the current conversation (`O(1)` file selection instead of `O(TotalFiles)`).
+  2. **Single-Pass Stream Tokenizer**: Evaluates each targeted file in a single linear pass (`O(Lines)`) tracking code fences, Mermaid block contexts, and prose tokens simultaneously.
+  3. **Zero Dollar Signs in Prose**: Enforces that no raw dollar symbols appear in prose text (uses explicit words like "dollars" or backticked expressions).
+  4. **Pure Mermaid Syntax & Mandatory Double-Quoted Node Labels**:
+     - Verifies that no raw HTML tags (`<b>`, `<br/>`, `<span>`, `<div>`) are present inside Mermaid node labels.
+     - **CRITICAL**: Every Mermaid node label (`Node["Label"]`) and edge label (`-->|"Label"|`) that contains parentheses `()`, colons `:`, slashes `/`, or ampersands `&` **MUST** be wrapped in double quotes! Unquoted parentheses inside `Node[Label (Val: 10)]` trigger GitHub's Mermaid lexer crash (`Expecting 'SQE' ... got 'PS'`).
   5. **Standardized Table Cells**: Enforces clean textual markers (`PREVENTED`, `ALLOWED`) instead of multi-byte emoji symbols that misalign column borders.
   6. **Parity Check**: Asserts that all markdown code fences (```` ``` ````) are strictly balanced (total fence count is even).
-  7. **Asset Reference Validation**: Verifies that every local image reference `![alt](path)` exists on physical disk.
+  7. **Asset Reference Validation**: Verifies that every local image reference (`! [alt] (path)`) exists on physical disk.
 - **CLI Command**: Run `python scripts/audit_rendering.py` (audits active modified/query files) or `python scripts/audit_rendering.py --all` (full repo audit).
 
 ### Rule 3: Git Synchronization Guarantee
@@ -36,11 +38,13 @@ These rules are permanent operational constraints. The agent must enforce them p
 ### Rule 5: Non-Destructive Ingestion & Zero Data Loss
 - **Directive**: Raw source files, staging workbooks, or challenge documents dropped into `put the file here/` or `write here.docx` must **never** be deleted or cleared until the extracted entry is 100% verified inside `question bank.md`.
 
-### Rule 6: Skill Reference Grounding & Autonomous Reasoning for Depth
-- **Directive**: The agent must always use skills as authoritative reference points, but is **explicitly empowered and required to inject its own reasoning, architectural deep dives, and simplifications** to provide greater insight than the source lecture alone.
+### Rule 6: Global Rule on Autonomous Reasoning & Pedagogical Simplification
+- **Directive**: Using skills as reference **never** restricts the agent from thinking independently. The agent **MUST** inject its own reasoning, analogies, state machine breakdowns, and step-by-step simplifications so that any reader can understand complex database internals effortlessly.
+- **Enforcement**: Every manual must blend the instructor's core concepts with the agent's own intuitive explanations, real-world metaphors, and physical storage insights.
 
-### Rule 7: Mandatory Skill Source Attribution & Quotes
-- **Directive**: In every `.md` manual or output file generated using skills, the agent **must explicitly quote and cite the exact skill(s), sections, and lecture materials** from which the content was derived (e.g. `> Synthesized from @withBara (Section 01, Lecture 08) & @withNasser (Section 02: ACID)`).
+### Rule 7: Global Rule on Mandatory Skill & Concept Source Attribution
+- **Directive**: Whenever any concept, quote, diagram, or explanation is generated from a skill, the agent **MUST explicitly state the exact skill name, module/section, and lecture file** where that particular concept or text was taken from (e.g. `> **Source Attribution**: Derived from @withBara (Section 01, Lecture 08) and @withNasser (Section 02: ACID)`).
+- **Enforcement**: Every major section of a generated manual must include a clear source attribution callout alongside a dedicated synthesis table mapping which skill contributed which concept.
 
 ### Rule 8: Continuous Synchronization of the Canonical Folder Structure
 - **Directive**: The agent must maintain and continuously update the **latest, complete folder structure tree** inside this document (`chat/finalized chat.md`). Whenever directories are moved, added, or restructured, the canonical architecture diagram in Section 2 must be refreshed immediately to reflect the exact state of the project.

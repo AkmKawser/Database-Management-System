@@ -556,3 +556,37 @@ Instead of brute-force scanning all 500+ files in the repository on every conver
 4. **Git Synchronization**:
    - Verified that `python scripts/audit_rendering.py` exits with code 0 (`[SUCCESS]`).
    - Committed and pushed all updates to GitHub.
+
+
+---
+
+## Session 26: Fix Mermaid `got 'PS'` Parser Crash & Strengthen Global Attribution/Simplification Rules
+
+### User Request
+> "Unable to render rich display
+> Parse error on line 7:
+> ... T3a[T1: Read Row 1 (Val: 10)] --> T4a[T
+> -----------------------^
+> Expecting 'SQE', 'DOUBLECIRCLEEND', 'PE', '-)', 'STADIUMEND', 'SUBROUTINEEND', 'PIPE', 'CYLINDEREND', 'DIAMOND_STOP', 'TAGEND', 'TRAPEND', 'INVTRAPEND', 'UNICODE_TEXT', 'TEXT', 'TAGSTART', got 'PS'
+> ...
+> in 003_dcl_tcl_acid_properties_internals.md file. also i told you to make a global rule about mentionaing the skill name where that particular concept or text was taken also you must make your own reasoning to simiply and make someone understand easily. pllz make it as global rule."
+
+### Exact Root Cause of the GitHub Mermaid Error (`got 'PS'`)
+In Mermaid's lexer grammar:
+- `SQE` stands for **Square Bracket End** (`]`).
+- `PS` stands for **Parenthesis Start** (`(`).
+- When a node is written without double quotes as `T3a[T1: Read Row 1 (Val: 10)]`, the Mermaid parser sees `[` to open a rectangular node, reads `T1: Read Row 1 `, and then hits `(` (`PS`). Because `(` is a reserved shape token in Mermaid (used for rounded nodes `Node(Label)` or cylindrical database nodes `Node[(Label)]`), the parser crashes immediately with `Expecting 'SQE', ..., got 'PS'` unless the entire label inside `[...]` is wrapped in double quotes: `T3a["T1: Read Row 1 (Val: 10)"]`.
+
+### Actions Taken & Implementation Summary
+1. **Fixed All Mermaid Diagrams Across `003`, `002`, `001`, and Architecture Files**:
+   - Wrapped every single Mermaid node label (`Node["Label"]`), diamond decision node (`Node{"Label"}`), edge label (`-->|"Label"|`), and database node (`Node[("Label")]`) in double quotes.
+   - Removed special shape-conflicting characters from unquoted `stateDiagram-v2` and `sequenceDiagram` labels.
+2. **Added Section-Level Skill Source Attribution & Simplifications in `003`**:
+   - Added explicit `> **Source Attribution**:` callouts at the top of major sections in `003_dcl_tcl_acid_properties_internals.md` specifying the exact skill (`@withBara`, `@withNasser`), section, and lecture files used.
+   - Added clear real-world analogies and agent simplifications so every concept is easy to grasp.
+3. **Upgraded `scripts/audit_rendering.py` to Detect Unquoted Mermaid Parentheses (`got 'PS'`)**:
+   - Added regex validation inside the Mermaid scanner to automatically catch any unquoted node label `Node[Label]` or `Node{Label}` containing `():/&` before it ever reaches GitHub.
+4. **Strengthened Global Rules 6 & 7 in `chat/finalized chat.md`**:
+   - Explicitly codified **Rule 6 (Global Rule on Autonomous Reasoning & Pedagogical Simplification)** and **Rule 7 (Global Rule on Mandatory Skill & Concept Source Attribution)**.
+5. **Verified Audit & Pushed to GitHub**:
+   - Executed `python scripts/audit_rendering.py` confirming 0 errors across all active files.

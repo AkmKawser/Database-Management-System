@@ -21,26 +21,28 @@ A unified, deep-dive database engineering manual synthesizing:
 
 ## 2. DCL: Data Control Language (Security & Privilege Governance)
 
+> **Source Attribution**: Derived from **`@withBara`** (`Section 01: Introduction to SQL` → `08_Types of SQL Commands.md`, `SQL_Cheat_Sheet.sql`) and **`@withNasser`** (`Section 01: Database Fundamentals` → Client Connections & Catalog Validation).
+
 ### What is DCL?
 DCL commands manage user privileges, role-based access control (RBAC), and security permissions across tables, schemas, views, and stored procedures.
 
 ```mermaid
 flowchart TD
-    DBA[Database Administrator / DBA]
-    DBA -->|GRANT SELECT, INSERT ON customers TO app_user| SystemCatalog[System Catalog / Metadata Cache]
-    DBA -->|REVOKE DELETE ON orders FROM junior_dev| SystemCatalog
+    DBA["Database Administrator / DBA"]
+    DBA -->|"GRANT SELECT, INSERT ON customers TO app_user"| SystemCatalog["System Catalog / Metadata Cache"]
+    DBA -->|"REVOKE DELETE ON orders FROM junior_dev"| SystemCatalog
     
-    ClientConn[Client TCP Connection / App Worker] --> Query[Incoming SQL Statement]
-    Query --> AuthPhase{Engine Security Check}
+    ClientConn["Client TCP Connection / App Worker"] --> Query["Incoming SQL Statement"]
+    Query --> AuthPhase{"Engine Security Check"}
     SystemCatalog --> AuthPhase
-    AuthPhase -->|Authorized| Planner[Query Parser & Optimizer]
-    AuthPhase -->|Unauthorized| Error[Error 42501: Insufficient Privilege]
+    AuthPhase -->|"Authorized"| Planner["Query Parser and Optimizer"]
+    AuthPhase -->|"Unauthorized"| Error["Error 42501: Insufficient Privilege"]
 
     classDef stage fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
     class DBA,SystemCatalog,ClientConn,Query,AuthPhase,Planner,Error stage;
 ```
 
-### Core Commands
+### Core Commands (From `@withBara`)
 - **`GRANT`**: Allocates specific permissions (`SELECT`, `INSERT`, `UPDATE`, `DELETE`, `EXECUTE`) to a user, group, or role.
   ```sql
   GRANT SELECT, INSERT ON customers TO SalesAppRole;
@@ -52,28 +54,31 @@ flowchart TD
   ```
 - **`DENY`** *(SQL Server / Enterprise Dialects)*: Explicitly blocks a user or role from an action, overriding any inherited permissions.
 
-### Architectural Insight: System Catalog Lookups & Caching
-When a client sends a SQL query, the database engine executes an **Authorization Phase** before query compilation. It validates the session's security credentials against the cached system catalog (e.g., `sys.database_permissions` in SQL Server, `pg_authid` in PostgreSQL, `mysql.user` in MySQL). If authorization fails, the query is rejected immediately with zero disk read overhead.
+### 💡 Agent Reasoning & Architectural Simplification: System Catalog Lookups & Caching
+- **Why this matters in plain terms**: Imagine a high-security office building. Before you are allowed to press the elevator button (run a query on disk), the front desk guard checks your badge in a fast memory list.
+- **Internal Engine Mechanics**: When a client sends a SQL query, the database engine executes an **Authorization Phase** *before* query compilation. It validates the session's security credentials against the cached system catalog in RAM (e.g., `sys.database_permissions` in SQL Server, `pg_authid` in PostgreSQL, `mysql.user` in MySQL). If authorization fails, the query is rejected immediately with zero disk read overhead.
 
 ---
 
 ## 3. Deep-Dive: Transactions & TCL (Controlling Units of Work)
 
+> **Source Attribution**: Synthesized from **`@withBara`** (`Section 04: Data Manipulation (DML)` & `SQL_Cheat_Sheet.sql`) and **`@withNasser`** (`Section 02: ACID` → `06_What is a Database Transaction.md`, `08_Atomicity.md`, `14_Read Only Transactions.md`).
+
 ### 3.1 What is a Transaction?
 A transaction is not merely a collection of queries; it is a **formal contract of state transition**. It bundles one or more operations (usually DML: `INSERT`, `UPDATE`, `DELETE`) such that the database moves from one globally consistent state to another, guaranteeing that all intermediate, uncommitted states remain invisible and discardable.
 
-### 3.2 The Formal Transaction State Machine
+### 3.2 The Formal Transaction State Machine (Agent Architectural Synthesis)
 
-Under the hood, a transaction transitions through five distinct formal states:
+To make transaction execution intuitive, we can model how any database engine tracks a transaction's life through five distinct states:
 
 ```mermaid
 stateDiagram-v2
     [*] --> Active: BEGIN TRANSACTION
     Active --> PartiallyCommitted: Final Query Executes
-    Active --> Failed: Syntax Error / Constraint Failure / Deadlock
-    PartiallyCommitted --> Committed: WAL Flushed to Disk via fsync()
-    PartiallyCommitted --> Failed: Disk I/O Error / Crash before Log Flush
-    Failed --> Aborted: ROLLBACK Executed (Undo Log Replay)
+    Active --> Failed: Syntax Error or Constraint Failure or Deadlock
+    PartiallyCommitted --> Committed: WAL Flushed to Disk via fsync
+    PartiallyCommitted --> Failed: Disk IO Error or Crash before Log Flush
+    Failed --> Aborted: ROLLBACK Executed via Undo Log Replay
     Committed --> [*]
     Aborted --> [*]
 ```
@@ -113,19 +118,19 @@ sequenceDiagram
     autonumber
     actor App as Client Connection
     participant Engine as SQL Execution Engine
-    participant RAM as Buffer Pool (RAM)
-    participant WAL as Write-Ahead Log (WAL / Disk)
-    participant Data as Data Files / Tables (Disk)
+    participant RAM as Buffer Pool in RAM
+    participant WAL as Write-Ahead Log on Disk
+    participant Data as Data Files on Disk
 
     App->>Engine: BEGIN TRANSACTION
-    Engine->>RAM: Allocate Active Transaction ID (XID) & Undo Segment
+    Engine->>RAM: Allocate Active Transaction ID and Undo Segment
     App->>Engine: UPDATE accounts SET balance = balance - 500
-    Engine->>RAM: Write Before-Image to Undo Log (balance = 1000)
-    Engine->>RAM: Update Memory Page to 500 (Page Marked DIRTY)
-    Engine->>WAL: Append WAL Delta Record (sequential write)
+    Engine->>RAM: Write Before-Image to Undo Log with balance = 1000
+    Engine->>RAM: Update Memory Page to 500 and Mark Page DIRTY
+    Engine->>WAL: Append WAL Delta Record via sequential write
     App->>Engine: COMMIT
-    Engine->>WAL: Flush WAL Buffer via fsync() directly to Disk
-    Engine-->>App: SUCCESS (Transaction Committed)
+    Engine->>WAL: Flush WAL Buffer via fsync directly to Disk
+    Engine-->>App: SUCCESS - Transaction Committed
     Note over RAM,Data: Checkpoint process asynchronously writes Dirty Pages to Data Files later
 ```
 
@@ -186,6 +191,8 @@ sequenceDiagram
 
 ## 4. The ACID Properties: Deep Engine Internals & Concurrency Invariants
 
+> **Source Attribution**: Derived from **`@withNasser`** (`Section 02: ACID` → `08_Atomicity.md`, `09_Isolation.md`, `10_Consistency.md`, `11_Durability.md`, `13_Phantom Reads.md`, `15_Serializable vs Repeatable Read.md`) blended with **Agent Reasoning & Simplification** for storage engine clarity.
+
 Relational databases guarantee reliability through four invariant properties: **Atomicity**, **Consistency**, **Isolation**, and **Durability**.
 
 ```mermaid
@@ -239,15 +246,15 @@ As Hussein Nasser emphasizes, isolation is **the most complex, underrated proper
 ```mermaid
 flowchart LR
     subgraph DirtyRead["Dirty Read"]
-        T1a[T1: Read Row 1] --> T2a[T2: Update Row 1] --> T1b[T1: Re-read Row 1] --> T2b[T2: ROLLBACK]
+        T1a["T1: Read Row 1"] --> T2a["T2: Update Row 1"] --> T1b["T1: Re-read Row 1"] --> T2b["T2: ROLLBACK"]
     end
 
     subgraph NonRepeatableRead["Non-Repeatable Read"]
-        T3a[T1: Read Row 1 (Val: 10)] --> T4a[T2: Update Row 1 (Val: 15) & COMMIT] --> T3b[T1: Re-read Row 1 (Val: 15)]
+        T3a["T1: Read Row 1 (Val: 10)"] --> T4a["T2: Update Row 1 (Val: 15) and COMMIT"] --> T3b["T1: Re-read Row 1 (Val: 15)"]
     end
 
     subgraph PhantomRead["Phantom Read"]
-        T5a[T1: Range Query (Found 2 rows)] --> T6a[T2: INSERT Row 3 & COMMIT] --> T5b[T1: Re-run Range Query (Found 3 rows)]
+        T5a["T1: Range Query (Found 2 rows)"] --> T6a["T2: INSERT Row 3 and COMMIT"] --> T5b["T1: Re-run Range Query (Found 3 rows)"]
     end
 ```
 
@@ -281,20 +288,20 @@ As detailed in Hussein Nasser's lecture:
 
 ```mermaid
 flowchart TD
-    AppCommit[Client issues COMMIT] --> DBEngine[Database Engine]
-    DBEngine -->|Write WAL Record| LogBuffer[Database Log Buffer in RAM]
+    AppCommit["Client issues COMMIT"] --> DBEngine["Database Engine"]
+    DBEngine -->|"Write WAL Record"| LogBuffer["Database Log Buffer in RAM"]
     
     subgraph DangerousPath["The OS Cache Trap (Default OS Behavior)"]
-        LogBuffer -->|Standard OS write| OSCache[OS Page Cache (Volatile RAM)]
-        OSCache -.->|Power Loss!| DataLost[DATA LOST! Database Lied]
+        LogBuffer -->|"Standard OS write"| OSCache["OS Page Cache (Volatile RAM)"]
+        OSCache -.->|"Power Loss!"| DataLost["DATA LOST! Database Lied"]
     end
 
     subgraph DurablePath["The ACID Durability Path"]
-        LogBuffer -->|fsync / Flush System Call| DiskController[Storage Disk Controller]
-        DiskController -->|Persisted| PhysicalDisk[(Non-Volatile SSD / NVMe / HDD)]
+        LogBuffer -->|"fsync / Flush System Call"| DiskController["Storage Disk Controller"]
+        DiskController -->|"Persisted"| PhysicalDisk[("Non-Volatile SSD / NVMe / HDD")]
     end
     
-    PhysicalDisk --> ACK[Return COMMIT Success to Client]
+    PhysicalDisk --> ACK["Return COMMIT Success to Client"]
 
     classDef safe fill:#065f46,stroke:#10b981,stroke-width:2px,color:#f8fafc;
     classDef danger fill:#7f1d1d,stroke:#ef4444,stroke-width:2px,color:#f8fafc;

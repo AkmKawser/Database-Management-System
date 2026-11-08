@@ -91,6 +91,25 @@ def audit_file(file_path: Path) -> list[str]:
             html_tags = re.findall(r"</?(?:b|i|br|span|div|p|strong|em)[^>]*>", line, re.IGNORECASE)
             if html_tags:
                 errors.append(f"Line {line_idx}: Raw HTML tags {html_tags} found inside Mermaid diagram block.")
+            
+            # Check for unquoted node labels containing parentheses, colons, slashes, or ampersands
+            # Matches NodeId[Label] where Label does not start with " or (
+            unquoted_brackets = re.findall(r"\b[A-Za-z0-9_]+\[([^\"\(\]\n]+)\]", line)
+            for label in unquoted_brackets:
+                if any(ch in label for ch in "():/&"):
+                    errors.append(
+                        f"Line {line_idx}: Unquoted Mermaid node label [{label}] contains special characters '():/&' "
+                        f"which triggers 'got PS' parser crash! Must wrap in double quotes: [\"{label}\"]"
+                    )
+            
+            # Check for unquoted diamond decision nodes {Label} containing special characters
+            unquoted_braces = re.findall(r"\b[A-Za-z0-9_]+\{([^\"\}\n]+)\}", line)
+            for label in unquoted_braces:
+                if any(ch in label for ch in "():/&"):
+                    errors.append(
+                        f"Line {line_idx}: Unquoted Mermaid diamond label {{{label}}} contains special characters. "
+                        f"Must wrap in double quotes: {{\" {label} \"}}"
+                    )
             continue
             
         # 3. Code Block Internal (Skip prose checks for code blocks)

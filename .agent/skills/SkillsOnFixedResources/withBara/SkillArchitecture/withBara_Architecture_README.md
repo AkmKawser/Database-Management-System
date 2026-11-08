@@ -10,26 +10,26 @@ The `withBara` skill connects any agentic AI system to deep SQL internals knowle
 
 ```mermaid
 flowchart TD
-    User([User Prompt / SQL Topic Request]) --> Agent[Agentic AI System]
+    User(["User Prompt / SQL Topic Request"]) --> Agent["Agentic AI System"]
     
     subgraph KnowledgeSources["Tri-Source Knowledge Ingestion"]
         direction TB
-        Transcripts["28 Course Modules Transcripts (Skills_Input/udemy/withBara/)"]
-        CompanionResources["Companion Resources (Skills_Input/udemy/withBara/Resources/)<br/>- 16 PDF Presentations (02_docs/)<br/>- 31 Reference Scripts (03_scripts/)"]
-        Router["Zero-Token Fast Router<br/>(table_of_contents.md / toc.json)"]
-        CLISearch["Precision Search CLI<br/>(python query_withbara.py)"]
+        Transcripts["28 Course Modules Transcripts - Skills_Input/udemy/withBara/"]
+        CompanionResources["Companion Resources - 16 PDF Slides (02_docs/) and 31 SQL Scripts (03_scripts/)"]
+        Router["Zero-Token Fast Router - table_of_contents.md / toc.json"]
+        CLISearch["Precision Search CLI - python query_withbara.py"]
         
         Router --> CLISearch
         Transcripts --> CLISearch
         CompanionResources --> CLISearch
         
-        LLM["Pre-trained Engine Reasoning & Memory"]
-        Web["Targeted Web Search & Docs"]
+        LLM["Pre-trained Engine Reasoning and Memory"]
+        Web["Targeted Web Search and Docs"]
     end
     
     Agent --> KnowledgeSources
     
-    subgraph ExecutionAnalysis["Execution & Internal Mechanics Layer"]
+    subgraph ExecutionAnalysis["Execution and Internal Mechanics Layer"]
         direction TB
         Step1["Analyze Logical Execution Order vs Coding Order"]
         Step2["Dissect Storage Engine Operations (Buffer, WAL, Locking)"]
@@ -40,7 +40,7 @@ flowchart TD
     
     KnowledgeSources --> ExecutionAnalysis
     
-    ExecutionAnalysis --> Output["Standardized Query Output<br/>(Skills_Output/withBara_output/query/<NNN>_<topic>.md)"]
+    ExecutionAnalysis --> Output["Standardized Query Output - Skills_Output/query/"]
 ```
 
 ---
