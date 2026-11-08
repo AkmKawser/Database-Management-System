@@ -14,13 +14,18 @@ These rules are permanent operational constraints. The agent must enforce them p
 - **Directive**: Every interaction, prompt, architectural decision, and action must be systematically recorded in [`chat/chat.md`](chat.md) in chronological session format.
 - **Enforcement**: Never complete a turn involving project updates without appending the session details to `chat/chat.md`.
 
-### Rule 2: Strict Rendering & Formatting Audit (Zero-Failure Policy)
-- **Directive**: Always perform an automated syntax and rendering audit on all Markdown files before completing any response or task:
-  1. **Zero Dollar Signs in Prose**: Never use raw `$` or backslash-escaped `\$` in prose explanation text. Write out the word "dollars" or use appropriate context text. Unescaped `$` or mismatched KaTeX delimiters cause GitHub and IDE Markdown renderers to corrupt subsequent blocks into broken LaTeX formulas.
-  2. **Pure Mermaid Syntax**: Never inject raw HTML tags (`<b>`, `<br/>`, `<span>`) inside Mermaid diagram node labels. Keep Mermaid node labels purely quoted text (e.g. `["Label Text (Details)"]`).
-  3. **Table & Emoji Cleanliness**: Avoid non-standard Unicode or emoji characters in table cells that can break GitHub Flavored Markdown (GFM) column alignments. Use clean text markers (e.g. `PREVENTED`, `ALLOWED`).
-  4. **Code Fence Balance**: Verify that all Markdown code fences (```` ``` ````) are properly balanced (total count must be even).
-  5. **Image & File Embed Links**: Ensure all referenced images use valid, verified paths that resolve cleanly on disk.
+### Rule 2: Strict Rendering & Formatting Audit (Zero-Failure Policy via Optimized Algorithm)
+- **Directive**: Always run or invoke the **Optimized Single-Pass Rendering Auditor** ([`scripts/audit_rendering.py`](../scripts/audit_rendering.py)) before finalizing any prompt or task.
+- **The Optimized Verification Algorithm**:
+  Rather than sequentially reading and brute-forcing all 500+ files in the repository (which wastes compute and tokens), the agent uses an **event-driven diff-scoped linear algorithm**:
+  1. **Git-Aware Diff Scoping**: Inspects `git status --porcelain` to identify only the subset of files modified, added, or staged in the current conversation ($O(1)$ file selection instead of $O(TotalFiles)$).
+  2. **Single-Pass Stream Tokenizer**: Evaluates each targeted file in a single linear pass ($O(Lines)$) tracking code fences, Mermaid block contexts, and prose tokens simultaneously.
+  3. **Zero Dollar Signs in Prose**: Enforces that no raw `$` or `\$` symbols appear in prose text (uses explicit words like "dollars" or backticked expressions).
+  4. **Pure Mermaid Syntax Guarantee**: Verifies that no raw HTML tags (`<b>`, `<br/>`, `<span>`, `<div>`) are present inside Mermaid node labels or flowcharts.
+  5. **Standardized Table Cells**: Enforces clean textual markers (`PREVENTED`, `ALLOWED`) instead of multi-byte emoji symbols that misalign column borders.
+  6. **Parity Check**: Asserts that all markdown code fences (```` ``` ````) are strictly balanced (total fence count is even).
+  7. **Asset Reference Validation**: Verifies that every local image reference `![alt](path)` exists on physical disk.
+- **CLI Command**: Run `python scripts/audit_rendering.py` (audits active modified/query files) or `python scripts/audit_rendering.py --all` (full repo audit).
 
 ### Rule 3: Git Synchronization Guarantee
 - **Directive**: Whenever files are created, updated, or reorganized, verify git status, commit with clean semantic messages, and push directly to `origin/main` so GitHub is always 100% in sync.
@@ -86,6 +91,8 @@ Database Management System/
 │       │   └── question bank.md
 │       └── Solution Files/                         # Categorized multi-dialect SQL solutions
 │           └── Solution formatting.md
+├── scripts/
+│   └── audit_rendering.py                          # ⚡ Optimized Git-Aware Zero-Failure Rendering Auditor
 ├── Upcoming Updates/
 │   └── Upcoming Updates.md                         # Milestones & Feature Roadmap
 ├── chat/

@@ -14,18 +14,18 @@ flowchart TD
     
     subgraph MultiSkillSources["Multi-Skill Ingestion Layer"]
         direction TB
-        SkillBara["withBara Skill<br/>(SQL logic, execution order, queries, scripts)"]
-        SkillNasser["withNasser Skill<br/>(Database internals, B+Tree, MVCC, WAL, pages)"]
-        SkillDynamic["DBMSSkill / Dynamic Resources<br/>(Real-world problems, benchmark datasets)"]
-        SkillBooks["Textbook Skills (Silberschatz, DDIA)<br/>(Formal proofs, algorithms)"]
+        SkillBara["withBara Skill - SQL logic, execution order, queries, scripts"]
+        SkillNasser["withNasser Skill - Database internals, B+Tree, MVCC, WAL, pages"]
+        SkillDynamic["DBMSSkill / Dynamic Resources - Real-world problems and benchmarks"]
+        SkillBooks["Textbook Skills (Silberschatz, DDIA) - Formal proofs and algorithms"]
     end
     
     Router -->|Single Skill| MultiSkillSources
     Router -->|Multi-Skill Blend| MultiSkillSources
     
-    MultiSkillSources --> Synthesis["Synthesis & Derivation Engine<br/>- Intuition & Course Parallels<br/>- Internal Storage & Execution Pipelines (Mermaid)<br/>- Code Demonstrations & Dialects<br/>- Performance, ACID Invariants & Anti-Patterns"]
+    MultiSkillSources --> Synthesis["Synthesis Engine - Storage and execution pipelines, benchmarks, and ACID invariants"]
     
-    Synthesis --> OutputHub["Centralized Output Manual<br/>(Skills_Output/query/<NNN>_<topic_name>.md)"]
+    Synthesis --> OutputHub["Centralized Output Manual - Skills_Output/query/"]
 
     classDef stage fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
     class UserQuery,Router,Synthesis,OutputHub stage;

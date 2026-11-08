@@ -42,12 +42,12 @@ Below is the step-by-step internal pipeline executed by the SQL engine:
 
 ```mermaid
 flowchart TD
-    Step1["Step 1: FROM & JOINs<br/>(Locate source tables & build working dataset)"] --> Step2["Step 2: WHERE Clause<br/>(Filter individual rows before aggregation)"]
-    Step2 --> Step3["Step 3: GROUP BY Clause<br/>(Combine rows with identical keys & compute aggregates)"]
-    Step3 --> Step4["Step 4: HAVING Clause<br/>(Filter aggregated groups)"]
-    Step4 --> Step5["Step 5: SELECT & Expressions<br/>(Compute projected columns & apply DISTINCT)"]
-    Step5 --> Step6["Step 6: ORDER BY Clause<br/>(Sort the projected dataset in memory/tempdb)"]
-    Step6 --> Step7["Step 7: TOP / LIMIT / OFFSET<br/>(Slice the final top N rows)"]
+    Step1["Step 1: FROM and JOINs - Locate tables and build working dataset"] --> Step2["Step 2: WHERE Clause - Filter individual rows before aggregation"]
+    Step2 --> Step3["Step 3: GROUP BY Clause - Combine rows with identical keys"]
+    Step3 --> Step4["Step 4: HAVING Clause - Filter aggregated groups"]
+    Step4 --> Step5["Step 5: SELECT and Expressions - Compute projected columns"]
+    Step5 --> Step6["Step 6: ORDER BY Clause - Sort projected dataset"]
+    Step6 --> Step7["Step 7: TOP / LIMIT / OFFSET - Slice final top N rows"]
 
     classDef stage fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
     class Step1,Step2,Step3,Step4,Step5,Step6,Step7 stage;
