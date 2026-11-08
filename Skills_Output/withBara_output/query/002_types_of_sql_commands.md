@@ -91,3 +91,4 @@ In enterprise relational databases (and in Sections 03 & 20 of the course), two 
 | **DQL** | **Retrieval** (Read-only analytical output) | `SELECT` | Zero (Read-only; shared locks/snapshots) | Inspecting and counting the inventory |
 | **TCL** | **Transactions** (Unit of work) | `COMMIT`, `ROLLBACK`, `SAVEPOINT` | Flushes transaction logs to disk | Signing off on shipment confirmations |
 | **DCL** | **Permissions** (Security) | `GRANT`, `REVOKE` | Security catalog updates | Issuing security badges to warehouse workers |
+

@@ -164,3 +164,23 @@ This document chronologically records all user requests, architectural designs, 
    - Published [`Skills_Output/withBara_output/query/002_types_of_sql_commands.md`](Skills_Output/withBara_output/query/002_types_of_sql_commands.md).
    - Updated `Skills_Output/withBara_output/withBara_Output_README.md`.
    - Synchronized session log in `chat.md` and pushed to GitHub.
+
+
+---
+
+## Session 9: SkillArchitecture Standardization for `withBara`
+
+### User Request
+> "great. I told you to follow that same folder structure using in my other repository named Scince_Of_Coding. Every skill architecture should be crate in skills folder. why did not u do that?"
+
+### Actions Taken & Implementation Summary
+1. **Audited `Science_Of_Coding` Skill Architecture**:
+   - Verified that skills in `Science_Of_Coding` (such as `cpbook4`) contain an internal `SkillArchitecture/` folder with two specialized documentation files:
+     - `ARCHITECTURE.md`: Deep technical specifications, engineering manuals, CLI mechanics, and Mermaid system workflows.
+     - `<skill>_Architecture_README.md`: Agent operational guidelines, tri-source knowledge routing, and output rules.
+2. **Standardized `withBara` Skill**:
+   - Created:
+     - [`.agent/skills/SkillsOnFixedResources/withBara/SkillArchitecture/ARCHITECTURE.md`](.agent/skills/SkillsOnFixedResources/withBara/SkillArchitecture/ARCHITECTURE.md)
+     - [`.agent/skills/SkillsOnFixedResources/withBara/SkillArchitecture/withBara_Architecture_README.md`](.agent/skills/SkillsOnFixedResources/withBara/SkillArchitecture/withBara_Architecture_README.md)
+3. **Synchronized with Remote**:
+   - Committed and pushed all architectural documentation to GitHub.
