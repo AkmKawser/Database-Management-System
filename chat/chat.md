@@ -620,7 +620,25 @@ In Mermaid's lexer grammar:
 
 ---
 
-## Session 28: Codify Mandatory Automated Commit and Push Guarantee & Embed Interactive ACID Simulator
+## Session 29: Resolve GitHub Markdown HTML Embed Sanitization & Enable Live Web Preview
+
+### User Request
+> "html file not working in the .md file. plz fix"
+
+### Exact Root Cause of Why `<iframe>` Fails on GitHub
+- **GitHub Security Sanitization**: GitHub Flavored Markdown (GFM) strictly scrubs raw `<iframe>`, `<object>`, `<embed>`, and `<script>` HTML tags from rendered `.md` files to prevent Cross-Site Scripting (XSS) and clickjacking vulnerabilities.
+- As a result, writing `<iframe src="acid_simulation.html">` in `003_dcl_tcl_acid_properties_internals.md` is automatically stripped by GitHub's markdown parser, displaying either blank white space or plain text.
+
+### Actions Taken & Implementation Summary
+1. **Replaced Stripped Iframe with Multi-Channel Live Access in [`003_dcl_tcl_acid_properties_internals.md`](../Skills_Output/query/003_dcl_tcl_acid_properties_internals.md)**:
+   - Added a **One-Click Live Web Viewer** link utilizing `htmlpreview.github.io` pointing to [`acid_simulation.html`](../Skills_Output/query/acid_simulation.html) for zero-install instant browser preview with full interactive JS animations.
+   - Added direct file links and raw source links.
+   - Integrated an in-document architectural Mermaid diagram illustrating the 4 physical layers of the simulator: Application SQL Layer $\to$ Buffer Pool / Undo Stack $\to$ OS Page Cache & `fsync()` Barrier $\to$ Non-Volatile WAL / Data Pages.
+2. **Audited Rendering**:
+   - Ran `python scripts/audit_rendering.py` confirming 0 errors.
+3. **Automated Git Synchronization (Enforcing Rule 3)**:
+   - Staged, committed, and pushed updates directly to `origin/main`.
+
 
 ### User Request
 > "auto commit and push in my github"

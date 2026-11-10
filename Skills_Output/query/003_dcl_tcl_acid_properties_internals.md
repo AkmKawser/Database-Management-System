@@ -197,9 +197,58 @@ Relational databases guarantee reliability through four invariant properties: **
 
 ### 🎬 Interactive ACID Storage Engine Simulator & Animation
 
-> **Live Interactive Simulator Embedded**: Experience how dirty RAM pages, before-image Undo stacks, MVCC tuple versions, and `fsync()` barriers behave in real time. Launch the interactive canvas directly below or open the standalone simulator [`acid_simulation.html`](acid_simulation.html).
+> [!TIP]
+> **Experience ACID Engine Mechanics in Motion**:
+> GitHub's Markdown renderer strips raw `<script>` tags and `<iframe>` embeds for security (HTML sanitization). You can launch and explore the full live interactive visualizer using any of the direct access methods below:
+>
+> 1. **One-Click Live Web Viewer**: [👉 Open ACID Simulator in HTML Preview](https://htmlpreview.github.io/?https://github.com/AkmKawser/Database-Management-System/blob/main/Skills_Output/query/acid_simulation.html)
+> 2. **Direct Repository File**: [`Skills_Output/query/acid_simulation.html`](acid_simulation.html) *(clone/download to open locally in any browser with full animations)*
+> 3. **Raw HTML Source**: [View Raw Code on GitHub](https://raw.githubusercontent.com/AkmKawser/Database-Management-System/main/Skills_Output/query/acid_simulation.html)
 
-<iframe src="acid_simulation.html" width="100%" height="780px" frameborder="0" style="border: 1px solid #334155; border-radius: 12px; background: #090d16; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin: 16px 0;"></iframe>
+#### 🕹️ Simulator Architectural Capabilities:
+- **Atomicity Panel**: Real-time step-by-step transaction walkthrough: `BEGIN` → RAM Buffer dirty page allocation → Undo log before-image stack → crash simulation with live Undo Pass rollback.
+- **Consistency Panel**: Live evaluation of domain `CHECK (balance >= 0)` invariants showing auto-abort on violation.
+- **Isolation Panel**: Multi-version concurrency control (MVCC) timeline comparing concurrent Writer (T1) and Reader (T2) via tuple versions (`xmin`, `xmax`) with zero locking and zero dirty reads.
+- **Durability Panel**: Interactive simulation of Hussein Nasser's **OS Cache Trap** showing volatile kernel memory vs `fsync()` barrier vs non-volatile SSD WAL persistence.
+
+```mermaid
+flowchart LR
+    subgraph ClientLayer["1. Application & SQL Layer"]
+        SQL["SQL Transaction Stream"]
+    end
+
+    subgraph MemoryLayer["2. Storage Engine Memory (RAM)"]
+        Buffer["Buffer Pool (Dirty Pages)"]
+        Undo["Undo Log Stack (Before-Images)"]
+    end
+
+    subgraph KernelLayer["3. Kernel & Disk Barrier"]
+        OSCache["OS Page Cache (Volatile RAM)"]
+        Fsync{"fsync() Flush Barrier"}
+    end
+
+    subgraph DiskLayer["4. Non-Volatile Physical Storage"]
+        WAL[("Write-Ahead Log (WAL)")]
+        DataPages[("Table Data Pages")]
+    end
+
+    SQL -->|"DML Update"| Buffer
+    Buffer -.->|"Record Before-Image"| Undo
+    SQL -->|"COMMIT"| OSCache
+    OSCache --> Fsync
+    Fsync -->|"Bypass Cache"| WAL
+    Buffer -.->|"Async Checkpoint"| DataPages
+
+    classDef blue fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
+    classDef amber fill:#451a03,stroke:#f59e0b,stroke-width:2px,color:#f8fafc;
+    classDef green fill:#064e3b,stroke:#10b981,stroke-width:2px,color:#f8fafc;
+    classDef purple fill:#3b0764,stroke:#a855f7,stroke-width:2px,color:#f8fafc;
+
+    class SQL blue;
+    class Buffer,Undo amber;
+    class OSCache,Fsync purple;
+    class WAL,DataPages green;
+```
 
 ```mermaid
 flowchart TD
