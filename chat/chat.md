@@ -620,14 +620,18 @@ In Mermaid's lexer grammar:
 
 ---
 
-## Session 28: Codify Mandatory Automated Commit and Push Guarantee
+## Session 28: Codify Mandatory Automated Commit and Push Guarantee & Embed Interactive ACID Simulator
 
 ### User Request
 > "auto commit and push in my github"
 > "auto commit and push. make it a global rule in the finialized_chat file"
+> "the html file is supposed to embeed with the .mf file 003. do it now"
 
 ### Actions Taken & Implementation Summary
-1. **Promoted Universal Rule 3 to Dedicated Global Rule in [`chat/finalized chat.md`](finalized%20chat.md)**:
+1. **Embedded Interactive Simulator into [`003_dcl_tcl_acid_properties_internals.md`](../Skills_Output/query/003_dcl_tcl_acid_properties_internals.md)**:
+   - Embedded [`acid_simulation.html`](../Skills_Output/query/acid_simulation.html) directly inside Section 4 of the manual using a responsive `<iframe src="acid_simulation.html">` canvas with direct fallback link.
+   - Readers can now interact with and step through Atomicity, Consistency, Isolation, and Durability mechanics directly within the document.
+2. **Promoted Universal Rule 3 to Dedicated Global Rule in [`chat/finalized chat.md`](finalized%20chat.md)**:
    - Formally updated **Rule 3: Global Rule on Mandatory Automated Git Commit & Push (Every Prompt Guarantee)**.
    - Formulated a 5-step mandatory operational protocol:
      1. Proactive `git status` inspection.
@@ -635,8 +639,11 @@ In Mermaid's lexer grammar:
      3. Semantic conventional commit messaging.
      4. Direct push to `origin/main`.
      5. Zero-lag synchronization assertion before closing any turn.
-2. **Git Synchronization**:
-   - Staged, committed, and pushed rule updates directly to `origin/main`.
+3. **Rendering Audit**:
+   - Verified that all 4 active query files passed `scripts/audit_rendering.py` with 0 errors.
+4. **Automated Git Synchronization**:
+   - Staged, committed, and pushed updates directly to `origin/main`.
+
 
 
 

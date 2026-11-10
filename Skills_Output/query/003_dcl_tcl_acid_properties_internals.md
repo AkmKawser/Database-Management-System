@@ -195,6 +195,12 @@ sequenceDiagram
 
 Relational databases guarantee reliability through four invariant properties: **Atomicity**, **Consistency**, **Isolation**, and **Durability**.
 
+### 🎬 Interactive ACID Storage Engine Simulator & Animation
+
+> **Live Interactive Simulator Embedded**: Experience how dirty RAM pages, before-image Undo stacks, MVCC tuple versions, and `fsync()` barriers behave in real time. Launch the interactive canvas directly below or open the standalone simulator [`acid_simulation.html`](acid_simulation.html).
+
+<iframe src="acid_simulation.html" width="100%" height="780px" frameborder="0" style="border: 1px solid #334155; border-radius: 12px; background: #090d16; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin: 16px 0;"></iframe>
+
 ```mermaid
 flowchart TD
     ACID["ACID Transaction Invariants"]
