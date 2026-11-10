@@ -29,8 +29,8 @@ These rules are permanent operational constraints. The agent must enforce them p
   7. **Asset Reference Validation**: Verifies that every local image reference (`! [alt] (path)`) exists on physical disk.
 - **CLI Command**: Run `python scripts/audit_rendering.py` (audits active modified/query files) or `python scripts/audit_rendering.py --all` (full repo audit).
 
-### Rule 3: Git Synchronization Guarantee
-- **Directive**: Whenever files are created, updated, or reorganized, verify git status, commit with clean semantic messages, and push directly to `origin/main` so GitHub is always 100% in sync.
+### Rule 3: Git Synchronization Guarantee (Automated Commit & Push on Every Prompt)
+- **Directive**: The agent must **automatically commit and push to GitHub (`origin/main`)** on every task, prompt, or file creation/update without waiting to be asked. Verify git status, format a clean semantic commit message (`feat:`, `docs:`, `fix:`), and execute `git push origin main` so that GitHub is always 100% in sync with the local workspace.
 
 ### Rule 4: Human-in-the-Loop (HITL) for Architectural Choices
 - **Directive**: The agent must never unilaterally guess categories or pick arbitrary designs when trade-offs exist (e.g. skill types, schema normalization levels, indexing structures). Present options with trade-offs and seek explicit user confirmation.
