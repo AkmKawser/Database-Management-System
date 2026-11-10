@@ -639,6 +639,27 @@ In Mermaid's lexer grammar:
 3. **Automated Git Synchronization (Enforcing Rule 3)**:
    - Staged, committed, and pushed updates directly to `origin/main`.
 
+---
+
+## Session 30: Technical Analysis on Embedding SVGs in GitHub Markdown
+
+### User Question
+> "if .md file cannot embeed html file so can svg file embeed in the .md file? i"
+
+### Technical Answer & Architecture Comparison
+1. **Yes, SVG files can be embedded in GitHub `.md` files** using standard markdown image syntax: `![ACID Architecture](path/to/image.svg)` or `<img src="path/to/image.svg" width="100%" />`.
+2. **What SVG CAN do in GitHub Markdown**:
+   - Render crisp vector graphics at any zoom level without pixelation.
+   - Display pure CSS keyframe looping animations (e.g., pulsating nodes, moving data packets, glowing borders, flowing arrows).
+   - Render cleanly inside light/dark mode themes.
+3. **What SVG CANNOT do in GitHub Markdown**:
+   - Run JavaScript (`<script>` inside SVGs is stripped by GitHub's image proxy / sanitization to prevent XSS).
+   - Support interactive buttons (clicks, form inputs, dynamic simulation state toggles).
+4. **Best Practice Architecture**:
+   - Use an **animated SVG** (`.svg`) directly inside the `.md` file to give readers a visual animation loop of ACID mechanics without leaving GitHub.
+   - Keep the **standalone interactive HTML simulator** (`acid_simulation.html`) for interactive button clicking, step-by-step state transitions, and live crash simulations.
+
+
 
 ### User Request
 > "auto commit and push in my github"
