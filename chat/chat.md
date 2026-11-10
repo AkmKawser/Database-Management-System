@@ -606,7 +606,7 @@ In Mermaid's lexer grammar:
      - **Atomicity**: Step-by-step transaction execution with RAM buffer pool dirty pages, Undo Log before-image stack, and mid-flight crash simulation with Undo Pass rollback.
      - **Consistency**: Invariant enforcement via domain `CHECK (balance >= 0)` and engine auto-rollback on invariant failure.
      - **Isolation**: Timeline comparison of concurrent transactions (T1 Writer vs T2 Reader) demonstrating MVCC tuple versioning (`xmin`, `xmax`) and why dirty reads are prevented without locking readers.
-     - **Durability**: The OS Cache Trap visualization showing DB Log Buffer $\to$ OS Page Cache $\to$ `fsync()` system call barrier $\to$ Non-volatile physical WAL disk persistence.
+     - **Durability**: The OS Cache Trap visualization showing DB Log Buffer -> OS Page Cache -> `fsync()` system call barrier -> Non-volatile physical WAL disk persistence.
 2. **Git Synchronization**:
    - Committed `Skills_Output/query/acid_simulation.html` with commit `0c4295f` and synchronized with `origin/main` on GitHub.
 3. **Formalized Universal Rule 9 in [`chat/finalized chat.md`](finalized%20chat.md)**:
@@ -633,32 +633,11 @@ In Mermaid's lexer grammar:
 1. **Replaced Stripped Iframe with Multi-Channel Live Access in [`003_dcl_tcl_acid_properties_internals.md`](../Skills_Output/query/003_dcl_tcl_acid_properties_internals.md)**:
    - Added a **One-Click Live Web Viewer** link utilizing `htmlpreview.github.io` pointing to [`acid_simulation.html`](../Skills_Output/query/acid_simulation.html) for zero-install instant browser preview with full interactive JS animations.
    - Added direct file links and raw source links.
-   - Integrated an in-document architectural Mermaid diagram illustrating the 4 physical layers of the simulator: Application SQL Layer $\to$ Buffer Pool / Undo Stack $\to$ OS Page Cache & `fsync()` Barrier $\to$ Non-Volatile WAL / Data Pages.
+   - Integrated an in-document architectural Mermaid diagram illustrating the 4 physical layers of the simulator: Application SQL Layer -> Buffer Pool / Undo Stack -> OS Page Cache & `fsync()` Barrier -> Non-Volatile WAL / Data Pages.
 2. **Audited Rendering**:
    - Ran `python scripts/audit_rendering.py` confirming 0 errors.
 3. **Automated Git Synchronization (Enforcing Rule 3)**:
    - Staged, committed, and pushed updates directly to `origin/main`.
-
----
-
-## Session 30: Technical Analysis on Embedding SVGs in GitHub Markdown
-
-### User Question
-> "if .md file cannot embeed html file so can svg file embeed in the .md file? i"
-
-### Technical Answer & Architecture Comparison
-1. **Yes, SVG files can be embedded in GitHub `.md` files** using standard markdown image syntax: `![ACID Architecture](path/to/image.svg)` or `<img src="path/to/image.svg" width="100%" />`.
-2. **What SVG CAN do in GitHub Markdown**:
-   - Render crisp vector graphics at any zoom level without pixelation.
-   - Display pure CSS keyframe looping animations (e.g., pulsating nodes, moving data packets, glowing borders, flowing arrows).
-   - Render cleanly inside light/dark mode themes.
-3. **What SVG CANNOT do in GitHub Markdown**:
-   - Run JavaScript (`<script>` inside SVGs is stripped by GitHub's image proxy / sanitization to prevent XSS).
-   - Support interactive buttons (clicks, form inputs, dynamic simulation state toggles).
-4. **Best Practice Architecture**:
-   - Use an **animated SVG** (`.svg`) directly inside the `.md` file to give readers a visual animation loop of ACID mechanics without leaving GitHub.
-   - Keep the **standalone interactive HTML simulator** (`acid_simulation.html`) for interactive button clicking, step-by-step state transitions, and live crash simulations.
-
 
 
 ### User Request

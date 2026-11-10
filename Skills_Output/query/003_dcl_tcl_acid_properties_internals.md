@@ -54,6 +54,66 @@ flowchart TD
   ```
 - **`DENY`** *(SQL Server / Enterprise Dialects)*: Explicitly blocks a user or role from an action, overriding any inherited permissions.
 
+---
+
+### 🌐 Universal Rule 9: 3-Tier Concept Mapping for DCL Governance
+*(Java Application Code → Database SQL Wire Statement → Physical Table & Metadata Cache)*
+
+#### Layer 1: Coding Level (Strictly Java Only)
+```java
+package com.dbms.security;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class DclGovernanceService {
+    private static final String ADMIN_URL = "jdbc:postgresql://localhost:5432/fintech_db";
+    private static final String ADMIN_USER = "db_admin";
+    private static final String ADMIN_PASS = "SecretAdminPass!";
+
+    public void grantSalesAccess() {
+        // Administrative DCL statements cannot use parameter placeholders for table names
+        String dclGrant = "GRANT SELECT, INSERT ON accounts TO sales_role";
+        
+        try (Connection conn = DriverManager.getConnection(ADMIN_URL, ADMIN_USER, ADMIN_PASS);
+             PreparedStatement stmt = conn.prepareStatement(dclGrant)) {
+            
+            stmt.execute();
+            System.out.println("[DCL SUCCESS] Role 'sales_role' granted SELECT/INSERT permissions.");
+            
+        } catch (SQLException e) {
+            System.err.println("[DCL AUTH ERROR] Error code: " + e.getErrorCode() + " - " + e.getMessage());
+        }
+    }
+}
+```
+
+#### Layer 2: Database Query & Internal Engine Lifecycle
+```sql
+-- Wire Protocol Query received by Engine Parser:
+GRANT SELECT, INSERT ON accounts TO sales_role;
+```
+1. **Parser & Lexer**: Identifies token sequence as a Data Control statement targeting relation `accounts`.
+2. **Metadata Security Check**: Engine verifies caller (`db_admin`) holds the `GRANT OPTION` or superuser privilege.
+3. **Catalog Mutation**: Writes entry into system catalog `pg_shdescription` / `pg_class.relacl` / `mysql.tables_priv`.
+4. **Cache Invalidation Hook**: Issues shared memory catalog invalidation broadcast (`syscache` flush) across active worker connections so subsequent client queries immediately read fresh permissions without disk reboot.
+
+#### Layer 3: Physical Table & Metadata Cache State
+
+**System Catalog Table (`information_schema.table_privileges` / `pg_class`):**
+
+| grantee | table_schema | table_name | privilege_type | is_grantable |
+| :--- | :--- | :--- | :--- | :--- |
+| `db_admin` | `public` | `accounts` | `ALL PRIVILEGES` | `YES` |
+| `sales_role` | `public` | `accounts` | `SELECT` | `NO` |
+| `sales_role` | `public` | `accounts` | `INSERT` | `NO` |
+
+**Application Worker State Transition:**
+- *Before*: Worker connecting as `sales_role` running `SELECT * FROM accounts` receives `ERROR: 42501 (permission denied for table accounts)`.
+- *After Catalog Invalidation*: Same worker connection evaluates RAM `relacl` cache as authorized and proceeds directly to query plan execution with zero table lock contention.
+
 ### 💡 Agent Reasoning & Architectural Simplification: System Catalog Lookups & Caching
 - **Why this matters in plain terms**: Imagine a high-security office building. Before you are allowed to press the elevator button (run a query on disk), the front desk guard checks your badge in a fast memory list.
 - **Internal Engine Mechanics**: When a client sends a SQL query, the database engine executes an **Authorization Phase** *before* query compilation. It validates the session's security credentials against the cached system catalog in RAM (e.g., `sys.database_permissions` in SQL Server, `pg_authid` in PostgreSQL, `mysql.user` in MySQL). If authorization fails, the query is rejected immediately with zero disk read overhead.
@@ -108,6 +168,129 @@ UPDATE accounts SET balance = balance + 500 WHERE account_id = 'B';
 COMMIT;
 ```
 If the system crashes after Step 2, the 500 dollars vanishes without TCL. With TCL, the engine guarantees that both updates either **commit together** or **roll back completely**.
+
+---
+
+### 🌐 Universal Rule 9: 3-Tier Concept Mapping for TCL (Transactions & Savepoints)
+*(Java Application Code → Database SQL Wire Statement → Physical Table & Buffer Pool Transitions)*
+
+#### Layer 1: Coding Level (Strictly Java Only)
+```java
+package com.dbms.transactions;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Savepoint;
+
+public class BankTransferTclService {
+    private static final String DB_URL = "jdbc:postgresql://localhost:5432/fintech_db";
+
+    public boolean executeBankingTransfer(String fromAcc, String toAcc, double amount) {
+        String deductSql = "UPDATE accounts SET balance = balance - ? WHERE account_id = ?";
+        String addSql    = "UPDATE accounts SET balance = balance + ? WHERE account_id = ?";
+
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(DB_URL, "bank_app", "SecurePass123");
+            
+            // 1. Open explicit transactional boundary (disables autocommit)
+            conn.setAutoCommit(false);
+
+            // Step 1: Deduct from sender
+            try (PreparedStatement deductStmt = conn.prepareStatement(deductSql)) {
+                deductStmt.setDouble(1, amount);
+                deductStmt.setString(2, fromAcc);
+                deductStmt.executeUpdate();
+            }
+
+            // Optional Savepoint demonstration:
+            Savepoint senderDeductedPoint = conn.setSavepoint("SenderDeducted");
+
+            // Step 2: Add to receiver
+            try (PreparedStatement addStmt = conn.prepareStatement(addSql)) {
+                addStmt.setDouble(1, amount);
+                addStmt.setString(2, toAcc);
+                addStmt.executeUpdate();
+            }
+
+            // 2. Commit transaction permanently
+            conn.commit();
+            System.out.println("[TCL COMMIT] Transfer of " + amount + " succeeded.");
+            return true;
+
+        } catch (SQLException e) {
+            System.err.println("[TCL ABORT] Failure encountered: " + e.getMessage() + ". Rolling back...");
+            if (conn != null) {
+                try {
+                    // 3. Rollback reverses dirty buffer pages via Undo Log
+                    conn.rollback();
+                } catch (SQLException ex) {
+                    System.err.println("[ROLLBACK FAILED] " + ex.getMessage());
+                }
+            }
+            return false;
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(true); // Restore default
+                    conn.close();
+                } catch (SQLException e) {
+                    System.err.println("[CONN CLOSE ERROR] " + e.getMessage());
+                }
+            }
+        }
+    }
+}
+```
+
+#### Layer 2: Database Wire Protocol Execution
+```sql
+-- Emitted during conn.setAutoCommit(false):
+BEGIN TRANSACTION; -- Engine assigns Active XID = 5021
+
+-- Step 1 (Java executeUpdate 1):
+UPDATE accounts SET balance = balance - 500 WHERE account_id = 'A';
+-- Engine pushes Before-Image (1000) to Undo Log, marks RAM page DIRTY
+
+-- Savepoint:
+SAVEPOINT SenderDeducted;
+
+-- Step 2 (Java executeUpdate 2):
+UPDATE accounts SET balance = balance + 500 WHERE account_id = 'B';
+-- Engine pushes Before-Image (500) to Undo Log, marks RAM page DIRTY
+
+-- Emitted during conn.commit():
+COMMIT; -- Engine writes commit record to WAL buffer, calls fsync(), releases X-locks
+```
+
+#### Layer 3: Physical Table & Storage Engine State Transitions
+
+**Initial Physical State (On Disk Data Pages):**
+
+| account_id | owner_name | balance | status | Page ID | Tuple State |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `A` | Alice | `1000.00` | ACTIVE | Page #14 | Clean / Committed |
+| `B` | Bob | `500.00` | ACTIVE | Page #14 | Clean / Committed |
+
+**Intermediate Uncommitted State (Active Transaction XID: 5021 in Memory):**
+- **RAM Buffer Pool**: Page #14 has dirty bit `DIRTY=1`.
+  - Row A in RAM: `500.00` (Exclusive row lock held by XID 5021).
+  - Row B in RAM: `1000.00` (Exclusive row lock held by XID 5021).
+- **Undo Log Stack**:
+  - `[Undo #1]`: Table: `accounts`, Row: `A`, Field: `balance`, Before-Val: `1000.00`
+  - `[Undo #2]`: Table: `accounts`, Row: `B`, Field: `balance`, Before-Val: `500.00`
+- **Physical Disk Data File**: Still holds Alice = `1000.00`, Bob = `500.00`.
+
+**Final Committed State (After `conn.commit()` & `fsync()`):**
+
+| account_id | owner_name | balance | status | Page ID | Tuple State |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `A` | Alice | `500.00` | ACTIVE | Page #14 | Committed (WAL flushed) |
+| `B` | Bob | `1000.00` | ACTIVE | Page #14 | Committed (WAL flushed) |
+
+*(If `conn.rollback()` was invoked, the engine iterates the Undo stack in reverse, restoring Alice = 1000.00 and Bob = 500.00 in memory and dropping XID locks).*
 
 ---
 
@@ -273,6 +456,38 @@ flowchart TD
   - Before modifying a page in memory, the engine writes the *previous value* to the undo structure.
   - If a transaction aborts or fails, the engine executes an **Undo Pass**, reading the undo chain in reverse order to overwrite dirty RAM buffers with original values.
 
+#### 🌐 Universal Rule 9 Breakdown for Atomicity:
+- **Java (Layer 1)**: Handling atomicity with try-catch rollback blocks:
+  ```java
+  try (Connection conn = dataSource.getConnection()) {
+      conn.setAutoCommit(false);
+      try (PreparedStatement stmt1 = conn.prepareStatement("UPDATE accounts SET balance = balance - 100 WHERE id = 'A'");
+           PreparedStatement stmt2 = conn.prepareStatement("UPDATE accounts SET balance = balance + 100 WHERE id = 'B'")) {
+          stmt1.executeUpdate();
+          // Simulate sudden hardware failure / division by zero here:
+          if (true) throw new RuntimeException("Simulated Mid-Flight Server Outage!");
+          stmt2.executeUpdate();
+          conn.commit();
+      } catch (Exception ex) {
+          conn.rollback(); // Explicit Undo trigger
+      }
+  }
+  ```
+- **Database Query (Layer 2)**:
+  ```sql
+  BEGIN;
+  UPDATE accounts SET balance = balance - 100 WHERE id = 'A';
+  -- Exception halts execution before Step 2
+  ROLLBACK; -- Engine aborts XID
+  ```
+- **Physical Table & Undo Segment (Layer 3)**:
+
+  | Step | Table Data (Row A) | Table Data (Row B) | Undo Segment State | Action Description |
+  | :--- | :--- | :--- | :--- | :--- |
+  | **Initial** | 1000 dollars | 500 dollars | `[Empty]` | Clean initial state |
+  | **Post-Stmt 1** | 900 dollars (Dirty RAM) | 500 dollars | `Row A before = 1000 dollars` | Undo record registered |
+  | **Crash / Rollback** | 1000 dollars (Restored) | 500 dollars | `[Undo Replayed]` | Dirty buffer restored from undo before-image |
+
 ---
 
 ### 2. Consistency ("Preserving Invariants")
@@ -286,6 +501,37 @@ flowchart TD
     3. **Check Constraints**: Enforces domain bounds (`CHECK (balance >= 0)`).
   - If any constraint evaluates to `FALSE` during transaction execution, the engine automatically aborts the statement and triggers an internal rollback.
 
+#### 🌐 Universal Rule 9 Breakdown for Consistency:
+- **Java (Layer 1)**: Guarding business invariants through schema constraints and catching constraint violations:
+  ```java
+  public void attemptOverdraft(Connection conn, String accountId, double amount) throws SQLException {
+      String sql = "UPDATE accounts SET balance = balance - ? WHERE account_id = ?";
+      try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+          stmt.setDouble(1, amount); // amount = 5000.0 (Account only has 1000.0)
+          stmt.setString(2, accountId);
+          stmt.executeUpdate(); // Throws PSQLException / SQLException constraint violation
+      } catch (SQLException e) {
+          // SQLState 23514: check_violation
+          System.err.println("Integrity invariant preserved: " + e.getSQLState() + " - " + e.getMessage());
+          conn.rollback();
+      }
+  }
+  ```
+- **Database Query (Layer 2)**:
+  ```sql
+  -- Table DDL with Invariant:
+  -- ALTER TABLE accounts ADD CONSTRAINT chk_min_balance CHECK (balance >= 0.00);
+
+  UPDATE accounts SET balance = balance - 5000.00 WHERE account_id = 'A';
+  -- Engine evaluates: (1000.00 - 5000.00 >= 0.00) -> FALSE
+  -- Engine raises ERROR 23514: new row violates check constraint "chk_min_balance"
+  ```
+- **Physical Table State (Layer 3)**:
+
+  | account_id | balance | constraint_check | Physical Disk Write? | Final Row Value |
+  | :--- | :--- | :--- | :--- | :--- |
+  | `A` | `1000.00` | `1000.00 - 5000.00 = -4000.00 (VIOLATED)` | **REJECTED (No Disk IO)** | `1000.00` (Unchanged) |
+
 ---
 
 ### 3. Isolation ("Shielding Concurrent Workers")
@@ -297,6 +543,41 @@ As Hussein Nasser emphasizes, isolation is **the most complex, underrated proper
 2. **Non-Repeatable Read**: Transaction A reads a row value. Transaction B updates that row and commits. Transaction A re-reads the row and gets different data.
 3. **Phantom Read**: Transaction A executes a range query (`WHERE score > 80`). Transaction B inserts a new row matching that range and commits. Transaction A re-runs the query and discovers a new "phantom" row that did not exist before.
 4. **Lost Update**: Transaction A and Transaction B read the same row concurrently, calculate updates, and write back. The faster transaction's update is completely overwritten by the slower one.
+
+#### 🌐 Universal Rule 9 Breakdown for Isolation:
+- **Java (Layer 1)**: Configuring connection isolation level programmatically in Java:
+  ```java
+  // Setting Isolation Level to prevent Dirty & Non-Repeatable reads:
+  conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
+  conn.setAutoCommit(false);
+
+  // Thread 1 (Reader):
+  PreparedStatement query1 = conn.prepareStatement("SELECT balance FROM accounts WHERE account_id = 'A'");
+  ResultSet rs1 = query1.executeQuery();
+  rs1.next();
+  double val1 = rs1.getDouble("balance"); // Reads 1000.00
+
+  // ... Meanwhile Thread 2 commits balance = 800.00 ...
+
+  ResultSet rs2 = query1.executeQuery();
+  rs2.next();
+  double val2 = rs2.getDouble("balance"); // Still returns 1000.00 under Repeatable Read (MVCC snapshot frozen)
+  ```
+- **Database Query (Layer 2)**:
+  ```sql
+  SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+  BEGIN;
+  SELECT balance FROM accounts WHERE account_id = 'A'; -- Snapshot established at timestamp T0
+  -- Concurrent session commits UPDATE accounts SET balance = 800.00 WHERE account_id = 'A';
+  SELECT balance FROM accounts WHERE account_id = 'A'; -- Reads T0 MVCC version: 1000.00
+  COMMIT;
+  ```
+- **Physical Table MVCC Tuple State (Layer 3)**:
+
+  | Physical Tuple Slot | Row Data | xmin (Creator XID) | xmax (Deleter XID) | Visibility to Reader (Snapshot: 100) |
+  | :--- | :--- | :--- | :--- | :--- |
+  | `Tuple #1` (Page 1) | `balance = 1000.00` | `90` | `105` (Thread 2) | **VISIBLE** (Created before Snapshot, xmax > Snapshot) |
+  | `Tuple #2` (Page 1) | `balance = 800.00` | `105` (Thread 2) | `0` (inf) | **INVISIBLE** (Created after Reader's snapshot timestamp) |
 
 ```mermaid
 flowchart LR
@@ -374,6 +655,36 @@ On reboot after an abrupt crash, the database engine recovers in 3 phases:
 1. **Analysis Phase**: Scans the WAL forward from the last checkpoint to identify active transactions and dirty buffer pages at the time of the crash.
 2. **Redo Phase**: Replays all committed changes from the log that were not yet written to data files on disk ("repeating history").
 3. **Undo Phase**: Reverses all uncommitted transactions that were still in flight when the power died, restoring the database to a completely consistent state.
+
+#### 🌐 Universal Rule 9 Breakdown for Durability & Crash Recovery:
+- **Java (Layer 1)**: The commit call blocks until physical durable confirmation:
+  ```java
+  conn.setAutoCommit(false);
+  try (PreparedStatement stmt = conn.prepareStatement("UPDATE accounts SET balance = 1200.00 WHERE account_id = 'A'")) {
+      stmt.executeUpdate();
+      // Physical durability barrier: conn.commit() will block until the database engine
+      // executes the fsync() system call, guaranteeing the WAL record is flushed to NVMe SSD.
+      conn.commit(); 
+      System.out.println("Durability guaranteed: Data will survive immediate power cut.");
+  }
+  ```
+- **Database Query (Layer 2)**:
+  ```sql
+  BEGIN;
+  UPDATE accounts SET balance = 1200.00 WHERE account_id = 'A';
+  COMMIT; 
+  -- Engine writes WAL delta record: LSN 0x4F12 [XID 105: SET A.balance = 1200.00]
+  -- Engine invokes fsync(wal_fd) system call barrier
+  -- Engine receives hardware ACK from disk controller -> Returns SUCCESS to client
+  ```
+- **Physical Table & Storage Architecture (Layer 3)**:
+
+  | Component | Memory Type | State at `conn.commit()` | Survives Abrupt Power Loss? |
+  | :--- | :--- | :--- | :--- |
+  | **Buffer Pool Page #14** | Process RAM | Modified (`balance = 1200.00`, `DIRTY=1`) | **NO** (Volatile RAM lost on power cut) |
+  | **OS Page Cache** | Kernel RAM | Buffered WAL log bytes | **NO** (Volatile RAM lost on power cut) |
+  | **NVMe / SSD WAL (`0000000100000001`)** | Non-Volatile Flash | Append-only delta flushed via `fsync()` | **YES (DURABLE)** |
+  | **ARIES Recovery on Reboot** | Storage Engine | Analysis → Redo → Undo re-applies LSN 0x4F12 | **YES (Restores table to 1200.00 on restart)** |
 
 ---
 

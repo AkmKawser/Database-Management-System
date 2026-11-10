@@ -60,7 +60,7 @@ These rules are permanent operational constraints. The agent must enforce them p
   1. **Coding Level (Strictly Java Only)**: Show the concrete backend application logic in **Java** (e.g., standard JDBC, JPA/Hibernate, or connection pool mechanics such as HikariCP). Demonstrate connection handling, transaction boundaries (`conn.setAutoCommit(false)`, `conn.commit()`, `conn.rollback()`), prepared statements, or entity mappings.
   2. **Database Query Level**: Show the exact raw SQL statement(s) emitted to the database engine (e.g., DDL, DML, DQL, or TCL statements like `BEGIN`, `UPDATE`, `COMMIT`, `SAVEPOINT`). Explain how the engine parses, validates catalog permissions, optimizes, and coordinates locks/snapshots.
   3. **Physical Table / Storage Level**: Show the concrete data table state before, during, and after execution. Illustrate the exact row/tuple transformations, buffer pool page modifications, dirty flags, undo stack chains, and disk file updates with ASCII tables or structured state representations.
-- **Enforcement**: No theoretical concept or operational query manual can be considered complete without this explicit **Java Code $\to$ SQL Query $\to$ Physical Table State** breakdown.
+- **Enforcement**: No theoretical concept or operational query manual can be considered complete without this explicit **Java Code -> SQL Query -> Physical Table State** breakdown.
 
 ---
 
