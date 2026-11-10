@@ -590,3 +590,31 @@ In Mermaid's lexer grammar:
    - Explicitly codified **Rule 6 (Global Rule on Autonomous Reasoning & Pedagogical Simplification)** and **Rule 7 (Global Rule on Mandatory Skill & Concept Source Attribution)**.
 5. **Verified Audit & Pushed to GitHub**:
    - Executed `python scripts/audit_rendering.py` confirming 0 errors across all active files.
+
+---
+
+## Session 27: ACID Interactive Animation Engine & Global Rule 9 (Java -> SQL -> Table)
+
+### User Request
+> "@[Skills_Output/query/003_dcl_tcl_acid_properties_internals.md] add animation embeed html file to show how ACID works according to the .md file"
+> "upload it to my github"
+> "For every concept you must provide what happens from coding level (use java only) to database query to table. make this a global rule in the finalized chat file."
+
+### Actions Taken & Implementation Summary
+1. **Interactive Simulation & Animation Construction**:
+   - Built [`Skills_Output/query/acid_simulation.html`](../Skills_Output/query/acid_simulation.html), an interactive simulator demonstrating all 4 ACID pillars:
+     - **Atomicity**: Step-by-step transaction execution with RAM buffer pool dirty pages, Undo Log before-image stack, and mid-flight crash simulation with Undo Pass rollback.
+     - **Consistency**: Invariant enforcement via domain `CHECK (balance >= 0)` and engine auto-rollback on invariant failure.
+     - **Isolation**: Timeline comparison of concurrent transactions (T1 Writer vs T2 Reader) demonstrating MVCC tuple versioning (`xmin`, `xmax`) and why dirty reads are prevented without locking readers.
+     - **Durability**: The OS Cache Trap visualization showing DB Log Buffer $\to$ OS Page Cache $\to$ `fsync()` system call barrier $\to$ Non-volatile physical WAL disk persistence.
+2. **Git Synchronization**:
+   - Committed `Skills_Output/query/acid_simulation.html` with commit `0c4295f` and synchronized with `origin/main` on GitHub.
+3. **Formalized Universal Rule 9 in [`chat/finalized chat.md`](finalized%20chat.md)**:
+   - Codified **Universal Rule 9: Mandatory 3-Tier Concept Mapping (Java Code -> Database Query -> Physical Table)**.
+   - For every database concept, the agent is required to document the end-to-end chain across:
+     - **Layer 1: Coding Level (Strictly Java Only)**: Application logic using JDBC/JPA, transactions, prepared statements, and error handling.
+     - **Layer 2: Database Query Level**: Wire-level SQL execution, parsing, transaction states, locks, and snapshots.
+     - **Layer 3: Physical Table / Storage Level**: Concrete table state transitions, dirty memory pages, row tuples, and disk persistence.
+4. **Audit & Verification**:
+   - Audited markdown formatting and pushed all rule updates to GitHub.
+

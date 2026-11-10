@@ -49,6 +49,13 @@ These rules are permanent operational constraints. The agent must enforce them p
 ### Rule 8: Continuous Synchronization of the Canonical Folder Structure
 - **Directive**: The agent must maintain and continuously update the **latest, complete folder structure tree** inside this document (`chat/finalized chat.md`). Whenever directories are moved, added, or restructured, the canonical architecture diagram in Section 2 must be refreshed immediately to reflect the exact state of the project.
 
+### Rule 9: Mandatory 3-Tier Concept Mapping (Java Code -> Database Query -> Physical Table)
+- **Directive**: For **EVERY single concept** discussed, documented, or taught in this repository (e.g., in query manuals, tutorials, architectural syntheses, and problem solutions), the agent **MUST** provide an end-to-end multi-tier demonstration detailing what happens at three distinct layers:
+  1. **Coding Level (Strictly Java Only)**: Show the concrete backend application logic in **Java** (e.g., standard JDBC, JPA/Hibernate, or connection pool mechanics such as HikariCP). Demonstrate connection handling, transaction boundaries (`conn.setAutoCommit(false)`, `conn.commit()`, `conn.rollback()`), prepared statements, or entity mappings.
+  2. **Database Query Level**: Show the exact raw SQL statement(s) emitted to the database engine (e.g., DDL, DML, DQL, or TCL statements like `BEGIN`, `UPDATE`, `COMMIT`, `SAVEPOINT`). Explain how the engine parses, validates catalog permissions, optimizes, and coordinates locks/snapshots.
+  3. **Physical Table / Storage Level**: Show the concrete data table state before, during, and after execution. Illustrate the exact row/tuple transformations, buffer pool page modifications, dirty flags, undo stack chains, and disk file updates with ASCII tables or structured state representations.
+- **Enforcement**: No theoretical concept or operational query manual can be considered complete without this explicit **Java Code $\to$ SQL Query $\to$ Physical Table State** breakdown.
+
 ---
 
 ## 🏛️ 2. Finalized Repository Architecture & Output Guidelines
