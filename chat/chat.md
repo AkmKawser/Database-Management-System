@@ -624,11 +624,19 @@ In Mermaid's lexer grammar:
 
 ### User Request
 > "auto commit and push in my github"
+> "auto commit and push. make it a global rule in the finialized_chat file"
 
 ### Actions Taken & Implementation Summary
-1. **Strengthened Universal Rule 3 in [`chat/finalized chat.md`](finalized%20chat.md)**:
-   - Elevated **Rule 3** into a strict automated directive: The agent must proactively stage, commit with semantic messages, and push to `origin/main` on every single turn and file change, ensuring zero lag between local workspace and remote GitHub.
+1. **Promoted Universal Rule 3 to Dedicated Global Rule in [`chat/finalized chat.md`](finalized%20chat.md)**:
+   - Formally updated **Rule 3: Global Rule on Mandatory Automated Git Commit & Push (Every Prompt Guarantee)**.
+   - Formulated a 5-step mandatory operational protocol:
+     1. Proactive `git status` inspection.
+     2. Staging all modified/untracked files.
+     3. Semantic conventional commit messaging.
+     4. Direct push to `origin/main`.
+     5. Zero-lag synchronization assertion before closing any turn.
 2. **Git Synchronization**:
-   - Committed rule updates and pushed to GitHub.
+   - Staged, committed, and pushed rule updates directly to `origin/main`.
+
 
 
