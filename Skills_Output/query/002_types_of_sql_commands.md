@@ -82,7 +82,218 @@ In enterprise relational databases (and in Sections 03 & 20 of the course), two 
 
 ---
 
-## 5. Comprehensive Summary Comparison Table
+## 5. Universal Rule 9: 3-Tier Concept Mapping (Java -> SQL Wire -> Physical Table)
+
+To see how DDL, DML, and DQL execute in production systems, we trace the complete lifecycle across Java application code, database SQL execution, and physical table storage pages:
+
+### Tier 1: DDL (Data Definition Language) - Schema Creation
+
+#### Layer 1: Coding Level (Strictly Java Only)
+```java
+package com.dbms.lifecycle;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class SchemaInitializationService {
+    private static final String URL = "jdbc:postgresql://localhost:5432/salesdb";
+    private static final String USER = "db_admin";
+    private static final String PASS = "AdminSecretPass!";
+
+    public void initializeCustomerSchema() {
+        String createTableSql = """
+            CREATE TABLE IF NOT EXISTS customers (
+                customer_id SERIAL PRIMARY KEY,
+                first_name  VARCHAR(50) NOT NULL,
+                country     VARCHAR(50) NOT NULL,
+                score       INT DEFAULT 0 CHECK (score >= 0)
+            );
+            """;
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+             Statement stmt = conn.createStatement()) {
+
+            // DDL statement execution
+            stmt.execute(createTableSql);
+            System.out.println("[DDL SUCCESS] Table 'customers' created with integrity constraints.");
+
+        } catch (SQLException e) {
+            System.err.println("[DDL ERROR] " + e.getErrorCode() + " : " + e.getMessage());
+        }
+    }
+}
+```
+
+#### Layer 2: Database Query & Internal Engine Lifecycle
+```sql
+CREATE TABLE IF NOT EXISTS customers (
+    customer_id SERIAL PRIMARY KEY,
+    first_name  VARCHAR(50) NOT NULL,
+    country     VARCHAR(50) NOT NULL,
+    score       INT DEFAULT 0 CHECK (score >= 0)
+);
+```
+1. **Catalog Allocation**: Engine checks `pg_class` / `sys.tables`. If absent, allocates a new Relation OID (`relfilenode`).
+2. **Constraint Indexing**: B-tree index created automatically for `PRIMARY KEY (customer_id)`.
+3. **Storage Extent**: Allocates first disk block/extent (typically 8KB page) in the database tablespace.
+
+#### Layer 3: Physical Table / Disk State
+- **System Catalog**: Registered in `information_schema.tables` and `pg_attribute`.
+- **Physical Data Page #1**: Empty page allocated with Page Header (LSN, lower pointer, upper pointer), 0 tuple slots.
+
+---
+
+### Tier 2: DML (Data Manipulation Language) - Populating & Modifying Records
+
+#### Layer 1: Coding Level (Strictly Java Only)
+```java
+package com.dbms.lifecycle;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class CustomerDataService {
+    private static final String URL = "jdbc:postgresql://localhost:5432/salesdb";
+    private static final String USER = "app_user";
+    private static final String PASS = "AppSecretPass!";
+
+    public void registerCustomer(String name, String country, int score) {
+        String insertSql = "INSERT INTO customers (first_name, country, score) VALUES (?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+             PreparedStatement pstmt = conn.prepareStatement(insertSql)) {
+
+            pstmt.setString(1, name);
+            pstmt.setString(2, country);
+            pstmt.setInt(3, score);
+
+            int rowsInserted = pstmt.executeUpdate();
+            System.out.println("[DML SUCCESS] Inserted " + rowsInserted + " customer row.");
+
+        } catch (SQLException e) {
+            System.err.println("[DML ERROR] " + e.getErrorCode() + " : " + e.getMessage());
+        }
+    }
+
+    public void updateScore(int customerId, int addedScore) {
+        String updateSql = "UPDATE customers SET score = score + ? WHERE customer_id = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+             PreparedStatement pstmt = conn.prepareStatement(updateSql)) {
+
+            pstmt.setInt(1, addedScore);
+            pstmt.setInt(2, customerId);
+
+            int rowsUpdated = pstmt.executeUpdate();
+            System.out.println("[DML SUCCESS] Updated " + rowsUpdated + " row(s).");
+
+        } catch (SQLException e) {
+            System.err.println("[DML ERROR] " + e.getErrorCode() + " : " + e.getMessage());
+        }
+    }
+}
+```
+
+#### Layer 2: Database Query & Internal Engine Lifecycle
+```sql
+-- Query 1: INSERT
+INSERT INTO customers (first_name, country, score) VALUES ('Alice', 'USA', 250);
+
+-- Query 2: UPDATE
+UPDATE customers SET score = score + 50 WHERE customer_id = 1;
+```
+1. **Buffer Page Write**: Engine finds free space in Page #1 via Free Space Map (FSM).
+2. **WAL Append**: Writes Redo record (`LSN 101: INSERT customers tuple 1`) to sequential log buffer.
+3. **Dirty Buffer**: Page #1 marked `DIRTY=1` in memory.
+4. **Row Lock & MVCC**: When `UPDATE` executes, acquires Row-Exclusive lock (`X-Lock`), marks old tuple as deleted (`xmax = XID`), and inserts new tuple version with score `300`.
+
+#### Layer 3: Physical Table Transformation
+
+**Table Data Page #1 (Post-INSERT):**
+
+| Line Pointer | customer_id | first_name | country | score | Tuple Flag |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `Item 1` | `1` | Alice | `USA` | `250` | `Live / Clean` |
+
+**Table Data Page #1 (Post-UPDATE):**
+
+| Line Pointer | customer_id | first_name | country | score | Tuple State |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `Item 1` | `1` | Alice | `USA` | `250` | `Dead Tuple (xmax=XID)` |
+| `Item 2` | `1` | Alice | `USA` | `300` | `Live Tuple (xmin=XID, xmax=0)` |
+
+---
+
+### Tier 3: DQL (Data Query Language) - Analytical Read Retrieval
+
+#### Layer 1: Coding Level (Strictly Java Only)
+```java
+package com.dbms.lifecycle;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class CustomerReportingService {
+    private static final String URL = "jdbc:postgresql://localhost:5432/salesdb";
+    private static final String USER = "reporting_user";
+    private static final String PASS = "ReadOnlyPass!";
+
+    public void printCustomerScoreboard() {
+        String dqlQuery = """
+            SELECT customer_id, first_name, country, score
+            FROM customers
+            WHERE score >= 200
+            ORDER BY score DESC
+            """;
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+             PreparedStatement pstmt = conn.prepareStatement(dqlQuery);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            System.out.println("--- HIGH SCORING CUSTOMERS ---");
+            while (rs.next()) {
+                System.out.printf("ID: %d | Name: %s | Country: %s | Score: %d%n",
+                    rs.getInt("customer_id"),
+                    rs.getString("first_name"),
+                    rs.getString("country"),
+                    rs.getInt("score")
+                );
+            }
+
+        } catch (SQLException e) {
+            System.err.println("[DQL ERROR] " + e.getErrorCode() + " : " + e.getMessage());
+        }
+    }
+}
+```
+
+#### Layer 2: Database Query & Internal Engine Lifecycle
+```sql
+SELECT customer_id, first_name, country, score
+FROM customers
+WHERE score >= 200
+ORDER BY score DESC;
+```
+1. **Query Optimizer**: Determines plan (Index Scan on primary key vs Sequential Scan on Page #1).
+2. **Snapshot Visibility**: Evaluates MVCC visibility. Reads only `Item 2` (score: 300) and ignores `Item 1` (dead tuple).
+3. **Zero Transaction Log Overhead**: Allocates no transaction slot (read-only virtual transaction), produces zero WAL log records, acquires shared locks (`S-Lock`) or snapshot timestamps.
+
+#### Layer 3: Physical Output Stream Received by Java Client
+
+| customer_id | first_name | country | score |
+| :--- | :--- | :--- | :--- |
+| `1` | Alice | `USA` | `300` |
+
+---
+
+## 6. Comprehensive Summary Comparison Table
 
 | Category | What It Operates On | Primary Keywords | Transaction Log Impact | Real-World Metaphor |
 | :--- | :--- | :--- | :--- | :--- |

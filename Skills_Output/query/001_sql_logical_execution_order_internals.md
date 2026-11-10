@@ -124,7 +124,145 @@ ORDER BY total_score DESC;
 
 ---
 
-## 6. Performance Tips & Traps (Course References)
+## 6. Universal Rule 9: 3-Tier Concept Mapping (Java -> SQL Wire -> Physical Table)
+
+To understand how logical execution order actually executes from backend application code down to physical memory pages, we trace this query across all three physical tiers:
+
+### Layer 1: Coding Level (Strictly Java Only)
+```java
+package com.dbms.query;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class CustomerMetricsService {
+    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/salesdb";
+    private static final String USER = "app_user";
+    private static final String PASS = "app_password";
+
+    public record CountrySummary(String country, long totalCustomers, double totalScore) {}
+
+    public List<CountrySummary> getTopScoringCountries(int minScore, int minCustomerCount, int limit) {
+        // Query written declaratively: SELECT first, FROM second
+        String sql = """
+            SELECT country,
+                   COUNT(customer_id) AS total_customers,
+                   SUM(score) AS total_score
+            FROM customers
+            WHERE score > ?
+            GROUP BY country
+            HAVING COUNT(customer_id) > ?
+            ORDER BY total_score DESC
+            LIMIT ?
+            """;
+
+        List<CountrySummary> summaries = new ArrayList<>();
+
+        try (Connection conn = DriverManager.getConnection(JDBC_URL, USER, PASS);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // Bind runtime query parameters safely (avoids SQL injection)
+            pstmt.setInt(1, minScore);             // Step 2 filter: score > 100
+            pstmt.setInt(2, minCustomerCount);    // Step 4 filter: count > 1
+            pstmt.setInt(3, limit);                // Step 7 slicing: top 2
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                // Read streaming cursor buffer received from database engine
+                while (rs.next()) {
+                    summaries.add(new CountrySummary(
+                        rs.getString("country"),
+                        rs.getLong("total_customers"),
+                        rs.getDouble("total_score")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("[QUERY ERROR] " + e.getSQLState() + " : " + e.getMessage());
+        }
+
+        return summaries;
+    }
+}
+```
+
+### Layer 2: Database Query & Engine Logical Execution Plan
+```sql
+-- Emitted Query across the wire protocol:
+SELECT country, COUNT(customer_id) AS total_customers, SUM(score) AS total_score
+FROM customers
+WHERE score > 100
+GROUP BY country
+HAVING COUNT(customer_id) > 1
+ORDER BY total_score DESC
+LIMIT 2;
+```
+
+#### Internal Engine Pipeline Progression:
+1. **Stage 1 (`FROM customers`)**: The storage engine loads Table Descriptor metadata, opens data files on disk, and scans physical 8KB data pages into the RAM Buffer Pool.
+2. **Stage 2 (`WHERE score > 100`)**: Row-level Predicate Pushdown evaluates boolean condition against each loaded tuple in memory before grouping. Unqualified tuples are discarded immediately, saving RAM aggregation memory.
+3. **Stage 3 (`GROUP BY country`)**: Hash Aggregate operator builds an in-memory Hash Table keyed by `country`. It accumulates `COUNT(customer_id)` and `SUM(score)` for matching buckets.
+4. **Stage 4 (`HAVING COUNT(customer_id) > 1`)**: Scans hash table buckets and evicts any country bucket whose customer count is 1 or less.
+5. **Stage 5 (`SELECT country, total_score`)**: Computes projected mathematical expressions and exposes column aliases.
+6. **Stage 6 (`ORDER BY total_score DESC`)**: Runs quicksort or external merge sort on the remaining Hash Aggregate output rows.
+7. **Stage 7 (`LIMIT 2`)**: Limits output cursor stream to 2 rows and returns tabular result set to Java JDBC client.
+
+---
+
+### Layer 3: Physical Table & Intermediate Memory Transformations
+
+#### Step 1: Base Physical Table on Disk (`FROM customers`)
+
+| customer_id | first_name | country | score | Page ID |
+| :--- | :--- | :--- | :--- | :--- |
+| `1` | Alice | `USA` | `250` | Page #1 |
+| `2` | Bob | `Germany` | `80` | Page #1 |
+| `3` | Charlie | `USA` | `300` | Page #1 |
+| `4` | David | `Germany` | `150` | Page #2 |
+| `5` | Emma | `UK` | `120` | Page #2 |
+| `6` | Frank | `Germany` | `200` | Page #2 |
+
+#### Step 2: Intermediate Memory After `WHERE score > 100` (Pre-Aggregation Filter)
+*(Bob with score 80 is discarded before any group hash table is created)*
+
+| customer_id | country | score | Status in RAM Buffer |
+| :--- | :--- | :--- | :--- |
+| `1` | `USA` | `250` | Retained |
+| `3` | `USA` | `300` | Retained |
+| `4` | `Germany` | `150` | Retained |
+| `5` | `UK` | `120` | Retained |
+| `6` | `Germany` | `200` | Retained |
+
+#### Step 3: Hash Aggregate Table After `GROUP BY country`
+
+| Hash Key (`country`) | `COUNT(customer_id)` | `SUM(score)` |
+| :--- | :--- | :--- |
+| `USA` | `2` | `550` |
+| `Germany` | `2` | `350` |
+| `UK` | `1` | `120` |
+
+#### Step 4: Buckets After `HAVING COUNT(customer_id) > 1` (Post-Aggregation Filter)
+*(UK bucket with count = 1 fails predicate and is evicted)*
+
+| Hash Key (`country`) | `COUNT(customer_id)` | `SUM(score)` |
+| :--- | :--- | :--- |
+| `USA` | `2` | `550` |
+| `Germany` | `2` | `350` |
+
+#### Step 5, 6 & 7: Final Result Stream Sent to Java Client (`SELECT` + `ORDER BY` + `LIMIT 2`)
+
+| country | total_customers | total_score |
+| :--- | :--- | :--- |
+| `USA` | `2` | `550` |
+| `Germany` | `2` | `350` |
+
+---
+
+## 7. Performance Tips & Traps (Course References)
 
 Based on `10_SQL_30_Performance_Tips.pdf`:
 1. **Filter Early with `WHERE`, Not `HAVING`**:

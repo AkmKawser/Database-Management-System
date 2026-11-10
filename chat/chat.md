@@ -658,9 +658,52 @@ In Mermaid's lexer grammar:
      4. Direct push to `origin/main`.
      5. Zero-lag synchronization assertion before closing any turn.
 3. **Rendering Audit**:
-   - Verified that all 4 active query files passed `scripts/audit_rendering.py` with 0 errors.
+   - Verified that all active query files passed `scripts/audit_rendering.py` with 0 errors.
 4. **Automated Git Synchronization**:
    - Staged, committed, and pushed updates directly to `origin/main`.
+
+---
+
+## Session 30: Technical Analysis on Embedding SVGs in GitHub Markdown
+
+### User Question
+> "if .md file cannot embeed html file so can svg file embeed in the .md file? i"
+
+### Technical Answer & Architecture Comparison
+1. **Yes, SVG files can be embedded in GitHub `.md` files** using standard markdown image syntax: `![ACID Architecture](path/to/image.svg)` or `<img src="path/to/image.svg" width="100%" />`.
+2. **What SVG CAN do in GitHub Markdown**:
+   - Render crisp vector graphics at any zoom level without pixelation.
+   - Display pure CSS keyframe looping animations (e.g., pulsating nodes, moving data packets, glowing borders, flowing arrows).
+   - Render cleanly inside light/dark mode themes.
+3. **What SVG CANNOT do in GitHub Markdown**:
+   - Run JavaScript (`<script>` inside SVGs is stripped by GitHub's image proxy / sanitization to prevent XSS).
+   - Support interactive buttons (clicks, form inputs, dynamic simulation state toggles).
+4. **Best Practice Architecture**:
+   - Use an **animated SVG** (`.svg`) directly inside the `.md` file to give readers a visual animation loop of ACID mechanics without leaving GitHub.
+   - Keep the **standalone interactive HTML simulator** (`acid_simulation.html`) for interactive button clicking, step-by-step state transitions, and live crash simulations.
+
+---
+
+## Session 31: Apply Universal Rule 9 across Query Manuals 001 and 002
+
+### User Request
+> "apply apply Global Rule 9 in all the query sheets from now on. now apply in 001 and 002"
+
+### Actions Taken & Implementation Summary
+1. **Enforced Universal Rule 9 on [`001_sql_logical_execution_order_internals.md`](../Skills_Output/query/001_sql_logical_execution_order_internals.md)**:
+   - Added complete 3-tier mapping:
+     - **Layer 1: Coding Level (Strictly Java Only)**: `CustomerMetricsService.java` demonstrating parameterized `PreparedStatement` binding (`minScore`, `minCustomerCount`, `limit`) and cursor streaming.
+     - **Layer 2: Database Query & Logical Execution Plan**: Explaining step-by-step internal engine execution order (`FROM` -> `WHERE` predicate pushdown -> `GROUP BY` hash aggregate -> `HAVING` eviction -> `SELECT` expression computation -> `ORDER BY` quicksort -> `LIMIT` cursor slicing).
+     - **Layer 3: Physical Table & Storage State Transitions**: Concrete data page matrices displaying base 8KB pages, RAM buffer filtration, hash aggregate buckets, and final result stream.
+2. **Enforced Universal Rule 9 on [`002_types_of_sql_commands.md`](../Skills_Output/query/002_types_of_sql_commands.md)**:
+   - Added complete 3-tier mapping across the core command families:
+     - **Tier 1 (DDL)**: `SchemaInitializationService.java` -> `CREATE TABLE customers` -> Catalog relation OID allocation & empty 8KB Page #1.
+     - **Tier 2 (DML)**: `CustomerDataService.java` -> `INSERT` & `UPDATE` -> WAL Redo logging, buffer pool dirty bits (`DIRTY=1`), row-level exclusive locking, and MVCC dead tuple generation (`xmax`).
+     - **Tier 3 (DQL)**: `CustomerReportingService.java` -> `SELECT` -> Read-only virtual transaction without WAL log overhead, streaming results to Java client.
+3. **Audit & Auto-Commit/Push (Rule 2 & Rule 3)**:
+   - Audited markdown syntax and rendering integrity.
+   - Staged, committed, and pushed all updates to `origin/main` on GitHub.
+
 
 
 
