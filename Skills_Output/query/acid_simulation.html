@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACID Transaction Engine Internals - Interactive Simulator</title>
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #111827;
+      --panel-bg: #1e293b;
+      --border: #334155;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --success: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --purple: #a855f7;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 14px;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: var(--panel-bg);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .tab-btn.active {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    .tab-badge {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Main Container */
+    .workspace {
+      max-width: 1150px;
+      margin: 0 auto;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .scene-content {
+      display: none;
+    }
+
+    .scene-content.active {
+      display: block;
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: var(--panel-bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn:hover:not(:disabled) {
+      background: #283548;
+      border-color: #64748b;
+    }
+
+    .btn-primary {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: #0369a1;
+    }
+
+    .btn-danger {
+      background: #b91c1c;
+      border-color: #ef4444;
+      color: white;
+    }
+
+    .btn-danger:hover:not(:disabled) {
+      background: #991b1b;
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .step-info {
+      margin-left: auto;
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 600;
+      background: rgba(56, 189, 248, 0.1);
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    /* Architecture Visual Grid */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .arch-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .arch-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .arch-node {
+      background: var(--panel-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      position: relative;
+      transition: all 0.3s ease;
+      min-height: 190px;
+    }
+
+    .arch-node.active-pulse {
+      border-color: var(--accent);
+      box-shadow: 0 0 16px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    .arch-node.danger-pulse {
+      border-color: var(--danger);
+      box-shadow: 0 0 16px rgba(239, 68, 68, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .arch-node.success-pulse {
+      border-color: var(--success);
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .node-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .node-content {
+      font-size: 13px;
+    }
+
+    .data-pill {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 7px 10px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+      font-family: monospace;
+      font-size: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .data-pill.highlight {
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      font-weight: bold;
+    }
+
+    .data-pill.dirty {
+      border-color: var(--warning);
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+    }
+
+    .data-pill.aborted {
+      border-color: var(--danger);
+      background: rgba(239, 68, 68, 0.15);
+      color: #fca5a5;
+    }
+
+    .data-pill.committed {
+      border-color: var(--success);
+      background: rgba(16, 185, 129, 0.15);
+      color: #6ee7b7;
+    }
+
+    /* Explanation Console */
+    .explanation-box {
+      background: #0b1120;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      min-height: 90px;
+      position: relative;
+    }
+
+    .explanation-box .header {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .explanation-box .text {
+      color: #e2e8f0;
+    }
+
+    /* Sub-panels for Isolation & Durability */
+    .dual-lane {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .dual-lane {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .lane {
+      background: var(--panel-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .lane-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Flow Indicator Arrow */
+    .flow-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .badge-blue { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+    .badge-amber { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    .badge-red { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+    .badge-green { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>ACID Transaction Engine Internals Simulator</h1>
+    <p>Interactive companion visualizer for <code>003_dcl_tcl_acid_properties_internals.md</code>. Synthesizing practical SQL execution with deep storage engine architecture: RAM buffer pool, Undo stack, MVCC, OS Cache trap, and WAL <code>fsync()</code>.</p>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('atomicity')">
+      <span>1. Atomicity (Undo Stack & Rollback)</span>
+      <span class="tab-badge">A</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('consistency')">
+      <span>2. Consistency (State Invariants)</span>
+      <span class="tab-badge">C</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('isolation')">
+      <span>3. Isolation (MVCC & Phenomena)</span>
+      <span class="tab-badge">I</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('durability')">
+      <span>4. Durability (OS Cache & fsync)</span>
+      <span class="tab-badge">D</span>
+    </button>
+  </div>
+
+  <div class="workspace">
+
+    <!-- ==================== SCENE 1: ATOMICITY ==================== -->
+    <div id="atomicity" class="scene-content active">
+      <div class="controls-bar">
+        <button class="btn btn-primary" id="btn-atom-next" onclick="atomicityNext()">▶ Next Execution Step</button>
+        <button class="btn btn-danger" id="btn-atom-crash" onclick="atomicityCrash()">⚡ Simulate Crash / Abort</button>
+        <button class="btn" onclick="atomicityReset()">↺ Reset Transfer</button>
+        <div class="step-info" id="atom-step-info">State: IDLE | A: $1000, B: $500</div>
+      </div>
+
+      <div class="arch-grid">
+        <!-- Client / SQL Stream -->
+        <div class="arch-node" id="node-sql">
+          <div class="node-title">
+            <span>SQL Operational Stream</span>
+            <span class="flow-badge badge-blue">TCL / DML</span>
+          </div>
+          <div class="node-content" id="atom-sql-content">
+            <div class="data-pill highlight">BEGIN TRANSACTION;</div>
+            <div class="data-pill">UPDATE A: -500</div>
+            <div class="data-pill">UPDATE B: +500</div>
+            <div class="data-pill">COMMIT;</div>
+          </div>
+        </div>
+
+        <!-- RAM Buffer Pool -->
+        <div class="arch-node" id="node-buffer">
+          <div class="node-title">
+            <span>RAM Buffer Pool</span>
+            <span class="flow-badge badge-amber" id="buffer-dirty-badge">Clean</span>
+          </div>
+          <div class="node-content">
+            <div class="data-pill" id="buf-a">Account A: $1000</div>
+            <div class="data-pill" id="buf-b">Account B: $500</div>
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">
+              *Dirty Pages modified in RAM before physical data file flush.
+            </div>
+          </div>
+        </div>
+
+        <!-- Undo Log Stack -->
+        <div class="arch-node" id="node-undo">
+          <div class="node-title">
+            <span>Undo Log Segment (RAM)</span>
+            <span class="flow-badge badge-red" id="undo-count">0 items</span>
+          </div>
+          <div class="node-content" id="undo-stack-content">
+            <div style="font-size: 12px; color: var(--text-muted); font-style: italic;">
+              [Empty: No Before-Images stored]
+            </div>
+          </div>
+        </div>
+
+        <!-- Disk Persistence -->
+        <div class="arch-node" id="node-disk">
+          <div class="node-title">
+            <span>Disk Data Files</span>
+            <span class="flow-badge badge-green">Non-Volatile</span>
+          </div>
+          <div class="node-content">
+            <div class="data-pill" id="disk-a">Account A: $1000</div>
+            <div class="data-pill" id="disk-b">Account B: $500</div>
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">
+              Total invariant on disk: $1500
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="explanation-box">
+        <div class="header">
+          <span>Engine Internal Diagnostic</span>
+          <span id="atom-status-tag">TRANS: ACTIVE</span>
+        </div>
+        <div class="text" id="atom-explanation">
+          Ready to begin banking transfer ($500 from Account A to Account B). Click "Next Execution Step" to start transaction boundary.
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ==================== SCENE 2: CONSISTENCY ==================== -->
+    <div id="consistency" class="scene-content">
+      <div class="controls-bar">
+        <button class="btn btn-primary" onclick="runValidInvariant()">✓ Execute Valid Transfer ($300)</button>
+        <button class="btn btn-danger" onclick="runInvalidInvariant()">✗ Violate CHECK Constraint ($1500)</button>
+        <button class="btn" onclick="resetConsistency()">↺ Reset</button>
+        <div class="step-info" id="const-step-info">Balance A: $1000 (Min allowed: $0)</div>
+      </div>
+
+      <div class="dual-lane">
+        <div class="lane">
+          <div class="lane-title">
+            <span>Storage Schema Invariants</span>
+            <span class="flow-badge badge-blue">DDL / Constraints</span>
+          </div>
+          <div class="node-content">
+            <div class="data-pill highlight">CHECK (balance >= 0)</div>
+            <div class="data-pill">PRIMARY KEY (account_id)</div>
+            <div class="data-pill">FOREIGN KEY (owner_id) REFERENCES users(id)</div>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 10px;">
+              Consistency guarantees that database state transitions preserve mathematical domain invariants. If any invariant evaluates to FALSE, the whole transaction is aborted.
+            </p>
+          </div>
+        </div>
+
+        <div class="lane" id="const-engine-lane">
+          <div class="lane-title">
+            <span>Engine Validation Engine</span>
+            <span class="flow-badge badge-amber" id="const-status-pill">Awaiting Command</span>
+          </div>
+          <div class="node-content">
+            <div class="data-pill" id="const-op-pill">Operation: IDLE</div>
+            <div class="data-pill" id="const-eval-pill">Constraint Check: Pending</div>
+            <div class="data-pill" id="const-result-pill">Result: Pre-condition State Preserved</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="explanation-box">
+        <div class="header">
+          <span>Constraint Engine Log</span>
+          <span id="const-tag">INVARIANT MONITOR</span>
+        </div>
+        <div class="text" id="const-explanation">
+          Select an operation above. A valid transfer deducts $300 leaving $700 (Passes `CHECK (balance >= 0)`). An invalid transfer attempts to deduct $1500 from Account A ($1000 - $1500 = -$500, violating invariant).
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ==================== SCENE 3: ISOLATION ==================== -->
+    <div id="isolation" class="scene-content">
+      <div class="controls-bar">
+        <button class="btn btn-primary" onclick="isolationStep()">▶ Advance Concurrent Timeline</button>
+        <button class="btn" onclick="toggleIsolationMode()" id="btn-iso-mode">Mode: MVCC (Postgres/InnoDB)</button>
+        <button class="btn" onclick="resetIsolation()">↺ Reset Timeline</button>
+        <div class="step-info" id="iso-step-info">Timeline: T0 | Both idle</div>
+      </div>
+
+      <div class="dual-lane">
+        <!-- Transaction 1 -->
+        <div class="lane" id="lane-t1">
+          <div class="lane-title">
+            <span>Transaction 1 (Writer: Deduct $200 from A)</span>
+            <span class="flow-badge badge-blue" id="t1-badge">XID: 101</span>
+          </div>
+          <div class="node-content">
+            <div class="data-pill" id="t1-step1">T1.1: BEGIN</div>
+            <div class="data-pill" id="t1-step2">T1.2: UPDATE accounts SET balance = 800 WHERE id = 'A'</div>
+            <div class="data-pill" id="t1-step3">T1.3: COMMIT</div>
+          </div>
+        </div>
+
+        <!-- Transaction 2 -->
+        <div class="lane" id="lane-t2">
+          <div class="lane-title">
+            <span>Transaction 2 (Concurrent Reader)</span>
+            <span class="flow-badge badge-amber" id="t2-badge">XID: 102</span>
+          </div>
+          <div class="node-content">
+            <div class="data-pill" id="t2-step1">T2.1: BEGIN (Snapshot Created)</div>
+            <div class="data-pill" id="t2-step2">T2.2: SELECT balance FROM accounts WHERE id = 'A'</div>
+            <div class="data-pill" id="t2-step3">T2.3: Re-read after T1 COMMIT</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tuple Storage / Undo Chain Representation -->
+      <div class="arch-node" style="margin-bottom: 20px;" id="node-mvcc">
+        <div class="node-title">
+          <span>Row Version Storage / MVCC Multi-Tuple Pointers</span>
+          <span class="flow-badge badge-purple" id="mvcc-badge">Active Snapshot: T0</span>
+        </div>
+        <div class="node-content" id="mvcc-tuple-content" style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <div class="data-pill highlight" style="flex: 1;">Tuple v1 [xmin: 90, xmax: inf]: balance = $1000 (Visible to T2)</div>
+        </div>
+      </div>
+
+      <div class="explanation-box">
+        <div class="header">
+          <span>Isolation & Read Phenomena Inspector</span>
+          <span id="iso-phenomena-tag">DIRTY READ PREVENTED</span>
+        </div>
+        <div class="text" id="iso-explanation">
+          Advance the timeline. Watch how MVCC allows Transaction 2 to read a consistent snapshot ($1000) while Transaction 1 holds an uncommitted modification ($800) in its private workspace without blocking or dirty reads!
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ==================== SCENE 4: DURABILITY ==================== -->
+    <div id="durability" class="scene-content">
+      <div class="controls-bar">
+        <button class="btn btn-primary" onclick="durabilityStep()">▶ Advance Durability Pipeline</button>
+        <button class="btn btn-danger" onclick="durabilityPowerCut()">⚡ Abrupt Power Cut / Kernel Crash</button>
+        <button class="btn" onclick="resetDurability()">↺ Reset</button>
+        <div class="step-info" id="dur-step-info">State: Pre-Commit</div>
+      </div>
+
+      <div class="arch-grid">
+        <!-- Step 1: Engine Log Buffer -->
+        <div class="arch-node" id="dur-node-ram">
+          <div class="node-title">
+            <span>1. DB Log Buffer (RAM)</span>
+            <span class="flow-badge badge-blue">Process RAM</span>
+          </div>
+          <div class="node-content">
+            <div class="data-pill" id="dur-buf-pill">Empty</div>
+            <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">
+              Ultra-fast append inside database memory space.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2: OS Page Cache -->
+        <div class="arch-node" id="dur-node-oscache">
+          <div class="node-title">
+            <span>2. OS Page Cache (RAM)</span>
+            <span class="flow-badge badge-amber" id="dur-os-badge">Volatile</span>
+          </div>
+          <div class="node-content">
+            <div class="data-pill" id="dur-os-pill">Empty</div>
+            <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">
+              ⚠️ Standard write() syscall lands here! Lost if power fails before sync.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3: fsync() Barrier -->
+        <div class="arch-node" id="dur-node-fsync">
+          <div class="node-title">
+            <span>3. fsync() System Call</span>
+            <span class="flow-badge badge-purple" id="dur-fsync-badge">Idle</span>
+          </div>
+          <div class="node-content">
+            <div class="data-pill" id="dur-fsync-pill">Waiting for COMMIT</div>
+            <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">
+              Forces OS & controller cache flush directly to non-volatile medium.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 4: Physical WAL Storage -->
+        <div class="arch-node" id="dur-node-wal">
+          <div class="node-title">
+            <span>4. Physical Disk / WAL</span>
+            <span class="flow-badge badge-green" id="dur-disk-badge">Durable</span>
+          </div>
+          <div class="node-content">
+            <div class="data-pill" id="dur-wal-pill">WAL LSN 0x000</div>
+            <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">
+              Non-volatile NVMe/SSD platter. Crash-resilient.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="explanation-box">
+        <div class="header">
+          <span>Storage Engine Durability Analysis</span>
+          <span id="dur-status-tag">SYSTEM NORMAL</span>
+        </div>
+        <div class="text" id="dur-explanation">
+          Hussein Nasser's "OS Cache Trap": When a database executes write(), the operating system buffers bytes in RAM. If power cuts now, un-flushed data disappears! True ACID durability requires fsync() before returning COMMIT OK.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Tab switching logic
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.scene-content').forEach(sc => sc.classList.remove('active'));
+      
+      event.currentTarget.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    // ==========================================
+    // 1. ATOMICITY ENGINE SIMULATOR
+    // ==========================================
+    let atomStep = 0;
+    const atomStages = [
+      {
+        stepInfo: "Step 1: BEGIN TRANSACTION",
+        statusTag: "TRANS: ACTIVE (XID: 4021)",
+        dirtyBadge: "Clean",
+        bufA: "Account A: $1000",
+        bufB: "Account B: $500",
+        undo: "[Empty: No modifications]",
+        undoCount: "0 items",
+        highlightPill: 0,
+        explanation: "BEGIN opened transaction XID 4021. The engine registers an active transaction slot and allocates an Undo segment."
+      },
+      {
+        stepInfo: "Step 2: UPDATE A (Deduct $500)",
+        statusTag: "TRANS: DIRTY BUFFER ALLOCATED",
+        dirtyBadge: "DIRTY PAGE (A)",
+        bufA: "Account A: $500 [DIRTY]",
+        bufB: "Account B: $500",
+        undo: "Undo Record #1: A.before_val = 1000",
+        undoCount: "1 item",
+        highlightPill: 1,
+        explanation: "ENGINE INTERNALS: Before modifying RAM page for Account A, the engine writes its BEFORE-IMAGE ($1000) to the Undo Log. Then RAM buffer is modified to $500 and marked DIRTY."
+      },
+      {
+        stepInfo: "Step 3: UPDATE B (Add $500)",
+        statusTag: "TRANS: PARTIALLY COMMITTED",
+        dirtyBadge: "DIRTY PAGES (A & B)",
+        bufA: "Account A: $500 [DIRTY]",
+        bufB: "Account B: $1000 [DIRTY]",
+        undo: "Undo Record #1: A.before = 1000<br>Undo Record #2: B.before = 500",
+        undoCount: "2 items",
+        highlightPill: 2,
+        explanation: "Account B before-image ($500) pushed to Undo stack. Memory buffer updated to $1000 and marked DIRTY. Notice physical disk still has $1000 & $500."
+      },
+      {
+        stepInfo: "Step 4: COMMIT TRANSACTION",
+        statusTag: "TRANS: COMMITTED (DURABLE)",
+        dirtyBadge: "Flushed to WAL",
+        bufA: "Account A: $500",
+        bufB: "Account B: $1000",
+        undo: "[Purged / Marked for GC]",
+        undoCount: "0 items",
+        highlightPill: 3,
+        diskA: "Account A: $500",
+        diskB: "Account B: $1000",
+        explanation: "COMMIT issues fsync() to WAL. Transaction state permanently transitions to COMMITTED. Undo records are unlinked and queued for garbage collection."
+      }
+    ];
+
+    function renderAtomicity() {
+      const state = atomStages[atomStep];
+      document.getElementById("atom-step-info").innerText = state.stepInfo;
+      document.getElementById("atom-status-tag").innerText = state.statusTag;
+      document.getElementById("buffer-dirty-badge").innerText = state.dirtyBadge;
+      
+      const bufAEl = document.getElementById("buf-a");
+      const bufBEl = document.getElementById("buf-b");
+      bufAEl.innerText = state.bufA;
+      bufBEl.innerText = state.bufB;
+      
+      if (atomStep === 1) {
+        bufAEl.className = "data-pill dirty";
+        bufBEl.className = "data-pill";
+      } else if (atomStep === 2) {
+        bufAEl.className = "data-pill dirty";
+        bufBEl.className = "data-pill dirty";
+      } else if (atomStep === 3) {
+        bufAEl.className = "data-pill committed";
+        bufBEl.className = "data-pill committed";
+      } else {
+        bufAEl.className = "data-pill";
+        bufBEl.className = "data-pill";
+      }
+
+      document.getElementById("undo-stack-content").innerHTML = `<div class="data-pill highlight">${state.undo}</div>`;
+      document.getElementById("undo-count").innerText = state.undoCount;
+
+      if (state.diskA) {
+        document.getElementById("disk-a").innerText = state.diskA;
+        document.getElementById("disk-b").innerText = state.diskB;
+        document.getElementById("disk-a").className = "data-pill committed";
+        document.getElementById("disk-b").className = "data-pill committed";
+      }
+
+      document.getElementById("atom-explanation").innerHTML = state.explanation;
+
+      // Highlight sql item
+      const sqlPills = document.querySelectorAll("#atom-sql-content .data-pill");
+      sqlPills.forEach((p, idx) => {
+        p.className = (idx === state.highlightPill) ? "data-pill highlight" : "data-pill";
+      });
+
+      document.getElementById("btn-atom-next").disabled = (atomStep >= atomStages.length - 1);
+    }
+
+    function atomicityNext() {
+      if (atomStep < atomStages.length - 1) {
+        atomStep++;
+        renderAtomicity();
+      }
+    }
+
+    function atomicityCrash() {
+      if (atomStep === 0 || atomStep === 3) {
+        alert("Transaction is either IDLE or already COMMITTED. Advance to Step 2 or 3 to trigger an mid-flight abort!");
+        return;
+      }
+      // Replay Undo Pass
+      document.getElementById("node-undo").classList.add("danger-pulse");
+      document.getElementById("atom-status-tag").innerText = "STATUS: ABORTED - UNDO PASS EXECUTING";
+      document.getElementById("atom-explanation").innerHTML = "<strong style='color:#ef4444;'>CRASH / ABORT DETECTED!</strong> The database storage engine steps backward through the Undo Log stack. It overwrites dirty RAM pages with their Before-Images ($1000 and $500), guaranteeing absolute Atomicity (All or Nothing).";
+      
+      setTimeout(() => {
+        document.getElementById("buf-a").innerText = "Account A: $1000 [RESTORED]";
+        document.getElementById("buf-b").innerText = "Account B: $500 [RESTORED]";
+        document.getElementById("buf-a").className = "data-pill aborted";
+        document.getElementById("buf-b").className = "data-pill aborted";
+        document.getElementById("buffer-dirty-badge").innerText = "Restored Clean";
+        document.getElementById("undo-stack-content").innerHTML = "<div class='data-pill aborted'>[Replayed & Cleared]</div>";
+        document.getElementById("undo-count").innerText = "0 items";
+        document.getElementById("node-undo").classList.remove("danger-pulse");
+        document.getElementById("atom-step-info").innerText = "TRANSACTION ABORTED (0 Changes Kept)";
+        document.getElementById("btn-atom-next").disabled = true;
+      }, 700);
+    }
+
+    function atomicityReset() {
+      atomStep = 0;
+      document.getElementById("disk-a").innerText = "Account A: $1000";
+      document.getElementById("disk-b").innerText = "Account B: $500";
+      document.getElementById("disk-a").className = "data-pill";
+      document.getElementById("disk-b").className = "data-pill";
+      document.getElementById("btn-atom-next").disabled = false;
+      renderAtomicity();
+    }
+
+
+    // ==========================================
+    // 2. CONSISTENCY SIMULATOR
+    // ==========================================
+    function runValidInvariant() {
+      document.getElementById("const-status-pill").innerText = "EVALUATING INVARIANTS";
+      document.getElementById("const-status-pill").className = "flow-badge badge-blue";
+      document.getElementById("const-op-pill").innerText = "Operation: Deduct $300 from Account A";
+      document.getElementById("const-eval-pill").innerText = "Check: ($1000 - $300 = $700) >= 0 -> TRUE";
+      document.getElementById("const-result-pill").innerText = "Result: COMMIT ALLOWED (New Balance: $700)";
+      document.getElementById("const-result-pill").className = "data-pill committed";
+      document.getElementById("const-explanation").innerHTML = "<strong style='color:#10b981;'>VALID TRANSACTION:</strong> The transaction maintains all integrity constraints (Domain check `balance >= 0`). The storage engine transitions from State S1 ($1000) to State S2 ($700). System remains globally consistent.";
+      document.getElementById("const-step-info").innerText = "Balance A: $700 (Constraint Satisfied)";
+    }
+
+    function runInvalidInvariant() {
+      document.getElementById("const-status-pill").innerText = "CONSTRAINT VIOLATION";
+      document.getElementById("const-status-pill").className = "flow-badge badge-red";
+      document.getElementById("const-op-pill").innerText = "Operation: Deduct $1500 from Account A";
+      document.getElementById("const-eval-pill").innerText = "Check: ($1000 - $1500 = -$500) >= 0 -> FALSE!";
+      document.getElementById("const-result-pill").innerText = "Result: ENGINE TRIGGERED AUTO-ROLLBACK";
+      document.getElementById("const-result-pill").className = "data-pill aborted";
+      document.getElementById("const-explanation").innerHTML = "<strong style='color:#ef4444;'>INTEGRITY FAILURE:</strong> The update violated `CHECK (balance >= 0)`. The database aborts the statement immediately, discarding modifications. Consistency invariant preserves the pre-state ($1000) with zero data corruption.";
+      document.getElementById("const-step-info").innerText = "Balance A: $1000 (Rollback Enforced)";
+    }
+
+    function resetConsistency() {
+      document.getElementById("const-status-pill").innerText = "Awaiting Command";
+      document.getElementById("const-status-pill").className = "flow-badge badge-amber";
+      document.getElementById("const-op-pill").innerText = "Operation: IDLE";
+      document.getElementById("const-eval-pill").innerText = "Constraint Check: Pending";
+      document.getElementById("const-result-pill").innerText = "Result: Pre-condition State Preserved";
+      document.getElementById("const-result-pill").className = "data-pill";
+      document.getElementById("const-step-info").innerText = "Balance A: $1000 (Min allowed: $0)";
+      document.getElementById("const-explanation").innerText = "Select an operation above. A valid transfer deducts $300 leaving $700. An invalid transfer attempts to deduct $1500 from Account A violating the check constraint.";
+    }
+
+
+    // ==========================================
+    // 3. ISOLATION SIMULATOR
+    // ==========================================
+    let isoStepIndex = 0;
+    const isoStages = [
+      {
+        stepInfo: "Timeline T1: T2 begins Read Snapshot",
+        t1Active: 0,
+        t2Active: 0,
+        tuples: `<div class="data-pill highlight" style="flex:1;">Tuple v1 [xmin: 90, xmax: inf]: balance = $1000 (Visible to T2)</div>`,
+        explanation: "Transaction 2 begins in Repeatable Read / Read Committed. The engine creates an MVCC Snapshot. T2 can see Tuple v1 ($1000)."
+      },
+      {
+        stepInfo: "Timeline T2: T1 updates Account A to $800 (Uncommitted)",
+        t1Active: 1,
+        t2Active: 0,
+        tuples: `<div class="data-pill highlight" style="flex:1;">Tuple v1 [xmin: 90, xmax: 101]: balance = $1000</div>
+                 <div class="data-pill dirty" style="flex:1;">Tuple v2 [xmin: 101, xmax: inf]: balance = $800 (Uncommitted)</div>`,
+        explanation: "MVCC IN ACTION: Postgres/InnoDB does not overwrite Tuple v1 in place. Instead, it marks v1 as superseded by XID 101 and writes Tuple v2 ($800). Because T1 is still uncommitted, T2's snapshot reads only v1. <strong>DIRTY READ PREVENTED!</strong>"
+      },
+      {
+        stepInfo: "Timeline T3: T2 reads Account A concurrently",
+        t1Active: 1,
+        t2Active: 1,
+        tuples: `<div class="data-pill highlight" style="flex:1;">Tuple v1 [xmin: 90, xmax: 101]: balance = $1000 (T2 reads this)</div>
+                 <div class="data-pill dirty" style="flex:1;">Tuple v2 [xmin: 101, xmax: inf]: balance = $800 (T1 Private)</div>`,
+        explanation: "Readers never block writers; writers never block readers! Transaction 2 queries Account A and safely reads $1000 without locking T1."
+      },
+      {
+        stepInfo: "Timeline T4: T1 COMMITS (Tuple v2 becomes official)",
+        t1Active: 2,
+        t2Active: 2,
+        tuples: `<div class="data-pill" style="flex:1; opacity:0.6;">Tuple v1 [DEAD TUPLE / To be Vacuumed]</div>
+                 <div class="data-pill committed" style="flex:1;">Tuple v2 [xmin: 101, xmax: inf]: balance = $800 [COMMITTED]</div>`,
+        explanation: "T1 commits. Tuple v2 is now active for future transactions. In Repeatable Read, T2 would continue seeing $1000 until T2 completes. In Read Committed, a new query by T2 would now see $800."
+      }
+    ];
+
+    function renderIsolation() {
+      const state = isoStages[isoStepIndex];
+      document.getElementById("iso-step-info").innerText = state.stepInfo;
+      document.getElementById("mvcc-tuple-content").innerHTML = state.tuples;
+      document.getElementById("iso-explanation").innerHTML = state.explanation;
+
+      // Update active rows
+      ["t1-step1", "t1-step2", "t1-step3"].forEach((id, idx) => {
+        document.getElementById(id).className = (idx === state.t1Active) ? "data-pill highlight" : "data-pill";
+      });
+      ["t2-step1", "t2-step2", "t2-step3"].forEach((id, idx) => {
+        document.getElementById(id).className = (idx === state.t2Active) ? "data-pill highlight" : "data-pill";
+      });
+    }
+
+    function isolationStep() {
+      isoStepIndex = (isoStepIndex + 1) % isoStages.length;
+      renderIsolation();
+    }
+
+    function resetIsolation() {
+      isoStepIndex = 0;
+      renderIsolation();
+    }
+
+    function toggleIsolationMode() {
+      const btn = document.getElementById("btn-iso-mode");
+      if (btn.innerText.includes("MVCC")) {
+        btn.innerText = "Mode: 2PL (Pessimistic Locks)";
+        document.getElementById("iso-explanation").innerHTML = "<strong>2PL (Two-Phase Locking) Mode:</strong> In pessimistic mode, T1's UPDATE places an Exclusive Lock (X-Lock) on Row A. Transaction 2's SELECT request for Shared Lock (S-Lock) is <strong>BLOCKED</strong> until T1 commits!";
+      } else {
+        btn.innerText = "Mode: MVCC (Postgres/InnoDB)";
+        renderIsolation();
+      }
+    }
+
+
+    // ==========================================
+    // 4. DURABILITY SIMULATOR
+    // ==========================================
+    let durStepIdx = 0;
+    const durStages = [
+      {
+        info: "Stage 0: Pre-Commit (RAM Buffer)",
+        ram: "WAL Record: LSN 1045",
+        os: "Empty",
+        fsync: "Not Called",
+        fsyncBadge: "Idle",
+        disk: "WAL Disk Head: 0x000",
+        explanation: "Query completes in DB execution engine. The log delta is written to the database's internal Log Buffer in RAM."
+      },
+      {
+        info: "Stage 1: write() syscall -> OS Page Cache (TRAP!)",
+        ram: "WAL Record: LSN 1045",
+        os: "WAL Record in OS RAM Cache",
+        osBadge: "VOLATILE DANGER",
+        fsync: "Pending fsync()",
+        fsyncBadge: "Waiting",
+        disk: "WAL Disk Head: 0x000",
+        explanation: "⚠️ <strong>THE OS CACHE TRAP:</strong> The DB calls standard OS `write()`. The operating system traps this in kernel RAM cache for speed. If power fails right now, this WAL record vanishes even though the OS returned success!"
+      },
+      {
+        info: "Stage 2: fsync() System Call Issued",
+        ram: "Flushing...",
+        os: "Flushing to disk controller...",
+        osBadge: "Bypassing Cache",
+        fsync: "fsync() executing flush barrier",
+        fsyncBadge: "ACTIVE SYNC",
+        disk: "Writing to NVMe non-volatile cell...",
+        explanation: "The database refuses to report COMMIT to the client until it issues `fsync()`. This forces the kernel to bypass volatile caches and physically flush the WAL record."
+      },
+      {
+        info: "Stage 3: Physical Persistence Verified & COMMIT OK",
+        ram: "Clean",
+        os: "Flushed",
+        osBadge: "Safe",
+        fsync: "fsync() returned SUCCESS",
+        fsyncBadge: "COMPLETED",
+        disk: "WAL Record LSN 1045 Persisted",
+        diskBadge: "IMMUTABLE DURABILITY",
+        explanation: "✓ <strong>ACID DURABILITY ACHIEVED:</strong> The physical disk controller confirms non-volatile storage. The database engine returns `COMMIT OK` to the application client. The transaction will now survive any future power outage!"
+      }
+    ];
+
+    function renderDurability() {
+      const state = durStages[durStepIdx];
+      document.getElementById("dur-step-info").innerText = state.info;
+      document.getElementById("dur-buf-pill").innerText = state.ram;
+      document.getElementById("dur-os-pill").innerText = state.os;
+      document.getElementById("dur-os-badge").innerText = state.osBadge || "Volatile";
+      document.getElementById("dur-fsync-pill").innerText = state.fsync;
+      document.getElementById("dur-fsync-badge").innerText = state.fsyncBadge;
+      document.getElementById("dur-wal-pill").innerText = state.disk;
+      document.getElementById("dur-disk-badge").innerText = state.diskBadge || "Durable";
+      document.getElementById("dur-explanation").innerHTML = state.explanation;
+
+      // Pulse effects
+      document.querySelectorAll("#durability .arch-node").forEach(n => n.className = "arch-node");
+      if (durStepIdx === 1) document.getElementById("dur-node-oscache").className = "arch-node danger-pulse";
+      if (durStepIdx === 2) document.getElementById("dur-node-fsync").className = "arch-node active-pulse";
+      if (durStepIdx === 3) document.getElementById("dur-node-wal").className = "arch-node success-pulse";
+    }
+
+    function durabilityStep() {
+      durStepIdx = (durStepIdx + 1) % durStages.length;
+      renderDurability();
+    }
+
+    function durabilityPowerCut() {
+      if (durStepIdx === 1) {
+        document.getElementById("dur-node-oscache").className = "arch-node danger-pulse";
+        document.getElementById("dur-os-pill").innerText = "[ERASED BY POWER CUT]";
+        document.getElementById("dur-status-tag").innerText = "DATA CORRUPTION / COMMIT FAILED";
+        document.getElementById("dur-explanation").innerHTML = "<strong style='color:#ef4444;'>DATA LOSS DETECTED:</strong> Power failed while data was sitting in the volatile OS Page Cache without `fsync()`. The record was completely erased from volatile RAM! This proves why database engines strictly require sequential WAL flushing before acknowledging COMMIT.";
+      } else if (durStepIdx === 3) {
+        alert("The record is already persisted to physical non-volatile disk via fsync()! On reboot, the ARIES recovery process will safely recover this committed transaction.");
+      } else {
+        alert("Advance to Stage 1 ('OS Page Cache Trap') to simulate a crash during the vulnerable OS cache window!");
+      }
+    }
+
+    function resetDurability() {
+      durStepIdx = 0;
+      renderDurability();
+    }
+
+    // Initialize on load
+    renderAtomicity();
+  </script>
+</body>
+</html>
+
